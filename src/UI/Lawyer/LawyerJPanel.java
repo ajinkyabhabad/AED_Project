@@ -5,7 +5,13 @@
  */
 package UI.Lawyer;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.LegalOrganization;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +22,20 @@ public class LawyerJPanel extends javax.swing.JPanel {
     /**
      * Creates new form LawyerJPanel
      */
-    public LawyerJPanel() {
+    
+   private JPanel userProcessContainer;
+    private EcoSystem business;
+    private UserAccount userAccount;
+    private final LegalOrganization organization;
+    private Enterprise enterprise;
+    public LawyerJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,EcoSystem business) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = account;
+        this.organization = (LegalOrganization) organization;
+        this.business = business;
+        this.enterprise = enterprise;
+        
     }
 
     /**
