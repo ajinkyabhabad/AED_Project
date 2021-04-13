@@ -5,7 +5,14 @@
  */
 package UI.Hospital;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.LegalEnterprise;
+import Business.Organization.LegalOrganization;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +23,19 @@ public class DoctorJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DoctorJPanel
      */
-    public DoctorJPanel() {
+    private JPanel userProcessContainer;
+    private EcoSystem business;
+    private UserAccount userAccount;
+    private LegalOrganization LOrganization; 
+    private LegalEnterprise Lenterprise;
+    
+    public DoctorJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business,Enterprise enterprise) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = account;
+        this.business = business;
+        this.LOrganization = (LegalOrganization)organization;
+        this.Lenterprise = (LegalEnterprise) enterprise;
     }
 
     /**

@@ -5,7 +5,14 @@
  */
 package UI.CaseManager;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.NGOEnterprise;
+import Business.Organization.CaseManagerOrganization;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,9 +23,21 @@ public class CaseManagerJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CaseManagerJPanel
      */
-    public CaseManagerJPanel() {
+    private JPanel userProcessContainer;
+    private EcoSystem business;
+    private UserAccount userAccount;
+    private CaseManagerOrganization CMOrganization; 
+    private NGOEnterprise NGOenterprise;
+    public CaseManagerJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business,Enterprise enterprise) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = account;
+        this.business = business;
+        this.CMOrganization = (CaseManagerOrganization)organization;
+        this.NGOenterprise = (NGOEnterprise) enterprise;
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -6,10 +6,10 @@ package Business.Role;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Organization.DoctorOrganization;
+import Business.Organization.CounsellingDeptOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import ui.DoctorRole.DoctorWorkAreaJPanel;
+import UI.Counsellar.CounsellarJPanel;
 import javax.swing.JPanel;
 
 /**
@@ -20,7 +20,7 @@ public class CounsellorRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new DoctorWorkAreaJPanel(userProcessContainer, account, organization, enterprise);
+        return new CounsellarJPanel(userProcessContainer, account, organization, business, enterprise);
     }
     
     

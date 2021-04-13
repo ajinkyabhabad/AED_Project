@@ -5,7 +5,15 @@
  */
 package UI.Counsellar;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.HospitalEnterprise;
+import Business.Enterprise.NGOEnterprise;
+import Business.Organization.CaseManagerOrganization;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +24,10 @@ public class CounsellarEncounterJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CounsellarEncounterJPanel
      */
+    
     public CounsellarEncounterJPanel() {
         initComponents();
+        
         
     }
 
