@@ -49,8 +49,8 @@ public class PharmacistJPanel extends javax.swing.JPanel {
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        VRjButton = new javax.swing.JButton();
+        VDjButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
@@ -61,33 +61,43 @@ public class PharmacistJPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Welcome Pharmacist");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("View Requests");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        VRjButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        VRjButton.setForeground(new java.awt.Color(255, 255, 255));
+        VRjButton.setText("View Requests");
+        VRjButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        VRjButton.setBorderPainted(false);
+        VRjButton.setContentAreaFilled(false);
+        VRjButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton1MouseEntered(evt);
+                VRjButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton1MouseExited(evt);
+                VRjButtonMouseExited(evt);
+            }
+        });
+        VRjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VRjButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("View Details");
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        VDjButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        VDjButton.setForeground(new java.awt.Color(255, 255, 255));
+        VDjButton.setText("View Details");
+        VDjButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        VDjButton.setBorderPainted(false);
+        VDjButton.setContentAreaFilled(false);
+        VDjButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton2MouseEntered(evt);
+                VDjButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton2MouseExited(evt);
+                VDjButtonMouseExited(evt);
+            }
+        });
+        VDjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VDjButtonActionPerformed(evt);
             }
         });
 
@@ -101,9 +111,9 @@ public class PharmacistJPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(69, 69, 69)
-                .addComponent(jButton1)
+                .addComponent(VRjButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(VDjButton)
                 .addGap(82, 82, 82))
         );
         jPanel1Layout.setVerticalGroup(
@@ -113,8 +123,8 @@ public class PharmacistJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(VRjButton)
+                    .addComponent(VDjButton))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -147,26 +157,36 @@ public class PharmacistJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-          jButton1.setForeground(Color.black);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseEntered
+    private void VRjButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VRjButtonMouseEntered
+          VRjButton.setForeground(Color.black);        // TODO add your handling code here:
+    }//GEN-LAST:event_VRjButtonMouseEntered
 
-    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
-           jButton1.setForeground(Color.white);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseExited
+    private void VRjButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VRjButtonMouseExited
+           VRjButton.setForeground(Color.white);        // TODO add your handling code here:
+    }//GEN-LAST:event_VRjButtonMouseExited
 
-    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
-              jButton2.setForeground(Color.black);     // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2MouseEntered
+    private void VDjButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VDjButtonMouseEntered
+              VDjButton.setForeground(Color.black);     // TODO add your handling code here:
+    }//GEN-LAST:event_VDjButtonMouseEntered
 
-    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
-        jButton2.setForeground(Color.white); // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2MouseExited
+    private void VDjButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VDjButtonMouseExited
+        VDjButton.setForeground(Color.white); // TODO add your handling code here:
+    }//GEN-LAST:event_VDjButtonMouseExited
+
+    private void VRjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VRjButtonActionPerformed
+        PharmaViewRequestJPanel pvrJPanel=new PharmaViewRequestJPanel(userProcessContainer,business);
+        jSplitPane1.setBottomComponent(pvrJPanel);
+    }//GEN-LAST:event_VRjButtonActionPerformed
+
+    private void VDjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VDjButtonActionPerformed
+        ViewPrescriptionJPanel vdpJPanel=new ViewPrescriptionJPanel(userProcessContainer,business);
+        jSplitPane1.setBottomComponent(vdpJPanel);
+    }//GEN-LAST:event_VDjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton VDjButton;
+    private javax.swing.JButton VRjButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

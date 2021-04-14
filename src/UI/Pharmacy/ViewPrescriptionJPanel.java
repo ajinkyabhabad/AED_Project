@@ -5,7 +5,9 @@
  */
 package UI.Pharmacy;
 
+import Business.EcoSystem;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +18,12 @@ public class ViewPrescriptionJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewPrescriptionJPanel
      */
-    public ViewPrescriptionJPanel() {
+    JPanel userProcessContainer;
+    EcoSystem system;
+    public ViewPrescriptionJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
     }
 
     /**

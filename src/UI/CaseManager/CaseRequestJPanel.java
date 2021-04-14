@@ -5,7 +5,9 @@
  */
 package UI.CaseManager;
 
+import Business.EcoSystem;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +18,12 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CaseRequestJPanel
      */
-    public CaseRequestJPanel() {
+    JPanel userProcessContainer;
+    EcoSystem system;
+    public CaseRequestJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
     }
 
     /**

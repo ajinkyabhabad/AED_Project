@@ -5,7 +5,9 @@
  */
 package UI.HelpProvider;
 
+import Business.EcoSystem;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +18,12 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form HelpProviderRequestJPanel
      */
-    public HelpProviderRequestJPanel() {
+    JPanel userProcessContainer;
+    EcoSystem system;
+    public HelpProviderRequestJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
     }
 
     /**

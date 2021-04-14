@@ -82,6 +82,11 @@ public class SignupJFrame extends javax.swing.JFrame {
                 signupjButtonMouseExited(evt);
             }
         });
+        signupjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signupjButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout detailsjPanelLayout = new javax.swing.GroupLayout(detailsjPanel);
         detailsjPanel.setLayout(detailsjPanelLayout);
@@ -167,6 +172,12 @@ public class SignupJFrame extends javax.swing.JFrame {
     private void signupjButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signupjButtonMouseExited
         signupjButton.setForeground(Color.BLACK);
     }//GEN-LAST:event_signupjButtonMouseExited
+
+    private void signupjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupjButtonActionPerformed
+        this.setVisible(false);
+        ReportJFrame r = new ReportJFrame();
+        r.setVisible(true);
+    }//GEN-LAST:event_signupjButtonActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,7 +5,9 @@
  */
 package UI.Hospital;
 
+import Business.EcoSystem;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +18,12 @@ public class PrescribeMedicinesJPanel extends javax.swing.JPanel {
     /**
      * Creates new form PrescribeMedicinesJPanel
      */
-    public PrescribeMedicinesJPanel() {
+    JPanel userProcessContainer;
+    EcoSystem system;
+    public PrescribeMedicinesJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
     }
 
     /**

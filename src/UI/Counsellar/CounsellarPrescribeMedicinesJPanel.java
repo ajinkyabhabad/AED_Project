@@ -5,7 +5,9 @@
  */
 package UI.Counsellar;
 
+import Business.EcoSystem;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +18,12 @@ public class CounsellarPrescribeMedicinesJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CounsellarPrescribeMedicinesJPanel
      */
-    public CounsellarPrescribeMedicinesJPanel() {
+    JPanel userProcessContainer;
+    EcoSystem system;
+    public CounsellarPrescribeMedicinesJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
     }
 
     /**

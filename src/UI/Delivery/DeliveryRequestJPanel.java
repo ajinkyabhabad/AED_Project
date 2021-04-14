@@ -5,7 +5,9 @@
  */
 package UI.Delivery;
 
+import Business.EcoSystem;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +18,12 @@ public class DeliveryRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DeliveryRequestJPanel
      */
-    public DeliveryRequestJPanel() {
+    JPanel userProcessContainer;
+    EcoSystem system;
+    public DeliveryRequestJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
     }
 
     /**

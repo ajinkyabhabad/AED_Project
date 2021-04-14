@@ -50,9 +50,9 @@ public class DoctorJPanel extends javax.swing.JPanel {
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        MRjButton = new javax.swing.JButton();
+        PMjButton = new javax.swing.JButton();
+        RLTjButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
@@ -63,48 +63,63 @@ public class DoctorJPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Welcome Doctor");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("View Requests");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        MRjButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        MRjButton.setForeground(new java.awt.Color(255, 255, 255));
+        MRjButton.setText("Manage Requests");
+        MRjButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        MRjButton.setBorderPainted(false);
+        MRjButton.setContentAreaFilled(false);
+        MRjButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton1MouseEntered(evt);
+                MRjButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton1MouseExited(evt);
+                MRjButtonMouseExited(evt);
+            }
+        });
+        MRjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MRjButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Prescribe Medicines");
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        PMjButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        PMjButton.setForeground(new java.awt.Color(255, 255, 255));
+        PMjButton.setText("Prescribe Medicines");
+        PMjButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        PMjButton.setBorderPainted(false);
+        PMjButton.setContentAreaFilled(false);
+        PMjButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton2MouseEntered(evt);
+                PMjButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton2MouseExited(evt);
+                PMjButtonMouseExited(evt);
+            }
+        });
+        PMjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PMjButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Request Lab Test");
-        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        RLTjButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        RLTjButton.setForeground(new java.awt.Color(255, 255, 255));
+        RLTjButton.setText("Request Lab Test");
+        RLTjButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        RLTjButton.setBorderPainted(false);
+        RLTjButton.setContentAreaFilled(false);
+        RLTjButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton3MouseEntered(evt);
+                RLTjButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton3MouseExited(evt);
+                RLTjButtonMouseExited(evt);
+            }
+        });
+        RLTjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RLTjButtonActionPerformed(evt);
             }
         });
 
@@ -118,11 +133,11 @@ public class DoctorJPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(MRjButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(RLTjButton)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(PMjButton)
                 .addGap(19, 19, 19))
         );
         jPanel1Layout.setVerticalGroup(
@@ -132,9 +147,9 @@ public class DoctorJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(MRjButton)
+                    .addComponent(PMjButton)
+                    .addComponent(RLTjButton))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -167,35 +182,50 @@ public class DoctorJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-                jButton1.setForeground(Color.black);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseEntered
+    private void MRjButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MRjButtonMouseEntered
+                MRjButton.setForeground(Color.black);        // TODO add your handling code here:
+    }//GEN-LAST:event_MRjButtonMouseEntered
 
-    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
-           jButton1.setForeground(Color.white);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseExited
+    private void MRjButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MRjButtonMouseExited
+           MRjButton.setForeground(Color.white);        // TODO add your handling code here:
+    }//GEN-LAST:event_MRjButtonMouseExited
 
-    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
-       jButton2.setForeground(Color.black); // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2MouseEntered
+    private void PMjButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PMjButtonMouseEntered
+       PMjButton.setForeground(Color.black); // TODO add your handling code here:
+    }//GEN-LAST:event_PMjButtonMouseEntered
 
-    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
-        jButton1.setForeground(Color.white);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2MouseExited
+    private void PMjButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PMjButtonMouseExited
+        MRjButton.setForeground(Color.white);        // TODO add your handling code here:
+    }//GEN-LAST:event_PMjButtonMouseExited
 
-    private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
-      jButton3.setForeground(Color.black);   // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3MouseEntered
+    private void RLTjButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RLTjButtonMouseEntered
+      RLTjButton.setForeground(Color.black);   // TODO add your handling code here:
+    }//GEN-LAST:event_RLTjButtonMouseEntered
 
-    private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
-     jButton3.setForeground(Color.white);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3MouseExited
+    private void RLTjButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RLTjButtonMouseExited
+     RLTjButton.setForeground(Color.white);        // TODO add your handling code here:
+    }//GEN-LAST:event_RLTjButtonMouseExited
+
+    private void MRjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MRjButtonActionPerformed
+        RequestDoctorJPanel requestdoctorJPanel=new RequestDoctorJPanel(userProcessContainer,business);
+        jSplitPane1.setBottomComponent(requestdoctorJPanel);
+    }//GEN-LAST:event_MRjButtonActionPerformed
+
+    private void RLTjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RLTjButtonActionPerformed
+        RequestLabTestJPanel requestlabtestJPanel=new RequestLabTestJPanel(userProcessContainer,business);
+        jSplitPane1.setBottomComponent(requestlabtestJPanel);
+    }//GEN-LAST:event_RLTjButtonActionPerformed
+
+    private void PMjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PMjButtonActionPerformed
+        PrescribeMedicinesJPanel prescribemedicinesJPanel=new PrescribeMedicinesJPanel(userProcessContainer,business);
+        jSplitPane1.setBottomComponent(prescribemedicinesJPanel);
+    }//GEN-LAST:event_PMjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton MRjButton;
+    private javax.swing.JButton PMjButton;
+    private javax.swing.JButton RLTjButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -5,6 +5,7 @@
  */
 package UI.enterpriseadmin;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -20,10 +21,12 @@ public class EnterpriseAdminJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     Enterprise enterprise;
-    public EnterpriseAdminJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    EcoSystem system;
+    public EnterpriseAdminJPanel(JPanel userProcessContainer, Enterprise enterprise, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
+        this.system = system;
         
     }
 
@@ -39,9 +42,9 @@ public class EnterpriseAdminJPanel extends javax.swing.JPanel {
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        MOjButton = new javax.swing.JButton();
+        MEjButton = new javax.swing.JButton();
+        MUjButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
@@ -54,45 +57,60 @@ public class EnterpriseAdminJPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Welcome Enterprise Admin");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Manage Organization(s)");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        MOjButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        MOjButton.setForeground(new java.awt.Color(255, 255, 255));
+        MOjButton.setText("Manage Organization(s)");
+        MOjButton.setBorderPainted(false);
+        MOjButton.setContentAreaFilled(false);
+        MOjButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton1MouseEntered(evt);
+                MOjButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton1MouseExited(evt);
+                MOjButtonMouseExited(evt);
+            }
+        });
+        MOjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MOjButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Manage Employee");
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        MEjButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        MEjButton.setForeground(new java.awt.Color(255, 255, 255));
+        MEjButton.setText("Manage Employee");
+        MEjButton.setBorderPainted(false);
+        MEjButton.setContentAreaFilled(false);
+        MEjButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton2MouseEntered(evt);
+                MEjButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton2MouseExited(evt);
+                MEjButtonMouseExited(evt);
+            }
+        });
+        MEjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MEjButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Manage User");
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        MUjButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        MUjButton.setForeground(new java.awt.Color(255, 255, 255));
+        MUjButton.setText("Manage User");
+        MUjButton.setBorderPainted(false);
+        MUjButton.setContentAreaFilled(false);
+        MUjButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton3MouseEntered(evt);
+                MUjButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton3MouseExited(evt);
+                MUjButtonMouseExited(evt);
+            }
+        });
+        MUjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MUjButtonActionPerformed(evt);
             }
         });
 
@@ -113,11 +131,11 @@ public class EnterpriseAdminJPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jButton1)
+                .addComponent(MOjButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(MEjButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(MUjButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -142,9 +160,9 @@ public class EnterpriseAdminJPanel extends javax.swing.JPanel {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(MOjButton)
+                    .addComponent(MEjButton)
+                    .addComponent(MUjButton))
                 .addContainerGap())
         );
 
@@ -177,39 +195,54 @@ public class EnterpriseAdminJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-            jButton1.setForeground(Color.black);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseEntered
+    private void MOjButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MOjButtonMouseEntered
+            MOjButton.setForeground(Color.black);        // TODO add your handling code here:
+    }//GEN-LAST:event_MOjButtonMouseEntered
 
-    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
-          jButton1.setForeground(Color.white);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseExited
+    private void MOjButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MOjButtonMouseExited
+          MOjButton.setForeground(Color.white);        // TODO add your handling code here:
+    }//GEN-LAST:event_MOjButtonMouseExited
 
-    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
-          jButton2.setForeground(Color.black);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2MouseEntered
+    private void MEjButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MEjButtonMouseEntered
+          MEjButton.setForeground(Color.black);        // TODO add your handling code here:
+    }//GEN-LAST:event_MEjButtonMouseEntered
 
-    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
-          jButton2.setForeground(Color.white);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2MouseExited
+    private void MEjButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MEjButtonMouseExited
+          MEjButton.setForeground(Color.white);        // TODO add your handling code here:
+    }//GEN-LAST:event_MEjButtonMouseExited
 
-    private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
-          jButton3.setForeground(Color.black);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3MouseEntered
+    private void MUjButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MUjButtonMouseEntered
+          MUjButton.setForeground(Color.black);        // TODO add your handling code here:
+    }//GEN-LAST:event_MUjButtonMouseEntered
 
-    private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
-          jButton3.setForeground(Color.white);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3MouseExited
+    private void MUjButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MUjButtonMouseExited
+          MUjButton.setForeground(Color.white);        // TODO add your handling code here:
+    }//GEN-LAST:event_MUjButtonMouseExited
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void MOjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MOjButtonActionPerformed
+        ManageOrganizationsJPanel manageorganizationsJPanel=new ManageOrganizationsJPanel(userProcessContainer,enterprise, system);
+        jSplitPane1.setBottomComponent(manageorganizationsJPanel);
+    }//GEN-LAST:event_MOjButtonActionPerformed
+
+    private void MEjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MEjButtonActionPerformed
+        ManageEmployeeJPanel manageemployeeJPanel=new ManageEmployeeJPanel(userProcessContainer,enterprise, system);
+        jSplitPane1.setBottomComponent(manageemployeeJPanel);
+    }//GEN-LAST:event_MEjButtonActionPerformed
+
+    private void MUjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MUjButtonActionPerformed
+        ManageUserJPanel manageuserJPanel=new ManageUserJPanel(userProcessContainer,enterprise, system);
+        jSplitPane1.setBottomComponent(manageuserJPanel);
+    }//GEN-LAST:event_MUjButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton MEjButton;
+    private javax.swing.JButton MOjButton;
+    private javax.swing.JButton MUjButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -21,7 +21,6 @@ public class MainJFrame extends javax.swing.JFrame {
     
     public MainJFrame() {
         initComponents();
-        
         this.setSize(1080, 720);
     }
 
