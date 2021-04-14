@@ -26,9 +26,9 @@ public class SigninJFrame extends javax.swing.JFrame {
     /**
      * Creates new form SigninJFrame
      */
+    
     private EcoSystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-    
     public SigninJFrame() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
