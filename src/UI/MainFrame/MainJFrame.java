@@ -5,6 +5,8 @@
  */
 package UI.MainFrame;
 
+import Business.DB4OUtil.DB4OUtil;
+import Business.EcoSystem;
 import java.awt.Color;
 
 /**
@@ -16,8 +18,10 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
+    
     public MainJFrame() {
         initComponents();
+        
         this.setSize(1080, 720);
     }
 
