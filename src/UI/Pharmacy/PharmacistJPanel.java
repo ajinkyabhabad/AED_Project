@@ -5,7 +5,14 @@
  */
 package UI.Pharmacy;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.PharmacyEnterprise;
+import Business.Organization.Organization;
+import Business.Organization.PharmacyOrganization;
+import Business.UserAccount.UserAccount;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +23,18 @@ public class PharmacistJPanel extends javax.swing.JPanel {
     /**
      * Creates new form PharmacistJPanel
      */
-    public PharmacistJPanel() {
+    private JPanel userProcessContainer;
+    private EcoSystem business;
+    private UserAccount userAccount;
+    private PharmacyOrganization POrganization; 
+    private PharmacyEnterprise Penterprise;
+    public PharmacistJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise,EcoSystem business) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = account;
+        this.business = business;
+        this.POrganization = (PharmacyOrganization)organization;
+        this.Penterprise = (PharmacyEnterprise) enterprise;
     }
 
     /**

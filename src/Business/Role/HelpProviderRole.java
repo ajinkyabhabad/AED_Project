@@ -9,7 +9,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import ui.DoctorRole.DoctorWorkAreaJPanel;
+import UI.CaseManager.CaseManagerJPanel;
 import javax.swing.JPanel;
 
 /**
@@ -20,7 +20,7 @@ public class HelpProviderRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new DoctorWorkAreaJPanel(userProcessContainer, account, organization, enterprise);
+        return new CaseManagerJPanel(userProcessContainer, account, organization,enterprise,business);
     }
     
     

@@ -5,6 +5,14 @@
  */
 package UI.Pharmacy;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.PharmacyEnterprise;
+import Business.Organization.Organization;
+import Business.Organization.PharmacyOrganization;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author patel
@@ -14,8 +22,10 @@ public class PharmaViewRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form PharmaViewRequestJPanel
      */
+    
     public PharmaViewRequestJPanel() {
         initComponents();
+        
     }
 
     /**

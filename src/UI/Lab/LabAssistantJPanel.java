@@ -5,7 +5,14 @@
  */
 package UI.Lab;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.HealthEnterprise;
+import Business.Organization.LabOrganization;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +23,18 @@ public class LabAssistantJPanel extends javax.swing.JPanel {
     /**
      * Creates new form LabAssistantJPanel
      */
-    public LabAssistantJPanel() {
+    private JPanel userProcessContainer;
+    private EcoSystem business;
+    private UserAccount userAccount;
+    private LabOrganization LOrganization; 
+    private HealthEnterprise Henterprise;
+    public LabAssistantJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise,EcoSystem business) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = account;
+        this.business = business;
+        this.LOrganization = (LabOrganization)organization;
+        this.Henterprise = (HealthEnterprise) enterprise;
     }
 
     /**
