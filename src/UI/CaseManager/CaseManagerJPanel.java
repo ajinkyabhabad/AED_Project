@@ -51,8 +51,8 @@ public class CaseManagerJPanel extends javax.swing.JPanel {
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        VCReqjButton = new javax.swing.JButton();
+        VCRepjButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
@@ -63,31 +63,41 @@ public class CaseManagerJPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Welcome Case Manager");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("View Case Requests");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        VCReqjButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        VCReqjButton.setForeground(new java.awt.Color(255, 255, 255));
+        VCReqjButton.setText("View Case Requests");
+        VCReqjButton.setBorderPainted(false);
+        VCReqjButton.setContentAreaFilled(false);
+        VCReqjButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton1MouseEntered(evt);
+                VCReqjButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton1MouseExited(evt);
+                VCReqjButtonMouseExited(evt);
+            }
+        });
+        VCReqjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VCReqjButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("View Case Report");
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        VCRepjButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        VCRepjButton.setForeground(new java.awt.Color(255, 255, 255));
+        VCRepjButton.setText("View Case Report");
+        VCRepjButton.setBorderPainted(false);
+        VCRepjButton.setContentAreaFilled(false);
+        VCRepjButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton2MouseEntered(evt);
+                VCRepjButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton2MouseExited(evt);
+                VCRepjButtonMouseExited(evt);
+            }
+        });
+        VCRepjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VCRepjButtonActionPerformed(evt);
             }
         });
 
@@ -102,9 +112,9 @@ public class CaseManagerJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
-                        .addComponent(jButton1)
+                        .addComponent(VCReqjButton)
                         .addGap(27, 27, 27)
-                        .addComponent(jButton2)))
+                        .addComponent(VCRepjButton)))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -114,8 +124,8 @@ public class CaseManagerJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(VCReqjButton)
+                    .addComponent(VCRepjButton))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -148,26 +158,36 @@ public class CaseManagerJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
-             jButton2.setForeground(Color.black);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2MouseEntered
+    private void VCRepjButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VCRepjButtonMouseEntered
+             VCRepjButton.setForeground(Color.black);        // TODO add your handling code here:
+    }//GEN-LAST:event_VCRepjButtonMouseEntered
 
-    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
-             jButton2.setForeground(Color.white);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2MouseExited
+    private void VCRepjButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VCRepjButtonMouseExited
+             VCRepjButton.setForeground(Color.white);        // TODO add your handling code here:
+    }//GEN-LAST:event_VCRepjButtonMouseExited
 
-    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
-              jButton1.setForeground(Color.white);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseExited
+    private void VCReqjButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VCReqjButtonMouseExited
+              VCReqjButton.setForeground(Color.white);        // TODO add your handling code here:
+    }//GEN-LAST:event_VCReqjButtonMouseExited
 
-    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-              jButton1.setForeground(Color.black);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseEntered
+    private void VCReqjButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VCReqjButtonMouseEntered
+              VCReqjButton.setForeground(Color.black);        // TODO add your handling code here:
+    }//GEN-LAST:event_VCReqjButtonMouseEntered
+
+    private void VCReqjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VCReqjButtonActionPerformed
+        CaseRequestJPanel caserequestJPanel=new CaseRequestJPanel(userProcessContainer,business);
+        jSplitPane1.setBottomComponent(caserequestJPanel);
+    }//GEN-LAST:event_VCReqjButtonActionPerformed
+
+    private void VCRepjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VCRepjButtonActionPerformed
+        CaseReportJPanel casereportJPanel=new CaseReportJPanel(userProcessContainer,business);
+        jSplitPane1.setBottomComponent(casereportJPanel);
+    }//GEN-LAST:event_VCRepjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton VCRepjButton;
+    private javax.swing.JButton VCReqjButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

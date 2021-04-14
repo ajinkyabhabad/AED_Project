@@ -5,7 +5,9 @@
  */
 package UI.Delivery;
 
+import Business.EcoSystem;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +18,12 @@ public class DeliveryJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DeliveryJPanel
      */
-    public DeliveryJPanel() {
+    private JPanel userProcessContainer;
+    private EcoSystem business;
+    public DeliveryJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.business = system;
     }
 
     /**
@@ -32,8 +38,8 @@ public class DeliveryJPanel extends javax.swing.JPanel {
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        VRButton = new javax.swing.JButton();
+        VDjButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
@@ -44,40 +50,45 @@ public class DeliveryJPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Welcome Delivery Partner");
 
-        jButton1.setBackground(new java.awt.Color(0, 128, 128));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("View Requests");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        VRButton.setBackground(new java.awt.Color(0, 128, 128));
+        VRButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        VRButton.setForeground(new java.awt.Color(255, 255, 255));
+        VRButton.setText("View Requests");
+        VRButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        VRButton.setBorderPainted(false);
+        VRButton.setContentAreaFilled(false);
+        VRButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton1MouseEntered(evt);
+                VRButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton1MouseExited(evt);
+                VRButtonMouseExited(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        VRButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                VRButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 128, 128));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("View Details");
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        VDjButton.setBackground(new java.awt.Color(0, 128, 128));
+        VDjButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        VDjButton.setForeground(new java.awt.Color(255, 255, 255));
+        VDjButton.setText("View Details");
+        VDjButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        VDjButton.setBorderPainted(false);
+        VDjButton.setContentAreaFilled(false);
+        VDjButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton2MouseEntered(evt);
+                VDjButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton2MouseExited(evt);
+                VDjButtonMouseExited(evt);
+            }
+        });
+        VDjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VDjButtonActionPerformed(evt);
             }
         });
 
@@ -91,9 +102,9 @@ public class DeliveryJPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
-                .addComponent(jButton1)
+                .addComponent(VRButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(VDjButton)
                 .addGap(84, 84, 84))
         );
         jPanel1Layout.setVerticalGroup(
@@ -103,8 +114,8 @@ public class DeliveryJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(VRButton)
+                    .addComponent(VDjButton))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -137,30 +148,36 @@ public class DeliveryJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void VRButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VRButtonActionPerformed
+        DeliveryRequestJPanel drJPanel=new DeliveryRequestJPanel(userProcessContainer,business);
+        jSplitPane1.setBottomComponent(drJPanel);
+    }//GEN-LAST:event_VRButtonActionPerformed
 
-    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-          jButton1.setForeground(Color.black);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseEntered
+    private void VRButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VRButtonMouseEntered
+          VRButton.setForeground(Color.black);        // TODO add your handling code here:
+    }//GEN-LAST:event_VRButtonMouseEntered
 
-    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
-        jButton1.setForeground(Color.white);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseExited
+    private void VRButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VRButtonMouseExited
+        VRButton.setForeground(Color.white);        // TODO add your handling code here:
+    }//GEN-LAST:event_VRButtonMouseExited
 
-    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
-    jButton2.setForeground(Color.black);         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2MouseEntered
+    private void VDjButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VDjButtonMouseEntered
+    VDjButton.setForeground(Color.black);         // TODO add your handling code here:
+    }//GEN-LAST:event_VDjButtonMouseEntered
 
-    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
-      jButton2.setForeground(Color.white);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2MouseExited
+    private void VDjButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VDjButtonMouseExited
+      VDjButton.setForeground(Color.white);        // TODO add your handling code here:
+    }//GEN-LAST:event_VDjButtonMouseExited
+
+    private void VDjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VDjButtonActionPerformed
+        DeliveryDetailsJPanel ddJPanel=new DeliveryDetailsJPanel(userProcessContainer,business);
+        jSplitPane1.setBottomComponent(ddJPanel);
+    }//GEN-LAST:event_VDjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton VDjButton;
+    private javax.swing.JButton VRButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

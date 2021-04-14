@@ -5,7 +5,9 @@
  */
 package UI.Hospital;
 
+import Business.EcoSystem;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +18,12 @@ public class RequestDoctorJPanel extends javax.swing.JPanel {
     /**
      * Creates new form RequestDoctorJPanel
      */
-    public RequestDoctorJPanel() {
+    JPanel userProcessContainer;
+    EcoSystem system;
+    public RequestDoctorJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
     }
 
     /**

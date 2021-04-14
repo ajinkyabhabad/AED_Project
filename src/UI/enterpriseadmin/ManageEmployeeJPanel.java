@@ -5,7 +5,10 @@
  */
 package UI.enterpriseadmin;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +19,14 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageEmployeeJPanel
      */
-    public ManageEmployeeJPanel() {
+    JPanel userProcessContainer;
+    Enterprise enterprise;
+    EcoSystem system;
+    public ManageEmployeeJPanel(JPanel userProcessContainer, Enterprise enterprise, EcoSystem system) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.enterprise = enterprise;
+        this.system = system;
     }
 
     /**

@@ -5,7 +5,9 @@
  */
 package UI.Lab;
 
+import Business.EcoSystem;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +18,12 @@ public class LabRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form LabRequestJPanel
      */
-    public LabRequestJPanel() {
+    JPanel userProcessContainer;
+    EcoSystem system;
+    public LabRequestJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
     }
 
     /**

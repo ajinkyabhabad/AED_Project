@@ -5,7 +5,9 @@
  */
 package UI.Lawyer;
 
+import Business.EcoSystem;
 import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +18,12 @@ public class LawyerRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form LawyerRequestJPanel
      */
-    public LawyerRequestJPanel() {
+    JPanel userProcessContainer;
+    EcoSystem system;
+    public LawyerRequestJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
     }
 
     /**

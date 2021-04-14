@@ -23,9 +23,12 @@ public class PharmaViewRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form PharmaViewRequestJPanel
      */
-    
-    public PharmaViewRequestJPanel() {
+    JPanel userProcessContainer;
+    EcoSystem system;
+    public PharmaViewRequestJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
         
     }
 
