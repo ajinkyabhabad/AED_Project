@@ -5,6 +5,16 @@
  */
 package UI.HelpSeeker;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+
+import Business.Enterprise.HelpSeekerEnterprise;
+import Business.Organization.HelpSeekerOrganization;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
+
 /**
  *
  * @author Ankita Dharurkar
@@ -14,8 +24,18 @@ public class HelpSeekerJPanel extends javax.swing.JPanel {
     /**
      * Creates new form HelpSeekerJPanel
      */
-    public HelpSeekerJPanel() {
+    private JPanel userProcessContainer;
+    private EcoSystem business;
+    private UserAccount userAccount;
+    private HelpSeekerOrganization HSOrganization; 
+    private HelpSeekerEnterprise HSenterprise;
+    public HelpSeekerJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise,EcoSystem business) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = account;
+        this.business = business;
+        this.HSOrganization = (HelpSeekerOrganization)organization;
+        this.HSenterprise = (HelpSeekerEnterprise) enterprise;
     }
 
     /**

@@ -28,7 +28,7 @@ public class CaseManagerJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private CaseManagerOrganization CMOrganization; 
     private NGOEnterprise NGOenterprise;
-    public CaseManagerJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business,Enterprise enterprise) {
+    public CaseManagerJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise,EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;

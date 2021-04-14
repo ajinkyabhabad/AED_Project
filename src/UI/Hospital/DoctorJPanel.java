@@ -7,8 +7,8 @@ package UI.Hospital;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Enterprise.LegalEnterprise;
-import Business.Organization.LegalOrganization;
+import Business.Enterprise.HealthEnterprise;
+import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.Color;
@@ -26,16 +26,16 @@ public class DoctorJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem business;
     private UserAccount userAccount;
-    private LegalOrganization LOrganization; 
-    private LegalEnterprise Lenterprise;
+    private DoctorOrganization DOrganization; 
+    private HealthEnterprise Henterprise;
     
-    public DoctorJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business,Enterprise enterprise) {
+    public DoctorJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
-        this.LOrganization = (LegalOrganization)organization;
-        this.Lenterprise = (LegalEnterprise) enterprise;
+        this.DOrganization = (DoctorOrganization)organization;
+        this.Henterprise = (HealthEnterprise) enterprise;
     }
 
     /**

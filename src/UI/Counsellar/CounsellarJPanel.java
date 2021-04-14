@@ -8,7 +8,7 @@ package UI.Counsellar;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.HospitalEnterprise;
-import Business.Organization.CaseManagerOrganization;
+import Business.Organization.CounsellingDeptOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.Color;
@@ -26,14 +26,14 @@ public class CounsellarJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem business;
     private UserAccount userAccount;
-    private CaseManagerOrganization CMOrganization; 
+    private CounsellingDeptOrganization COrganization; 
     private HospitalEnterprise Henterprise;
-    public CounsellarJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business,Enterprise enterprise) {
+    public CounsellarJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
-        this.CMOrganization = (CaseManagerOrganization)organization;
+        this.COrganization = (CounsellingDeptOrganization)organization;
         this.Henterprise = (HospitalEnterprise) enterprise;
     }
 
