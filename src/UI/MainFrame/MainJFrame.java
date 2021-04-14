@@ -140,11 +140,15 @@ public class MainJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SignupjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignupjButtonActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        SignupJFrame eng = new SignupJFrame();
+        eng.setVisible(true);
     }//GEN-LAST:event_SignupjButtonActionPerformed
 
     private void SigninjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SigninjButtonActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        SigninJFrame eng = new SigninJFrame();
+        eng.setVisible(true);
     }//GEN-LAST:event_SigninjButtonActionPerformed
 
     private void SignupjButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SignupjButtonMouseEntered
