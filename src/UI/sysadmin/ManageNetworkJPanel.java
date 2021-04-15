@@ -10,6 +10,7 @@ import Business.Network.Network;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -38,7 +39,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (Network network : system.getNetworkList()) {
             Object[] row = new Object[1];
-            row[0] = network.getName();
+            row[0] = network;
             model.addRow(row);
         }
     }
@@ -59,6 +60,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         txtNetworkName = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        DeleteBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -131,6 +133,24 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             }
         });
 
+        DeleteBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        DeleteBtn.setText("Delete");
+        DeleteBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DeleteBtn.setBorderPainted(false);
+        DeleteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                DeleteBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                DeleteBtnMouseExited(evt);
+            }
+        });
+        DeleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,8 +171,10 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtNetworkName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(179, 179, 179)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(138, 138, 138)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(101, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -172,7 +194,9 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(txtNetworkName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(DeleteBtn))
                 .addContainerGap(89, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -191,12 +215,19 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        if( txtNetworkName.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "please enter all mandatory fields");
+            return;
+        }
         String name = txtNetworkName.getText();
 
         Network network = system.createAndAddNetwork();
         network.setName(name);
 
         populateNetworkTable();
+        txtNetworkName.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
@@ -218,8 +249,39 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void DeleteBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteBtnMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeleteBtnMouseEntered
+
+    private void DeleteBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteBtnMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeleteBtnMouseExited
+
+    private void DeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBtnActionPerformed
+        // TODO add your handling code here:
+        
+        int selectedRow = networkJTable.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null, "Please select the row to delete the account", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+
+            Network p=(Network) networkJTable.getValueAt(selectedRow, 0);
+
+            for (Network network : system.getNetworkList()) {
+                    if(p==network){
+                      system.getNetworkList().remove(p);
+                        break;
+                    }
+            }
+            JOptionPane.showMessageDialog(null, "You have successfully deleted the account");
+            populateNetworkTable();
+        }
+    }//GEN-LAST:event_DeleteBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton DeleteBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

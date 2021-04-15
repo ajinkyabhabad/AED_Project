@@ -23,7 +23,10 @@ import Business.Role.PharmacyAdminRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
@@ -44,6 +47,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         populateNetworkComboBox();
     }
     
+    
+    
+    
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) enterpriseJTable.getModel();
 
@@ -54,7 +60,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                     Object[] row = new Object[3];
                     row[0] = enterprise.getName();
                     row[1] = network.getName();
-                    row[2] = userAccount.getUsername();
+                    row[2] = userAccount;
 
                     model.addRow(row);
                 }
@@ -78,6 +84,8 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         }
         
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -103,6 +111,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         networkJComboBox = new javax.swing.JComboBox();
         enterpriseJComboBox = new javax.swing.JComboBox();
+        deleteJButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -184,6 +193,23 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
         enterpriseJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        deleteJButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        deleteJButton.setText("Delete");
+        deleteJButton.setBorderPainted(false);
+        deleteJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deleteJButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deleteJButtonMouseExited(evt);
+            }
+        });
+        deleteJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteJButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -200,38 +226,40 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addGap(0, 87, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(160, 160, 160)
-                                .addComponent(submitJButton))
+                                .addGap(124, 124, 124)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(passwordJPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                    .addComponent(usernameJTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(124, 124, 124)
-                                                .addComponent(jLabel6))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(enterpriseJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(27, 27, 27)
-                                                .addComponent(jLabel5)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(passwordJPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                                            .addComponent(usernameJTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(1, 25, Short.MAX_VALUE)))
+                                        .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(submitJButton)
+                                            .addComponent(enterpriseJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(27, 27, 27)
+                                                .addComponent(jLabel5))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(29, 29, 29)
+                                                .addComponent(deleteJButton)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)))))
+                        .addGap(1, 23, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -262,9 +290,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(passwordJPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(submitJButton)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submitJButton)
+                    .addComponent(deleteJButton))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -278,6 +308,12 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
         // TODO add your handling code here:
+        
+        if( usernameJTextField.getText().isEmpty()||String.valueOf(passwordJPasswordField.getPassword()).isEmpty()|| nameJTextField.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "please enter all mandatory fields");
+            return;
+        }
         
         Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
         
@@ -298,6 +334,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         }
         //UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
         populateTable();
+        usernameJTextField.setText("");
+        passwordJPasswordField.setText("");
+        nameJTextField.setText("");
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
@@ -316,8 +355,48 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_networkJComboBoxActionPerformed
 
+    private void deleteJButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteJButtonMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteJButtonMouseEntered
+
+    private void deleteJButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteJButtonMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteJButtonMouseExited
+
+    private void deleteJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteJButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = enterpriseJTable.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row to delete!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else 
+        {
+            UserAccount p = (UserAccount) enterpriseJTable.getValueAt(selectedRow, 2);
+            
+            for (Network network : system.getNetworkList()) 
+            {
+                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) 
+                {
+                    for (UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList())
+                    {
+                        if (p == userAccount) {
+                            enterprise.getUserAccountDirectory().getUserAccountList().remove(p);
+                            break;
+                        }
+
+                    }
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Account successfully deleted!");
+            populateTable();
+            
+        }
+
+    }//GEN-LAST:event_deleteJButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton deleteJButton;
     private javax.swing.JComboBox enterpriseJComboBox;
     private javax.swing.JTable enterpriseJTable;
     private javax.swing.JButton jButton1;

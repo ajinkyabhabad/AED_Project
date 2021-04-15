@@ -11,6 +11,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -64,7 +65,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
             Object[] row = new Object[2];
             row[0] = employee.getId();
-            row[1] = employee.getName();
+            row[1] = employee;
             model.addRow(row);
         }
     }
@@ -87,6 +88,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         organizationEmpJComboBox = new javax.swing.JComboBox();
+        Deletebtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -157,6 +159,23 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
 
+        Deletebtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Deletebtn.setText("Delete Employee");
+        Deletebtn.setBorderPainted(false);
+        Deletebtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                DeletebtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                DeletebtnMouseExited(evt);
+            }
+        });
+        Deletebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeletebtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -169,22 +188,23 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(81, 81, 81)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(organizationEmpJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(organizationEmpJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jButton1)
+                        .addGap(31, 31, 31)
+                        .addComponent(Deletebtn)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -203,10 +223,12 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                            .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(organizationEmpJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(Deletebtn))
                 .addGap(40, 40, 40))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -219,29 +241,71 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
          jButton1.setForeground(Color.black);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseExited
 
-    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
-      jButton2.setForeground(new Color(0,128,128));        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2MouseEntered
-
-    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
-     jButton2.setForeground(Color.black);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2MouseExited
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        if( nameJTextField.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "please enter all mandatory fields");
+            return;
+        }
         Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
         String name = nameJTextField.getText();
         
         organization.getEmployeeDirectory().createEmployee(name);
         populateTable(organization);
+        nameJTextField.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void organizationEmpJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationEmpJComboBoxActionPerformed
         // TODO add your handling code here:
+        Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
+        if (organization != null){
+            populateTable(organization);
+        }
     }//GEN-LAST:event_organizationEmpJComboBoxActionPerformed
+
+    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
+        jButton2.setForeground(Color.black);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseExited
+
+    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
+        jButton2.setForeground(new Color(0,128,128));        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseEntered
+
+    private void DeletebtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeletebtnMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeletebtnMouseEntered
+
+    private void DeletebtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeletebtnMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeletebtnMouseExited
+
+    private void DeletebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletebtnActionPerformed
+        // TODO add your handling code here:
+        Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
+        int selectedRow = organizationJTable.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null, "Please select the row to delete the account", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            Employee e = (Employee) organizationJTable.getValueAt(selectedRow, 1);
+            
+            for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
+                if (e==employee){
+                    organization.getEmployeeDirectory().getEmployeeList().remove(e);
+                    break;
+                }
+            }
+            JOptionPane.showMessageDialog(null, "You have successfully deleted the account");
+            populateTable(organization);
+        }
+        
+    }//GEN-LAST:event_DeletebtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Deletebtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
