@@ -12,6 +12,7 @@ import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -96,12 +97,13 @@ public class ManageUserJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         nameJTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        passwordJTextField = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         organizationJComboBox = new javax.swing.JComboBox();
         employeeJComboBox = new javax.swing.JComboBox();
         roleJComboBox = new javax.swing.JComboBox();
+        passwordJTextField = new javax.swing.JPasswordField();
+        deletebtn = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -192,10 +194,31 @@ public class ManageUserJPanel extends javax.swing.JPanel {
 
         roleJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        deletebtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        deletebtn.setText("Delete");
+        deletebtn.setBorderPainted(false);
+        deletebtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deletebtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deletebtnMouseExited(evt);
+            }
+        });
+        deletebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletebtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(141, 141, 141))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -211,22 +234,20 @@ public class ManageUserJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jButton2))
                             .addComponent(employeeJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(nameJTextField)
-                            .addComponent(passwordJTextField)
                             .addComponent(organizationJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(roleJComboBox, 0, 146, Short.MAX_VALUE)))
+                            .addComponent(roleJComboBox, 0, 146, Short.MAX_VALUE)
+                            .addComponent(passwordJTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(deletebtn)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(141, 141, 141))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,11 +277,13 @@ public class ManageUserJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(passwordJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
+                            .addComponent(passwordJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(roleJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(deletebtn))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -294,8 +317,14 @@ public class ManageUserJPanel extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
+          if( nameJTextField.getText().isEmpty()|| String.valueOf(passwordJTextField.getPassword()).isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "please enter all mandatory fields");
+            return;
+        }
         String userName = nameJTextField.getText();
-        String password = passwordJTextField.getText();
+        String password = String.valueOf(passwordJTextField.getPassword());
         Organization organization = (Organization) organizationJComboBox.getSelectedItem();
         Employee employee = (Employee) employeeJComboBox.getSelectedItem();
         Role role = (Role) roleJComboBox.getSelectedItem();
@@ -303,10 +332,45 @@ public class ManageUserJPanel extends javax.swing.JPanel {
         organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
         
         popData();
+        nameJTextField.setText("");
+        passwordJTextField.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void deletebtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletebtnMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deletebtnMouseEntered
+
+    private void deletebtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletebtnMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deletebtnMouseExited
+
+    private void deletebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletebtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = userJTable.getSelectedRow();
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(null, "Please select the row to delete the account", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            UserAccount u = (UserAccount) userJTable.getValueAt(selectedRow, 0);
+            
+            
+            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
+                    if (u==ua){
+                        organization.getUserAccountDirectory().getUserAccountList().remove(u);
+                        break;
+                    }
+            
+                }
+            JOptionPane.showMessageDialog(null, "You have successfully deleted the account");
+            popData();
+            }
+        }
+    }//GEN-LAST:event_deletebtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton deletebtn;
     private javax.swing.JComboBox employeeJComboBox;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -320,7 +384,7 @@ public class ManageUserJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JComboBox organizationJComboBox;
-    private javax.swing.JTextField passwordJTextField;
+    private javax.swing.JPasswordField passwordJTextField;
     private javax.swing.JComboBox roleJComboBox;
     private javax.swing.JTable userJTable;
     // End of variables declaration//GEN-END:variables

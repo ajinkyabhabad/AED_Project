@@ -49,7 +49,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         for (Network network : system.getNetworkList()) {
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
                 Object[] row = new Object[3];
-                row[0] = enterprise.getName();
+                row[0] = enterprise;
                 row[1] = network.getName();
                 row[2] = enterprise.getEnterpriseType().getValue();
 
@@ -87,6 +87,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         networkJComboBox = new javax.swing.JComboBox();
         enterpriseTypeJComboBox = new javax.swing.JComboBox();
+        DeleteJButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -158,6 +159,24 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
         enterpriseTypeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        DeleteJButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        DeleteJButton.setText("Delete");
+        DeleteJButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DeleteJButton.setBorderPainted(false);
+        DeleteJButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                DeleteJButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                DeleteJButtonMouseExited(evt);
+            }
+        });
+        DeleteJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteJButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,7 +196,9 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(submitJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(169, 169, 169))
+                .addGap(28, 28, 28)
+                .addComponent(DeleteJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88))
             .addGroup(layout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -217,7 +238,9 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel4)
                     .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(submitJButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submitJButton)
+                    .addComponent(DeleteJButton))
                 .addGap(36, 36, 36))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -232,6 +255,12 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
         // TODO add your handling code here:
+        if( nameJTextField.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "please enter all mandatory fields");
+            return;
+        }
+        
         Network network = (Network) networkJComboBox.getSelectedItem();
         Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) enterpriseTypeJComboBox.getSelectedItem();
 
@@ -245,6 +274,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
 
         populateTable();
+        nameJTextField.setText("");
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
@@ -255,8 +285,42 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             jButton1.setForeground(Color.black);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseExited
 
+    private void DeleteJButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteJButtonMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeleteJButtonMouseEntered
+
+    private void DeleteJButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteJButtonMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeleteJButtonMouseExited
+
+    private void DeleteJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteJButtonActionPerformed
+        // TODO add your handling code here:
+        
+        int selectedRow = enterpriseJTable.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row to delete!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            Enterprise p = (Enterprise) enterpriseJTable.getValueAt(selectedRow, 0);
+            for (Network network : system.getNetworkList()) {
+                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                   
+                        if(p==enterprise){
+                           network.getEnterpriseDirectory().getEnterpriseList().remove(p);
+                            break;
+                        }
+
+                    
+                }
+            }
+            JOptionPane.showMessageDialog(null, "You have successfully deleted the account");
+            populateTable();
+        }
+    }//GEN-LAST:event_DeleteJButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton DeleteJButton;
     private javax.swing.JTable enterpriseJTable;
     private javax.swing.JComboBox enterpriseTypeJComboBox;
     private javax.swing.JButton jButton1;
