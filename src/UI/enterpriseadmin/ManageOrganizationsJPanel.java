@@ -36,14 +36,44 @@ public class ManageOrganizationsJPanel extends javax.swing.JPanel {
         
         populateTable();
         populateCombo();
+        System.out.println(enterprise.getEnterpriseType().getValue());
     }
     
     private void populateCombo(){
         organizationJComboBox.removeAllItems();
-        for (Organization.Type type : Organization.Type.values()){
+        if(enterprise.getEnterpriseType().getValue().equalsIgnoreCase("NGO")){
+            for (Organization.Type type : Organization.Type.values()){
+                if (type.getValue().equals(Organization.Type.CaseManager.getValue()) || type.getValue().equals(Organization.Type.HelpProvider.getValue())){
+                    organizationJComboBox.addItem(type);
+                }
+            }
+        } else if(enterprise.getEnterpriseType().getValue().equalsIgnoreCase("Health")){
+            for (Organization.Type type : Organization.Type.values()){
+                if (type.getValue().equals(Organization.Type.Hospital.getValue()) || type.getValue().equals(Organization.Type.Forensic.getValue())
+                        || type.getValue().equals(Organization.Type.CounsellingDept.getValue())){
+                    organizationJComboBox.addItem(type);
+                }
+            }
+        } else if(enterprise.getEnterpriseType().getValue().equalsIgnoreCase("Legal")){
+            for (Organization.Type type : Organization.Type.values()){
+                if (type.getValue().equals(Organization.Type.Legal.getValue())){
+                    organizationJComboBox.addItem(type);
+                }
+            }
+        }else if(enterprise.getEnterpriseType().getValue().equalsIgnoreCase("Pharmacy")){
+            for (Organization.Type type : Organization.Type.values()){
+                if (type.getValue().equals(Organization.Type.Pharmacy.getValue())){
+                    organizationJComboBox.addItem(type);
+                }
+            }
+        }
+        
+        
+        
+        /*for (Organization.Type type : Organization.Type.values()){
             if (!type.getValue().equals(Organization.Type.Admin.getValue()))
                 organizationJComboBox.addItem(type);
-        }
+        }*/
     }
 
     private void populateTable(){

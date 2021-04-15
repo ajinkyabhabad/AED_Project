@@ -9,6 +9,7 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.HealthEnterprise;
 import Business.Organization.DoctorOrganization;
+import Business.Organization.HospitalOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.Color;
@@ -26,7 +27,7 @@ public class DoctorJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem business;
     private UserAccount userAccount;
-    private DoctorOrganization DOrganization; 
+    private HospitalOrganization DOrganization; 
     private HealthEnterprise Henterprise;
     
     public DoctorJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,EcoSystem business) {
@@ -34,7 +35,7 @@ public class DoctorJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
-        this.DOrganization = (DoctorOrganization)organization;
+        this.DOrganization = (HospitalOrganization)organization;
         this.Henterprise = (HealthEnterprise) enterprise;
     }
 

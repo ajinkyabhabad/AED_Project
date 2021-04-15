@@ -16,7 +16,7 @@ import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Role.HealthAdminRole;
-import Business.Role.LawyerRole;
+import Business.Role.LegalAdminRole;
 import Business.Role.NGOAdminRole;
 import Business.Role.PharmacyAdminRole;
 //import Business.Role.AdminRole;
@@ -326,7 +326,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         if(enterprise.getEnterpriseType().getValue().equalsIgnoreCase("Health")){
             UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new HealthAdminRole());
         } else if(enterprise.getEnterpriseType().getValue().equalsIgnoreCase("Legal")){
-            UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new LawyerRole());
+            UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new LegalAdminRole());
         }else if(enterprise.getEnterpriseType().getValue().equalsIgnoreCase("NGO")){
             UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new NGOAdminRole());
         }else if(enterprise.getEnterpriseType().getValue().equalsIgnoreCase("Pharmacy")){
