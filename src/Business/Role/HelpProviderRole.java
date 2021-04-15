@@ -6,10 +6,10 @@ package Business.Role;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Organization.DoctorOrganization;
+import Business.Organization.HelpProviderOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UI.CaseManager.CaseManagerJPanel;
+import UI.HelpProvider.HelpProviderJPanel;
 import javax.swing.JPanel;
 
 /**
@@ -20,7 +20,7 @@ public class HelpProviderRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new CaseManagerJPanel(userProcessContainer, account, organization,enterprise,business);
+        return new HelpProviderJPanel(userProcessContainer, account, organization,enterprise,business);
     }
     
     

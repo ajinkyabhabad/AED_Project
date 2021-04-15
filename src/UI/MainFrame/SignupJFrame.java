@@ -6,6 +6,13 @@
 package UI.MainFrame;
 
 
+import Business.DB4OUtil.DB4OUtil;
+import Business.EcoSystem;
+import Business.Employee.Employee;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.EnterpriseDirectory;
+import Business.Role.HelpSeekerRole;
+import Business.UserAccount.UserAccount;
 import java.awt.Color;
 
 /**
@@ -17,8 +24,12 @@ public class SignupJFrame extends javax.swing.JFrame {
     /**
      * Creates new form SignupJFrame
      */
+    EnterpriseDirectory enterpriseDirectory;
+    private EcoSystem system;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public SignupJFrame() {
         initComponents();
+        system = dB4OUtil.retrieveSystem();
         this.setSize(1080, 720);
     }
 
@@ -39,12 +50,12 @@ public class SignupJFrame extends javax.swing.JFrame {
         emailjLabel = new javax.swing.JLabel();
         usernamejLabel = new javax.swing.JLabel();
         passwordjLabel = new javax.swing.JLabel();
-        fnameTextField = new javax.swing.JTextField();
+        nameJTextField = new javax.swing.JTextField();
         contactTextField = new javax.swing.JTextField();
         emailjTextField = new javax.swing.JTextField();
-        usernamejTextField = new javax.swing.JTextField();
-        passwordjTextField = new javax.swing.JTextField();
+        usernameJTextField = new javax.swing.JTextField();
         signupjButton = new javax.swing.JButton();
+        passwordJPasswordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,6 +99,12 @@ public class SignupJFrame extends javax.swing.JFrame {
             }
         });
 
+        passwordJPasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordJPasswordFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout detailsjPanelLayout = new javax.swing.GroupLayout(detailsjPanel);
         detailsjPanel.setLayout(detailsjPanelLayout);
         detailsjPanelLayout.setHorizontalGroup(
@@ -104,18 +121,18 @@ public class SignupJFrame extends javax.swing.JFrame {
                                     .addComponent(usernamejLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(emailjLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(fnamejLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(contactjLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
+                                    .addComponent(contactjLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, Short.MAX_VALUE))
                                 .addGap(27, 27, 27)
                                 .addGroup(detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(fnameTextField)
+                                    .addComponent(nameJTextField)
                                     .addComponent(contactTextField)
                                     .addComponent(emailjTextField)
-                                    .addComponent(usernamejTextField)
-                                    .addComponent(passwordjTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)))))
+                                    .addComponent(usernameJTextField)
+                                    .addComponent(passwordJPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(detailsjPanelLayout.createSequentialGroup()
                         .addGap(211, 211, 211)
                         .addComponent(signupjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
         detailsjPanelLayout.setVerticalGroup(
             detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +142,7 @@ public class SignupJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fnamejLabel)
-                    .addComponent(fnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(contactjLabel)
@@ -137,12 +154,12 @@ public class SignupJFrame extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernamejLabel)
-                    .addComponent(usernamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usernameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordjLabel)
-                    .addComponent(passwordjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                    .addComponent(passwordJPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(signupjButton)
                 .addGap(40, 40, 40))
         );
@@ -174,10 +191,24 @@ public class SignupJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_signupjButtonMouseExited
 
     private void signupjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupjButtonActionPerformed
+        String username = usernameJTextField.getText();
+        String password = String.valueOf(passwordJPasswordField.getPassword());
+        String name = nameJTextField.getText();
+        for (Enterprise enterprise:enterpriseDirectory.getEnterpriseList()){
+            if (enterprise.getEnterpriseType().getValue().equalsIgnoreCase("HelpSeeker")){
+                Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
+                UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
+            }
+        }
+        
         this.setVisible(false);
         ReportJFrame r = new ReportJFrame();
         r.setVisible(true);
     }//GEN-LAST:event_signupjButtonActionPerformed
+
+    private void passwordJPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordJPasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordJPasswordFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,13 +253,13 @@ public class SignupJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel detailsjPanel;
     private javax.swing.JLabel emailjLabel;
     private javax.swing.JTextField emailjTextField;
-    private javax.swing.JTextField fnameTextField;
     private javax.swing.JLabel fnamejLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField nameJTextField;
+    private javax.swing.JPasswordField passwordJPasswordField;
     private javax.swing.JLabel passwordjLabel;
-    private javax.swing.JTextField passwordjTextField;
     private javax.swing.JButton signupjButton;
+    private javax.swing.JTextField usernameJTextField;
     private javax.swing.JLabel usernamejLabel;
-    private javax.swing.JTextField usernamejTextField;
     // End of variables declaration//GEN-END:variables
 }
