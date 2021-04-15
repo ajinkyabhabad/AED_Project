@@ -7,7 +7,7 @@ package UI.Counsellar;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Enterprise.HospitalEnterprise;
+import Business.Enterprise.HealthEnterprise;
 import Business.Organization.CounsellingDeptOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -27,14 +27,14 @@ public class CounsellarJPanel extends javax.swing.JPanel {
     private EcoSystem business;
     private UserAccount userAccount;
     private CounsellingDeptOrganization COrganization; 
-    private HospitalEnterprise Henterprise;
+    private HealthEnterprise Henterprise;
     public CounsellarJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
         this.COrganization = (CounsellingDeptOrganization)organization;
-        this.Henterprise = (HospitalEnterprise) enterprise;
+        this.Henterprise = (HealthEnterprise) enterprise;
     }
 
     /**

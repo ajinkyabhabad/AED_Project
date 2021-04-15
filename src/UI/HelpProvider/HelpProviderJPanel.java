@@ -6,6 +6,11 @@
 package UI.HelpProvider;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.NGOEnterprise;
+import Business.Organization.Organization;
+import Business.Organization.HelpProviderOrganization;
+import Business.UserAccount.UserAccount;
 import java.awt.Color;
 import javax.swing.JPanel;
 
@@ -20,10 +25,16 @@ public class HelpProviderJPanel extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private EcoSystem business;
-    public HelpProviderJPanel(JPanel userProcessContainer, EcoSystem system) {
+    private UserAccount userAccount;
+    private HelpProviderOrganization HPOrganization; 
+    private NGOEnterprise NGOenterprise;
+    public HelpProviderJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise,EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.business = system;
+        this.userAccount = account;
+        this.business = business;
+        this.HPOrganization = (HelpProviderOrganization)organization;
+        this.NGOenterprise = (NGOEnterprise) enterprise;
     }
 
     /**

@@ -28,6 +28,7 @@ public class EnterpriseAdminJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.system = system;
         
+        jTextField1.setText(enterprise.getEnterpriseType().getValue());
     }
 
     /**
@@ -224,12 +225,12 @@ public class EnterpriseAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void MOjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MOjButtonActionPerformed
-        ManageOrganizationsJPanel manageorganizationsJPanel=new ManageOrganizationsJPanel(userProcessContainer,enterprise, system);
+        ManageOrganizationsJPanel manageorganizationsJPanel=new ManageOrganizationsJPanel(userProcessContainer,enterprise, system,enterprise.getOrganizationDirectory());
         jSplitPane1.setBottomComponent(manageorganizationsJPanel);
     }//GEN-LAST:event_MOjButtonActionPerformed
 
     private void MEjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MEjButtonActionPerformed
-        ManageEmployeeJPanel manageemployeeJPanel=new ManageEmployeeJPanel(userProcessContainer,enterprise, system);
+        ManageEmployeeJPanel manageemployeeJPanel=new ManageEmployeeJPanel(userProcessContainer,enterprise, system,enterprise.getOrganizationDirectory());
         jSplitPane1.setBottomComponent(manageemployeeJPanel);
     }//GEN-LAST:event_MEjButtonActionPerformed
 
