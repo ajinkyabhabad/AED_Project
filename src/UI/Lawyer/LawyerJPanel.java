@@ -172,11 +172,11 @@ public class LawyerJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_VRjButtonMouseExited
 
     private void EjButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EjButtonMouseEntered
-            VRjButton.setForeground(Color.black);         // TODO add your handling code here:
+            EjButton.setForeground(Color.black);         // TODO add your handling code here:
     }//GEN-LAST:event_EjButtonMouseEntered
 
     private void EjButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EjButtonMouseExited
-                VRjButton.setForeground(Color.white);         // TODO add your handling code here:
+                EjButton.setForeground(Color.white);         // TODO add your handling code here:
     }//GEN-LAST:event_EjButtonMouseExited
 
     private void VRjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VRjButtonActionPerformed

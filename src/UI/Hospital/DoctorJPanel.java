@@ -8,7 +8,7 @@ package UI.Hospital;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.HealthEnterprise;
-import Business.Organization.DoctorOrganization;
+//import Business.Organization.DoctorOrganization;
 import Business.Organization.HospitalOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
