@@ -11,6 +11,8 @@ import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.EnterpriseDirectory;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Role.HelpSeekerRole;
 import Business.UserAccount.UserAccount;
 import java.awt.Color;
@@ -31,6 +33,7 @@ public class SignupJFrame extends javax.swing.JFrame {
         initComponents();
         system = dB4OUtil.retrieveSystem();
         this.setSize(1080, 720);
+        populateNetworkComboBox();
     }
 
     /**
@@ -56,6 +59,8 @@ public class SignupJFrame extends javax.swing.JFrame {
         usernameJTextField = new javax.swing.JTextField();
         signupjButton = new javax.swing.JButton();
         passwordJPasswordField = new javax.swing.JPasswordField();
+        networkJComboBox = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,6 +110,15 @@ public class SignupJFrame extends javax.swing.JFrame {
             }
         });
 
+        networkJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        networkJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                networkJComboBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("City");
+
         javax.swing.GroupLayout detailsjPanelLayout = new javax.swing.GroupLayout(detailsjPanel);
         detailsjPanel.setLayout(detailsjPanelLayout);
         detailsjPanelLayout.setHorizontalGroup(
@@ -116,19 +130,22 @@ public class SignupJFrame extends javax.swing.JFrame {
                         .addGroup(detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(detailsjPanelLayout.createSequentialGroup()
-                                .addGroup(detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(passwordjLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(usernamejLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(emailjLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(fnamejLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(contactjLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, Short.MAX_VALUE))
+                                .addGroup(detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(passwordjLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(usernamejLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(emailjLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(fnamejLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(contactjLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
+                                    .addComponent(jLabel2))
                                 .addGap(27, 27, 27)
                                 .addGroup(detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(networkJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(nameJTextField)
                                     .addComponent(contactTextField)
                                     .addComponent(emailjTextField)
                                     .addComponent(usernameJTextField)
-                                    .addComponent(passwordJPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(passwordJPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)))))
                     .addGroup(detailsjPanelLayout.createSequentialGroup()
                         .addGap(211, 211, 211)
                         .addComponent(signupjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -151,17 +168,21 @@ public class SignupJFrame extends javax.swing.JFrame {
                 .addGroup(detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailjLabel)
                     .addComponent(emailjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(usernamejLabel)
-                    .addComponent(usernameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                    .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(26, 26, 26)
                 .addGroup(detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordjLabel)
-                    .addComponent(passwordJPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                    .addComponent(usernameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usernamejLabel))
+                .addGap(18, 18, 18)
+                .addGroup(detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(passwordJPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordjLabel))
+                .addGap(18, 18, 18)
                 .addComponent(signupjButton)
-                .addGap(40, 40, 40))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -182,6 +203,16 @@ public class SignupJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void populateNetworkComboBox(){
+        networkJComboBox.removeAllItems();
+        
+        for (Network network : system.getNetworkList()){
+            networkJComboBox.addItem(network);
+        }
+    }
+
+    
+    
     private void signupjButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signupjButtonMouseEntered
         signupjButton.setForeground(Color.WHITE);
     }//GEN-LAST:event_signupjButtonMouseEntered
@@ -194,21 +225,43 @@ public class SignupJFrame extends javax.swing.JFrame {
         String username = usernameJTextField.getText();
         String password = String.valueOf(passwordJPasswordField.getPassword());
         String name = nameJTextField.getText();
-        for (Enterprise enterprise:enterpriseDirectory.getEnterpriseList()){
-            if (enterprise.getEnterpriseType().getValue().equalsIgnoreCase("HelpSeeker")){
-                Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
-                UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
-            }
+        Network network=(Network) networkJComboBox.getSelectedItem();
+       
+          
+        for (Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+           
+           if(enterprise.getName().equalsIgnoreCase("HS"))
+           {   
+               Organization.Type type = (Organization.Type) Organization.Type.HelpSeeker;
+              Organization org= enterprise.getOrganizationDirectory().createOrganization(type);
+              Employee employee= org.getEmployeeDirectory().createEmployee(name);
+              
+               UserAccount userAccount=org.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
+               
+           } 
         }
+
         
         this.setVisible(false);
         ReportJFrame r = new ReportJFrame();
         r.setVisible(true);
+        dB4OUtil.storeSystem(system);
+        
+        
+        
     }//GEN-LAST:event_signupjButtonActionPerformed
 
     private void passwordJPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordJPasswordFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordJPasswordFieldActionPerformed
+
+    private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
+
+      /*  Network network = (Network) networkJComboBox.getSelectedItem();
+        if (network != null){
+            populateEnterpriseComboBox(network);
+        }*/
+    }//GEN-LAST:event_networkJComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,11 +308,18 @@ public class SignupJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField emailjTextField;
     private javax.swing.JLabel fnamejLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField nameJTextField;
+    private javax.swing.JComboBox networkJComboBox;
     private javax.swing.JPasswordField passwordJPasswordField;
     private javax.swing.JLabel passwordjLabel;
     private javax.swing.JButton signupjButton;
     private javax.swing.JTextField usernameJTextField;
     private javax.swing.JLabel usernamejLabel;
     // End of variables declaration//GEN-END:variables
+
+
+
+
+
 }

@@ -6,7 +6,7 @@ package Business.Role;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Organization.LabOrganization;
+import Business.Organization.ForensicOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import UI.Lab.LabAssistantJPanel;
