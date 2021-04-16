@@ -83,4 +83,13 @@ public class OrganizationDirectory {
         }*/
         return organization;
     }
+    
+    public Organization searchOrganizationbyname(String Name){
+        for(Organization org: organizationList){
+            if(Name.equalsIgnoreCase(org.getName())){
+                return org;
+            }
+        }
+        return null; 
+    }
 }
