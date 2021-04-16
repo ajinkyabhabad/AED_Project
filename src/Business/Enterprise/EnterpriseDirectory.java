@@ -54,5 +54,23 @@ public class EnterpriseDirectory {
         }
         return enterprise;
     }
+    
+    public Enterprise searchEnterprisebyname(String Name){
+        for(Enterprise etp: enterpriseList){
+            if(Name.equalsIgnoreCase(etp.getName())){
+                return etp;
+            }
+        }
+        return null; 
+    }
+    
+    public Enterprise searchEnterprisebyType(Enterprise.EnterpriseType type){
+        for(Enterprise etp : enterpriseList){
+            if(type.equals(etp.getEnterpriseType())){
+                return etp;
+            }
+        }
+        return null;
+    }
        
 }

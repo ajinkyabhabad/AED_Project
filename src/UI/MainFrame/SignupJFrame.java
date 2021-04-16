@@ -222,25 +222,54 @@ public class SignupJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_signupjButtonMouseExited
 
     private void signupjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupjButtonActionPerformed
+        Network network = (Network) networkJComboBox.getSelectedItem();
+        
         String username = usernameJTextField.getText();
         String password = String.valueOf(passwordJPasswordField.getPassword());
         String name = nameJTextField.getText();
-        Network network=(Network) networkJComboBox.getSelectedItem();
-       
-          
-        for (Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
-           
-           if(enterprise.getName().equalsIgnoreCase("HS"))
-           {   
-               Organization.Type type = (Organization.Type) Organization.Type.HelpSeeker;
-              Organization org= enterprise.getOrganizationDirectory().createOrganization(type);
-              Employee employee= org.getEmployeeDirectory().createEmployee(name);
-              
-               UserAccount userAccount=org.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
-               
-           } 
+        //System.out.println("start1");
+        boolean x = true;
+        
+        if(network.getEnterpriseDirectory().searchEnterprisebyType(Enterprise.EnterpriseType.HelpSeeker)==null){
+            x=false;
         }
-
+        
+        if(x==true){
+            Enterprise enterprise = network.getEnterpriseDirectory().searchEnterprisebyType(Enterprise.EnterpriseType.HelpSeeker);
+            //System.out.println("start2");
+                if(enterprise.getOrganizationDirectory().searchOrganizationbyname("HelpSeekerOrganization")==null){
+                    //System.out.println("start3");
+                    Organization.Type type = (Organization.Type) Organization.Type.HelpSeeker;
+                    Organization org= enterprise.getOrganizationDirectory().createOrganization(type);
+                    Employee employee= org.getEmployeeDirectory().createEmployee(name);
+                    UserAccount userAccount=org.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
+                    
+                }
+                else{
+                    //System.out.println("start4");
+                    
+                    Organization org = enterprise.getOrganizationDirectory().searchOrganizationbyname("HelpSeekerOrganization");
+                    Employee employee= org.getEmployeeDirectory().createEmployee(name);
+                    UserAccount userAccount=org.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
+                }     
+        }
+        else{
+            Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise("HS", Enterprise.EnterpriseType.HelpSeeker);
+            if(enterprise.getOrganizationDirectory().searchOrganizationbyname("HelpSeekerOrganization")==null){
+                //System.out.println("start3");
+                Organization.Type type = (Organization.Type) Organization.Type.HelpSeeker;
+                Organization org= enterprise.getOrganizationDirectory().createOrganization(type);
+                Employee employee= org.getEmployeeDirectory().createEmployee(name);
+                UserAccount userAccount=org.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
+                    
+            }
+            else{
+                //System.out.println("start4");
+                Organization org = enterprise.getOrganizationDirectory().searchOrganizationbyname("HelpSeekerOrganization");
+                Employee employee= org.getEmployeeDirectory().createEmployee(name);
+                UserAccount userAccount=org.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
+            }   
+        }
         
         this.setVisible(false);
         ReportJFrame r = new ReportJFrame();
