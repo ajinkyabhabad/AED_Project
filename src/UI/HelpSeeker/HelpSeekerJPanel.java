@@ -10,6 +10,7 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 
 import Business.Enterprise.HelpSeekerEnterprise;
+import Business.Network.Network;
 import Business.Organization.HelpSeekerOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -34,16 +35,18 @@ public class HelpSeekerJPanel extends javax.swing.JPanel {
     private HelpSeekerOrganization HSOrganization; 
     private HelpSeekerEnterprise HSenterprise;
     private EcoSystem system;
+    private Network network;
     
-    public HelpSeekerJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise,EcoSystem business) {
+    public HelpSeekerJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise,EcoSystem business,Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
         this.HSOrganization = (HelpSeekerOrganization) organization;
         this.HSenterprise = (HelpSeekerEnterprise) enterprise;
+        this.network = network;
       
-        populateTable();
+        
     }
 
     /**
@@ -60,10 +63,9 @@ public class HelpSeekerJPanel extends javax.swing.JPanel {
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        RefreshjButton = new javax.swing.JButton();
+        MRjButton2 = new javax.swing.JButton();
+        MRjButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Welcome Help Seeker");
@@ -78,24 +80,43 @@ public class HelpSeekerJPanel extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Welcome Help Seeker");
 
-        RefreshjButton.setBackground(new java.awt.Color(0, 128, 128));
-        RefreshjButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        RefreshjButton.setForeground(new java.awt.Color(255, 255, 255));
-        RefreshjButton.setText("Refresh");
-        RefreshjButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        RefreshjButton.setBorderPainted(false);
-        RefreshjButton.setContentAreaFilled(false);
-        RefreshjButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        MRjButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        MRjButton2.setForeground(new java.awt.Color(255, 255, 255));
+        MRjButton2.setText("View Status");
+        MRjButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        MRjButton2.setBorderPainted(false);
+        MRjButton2.setContentAreaFilled(false);
+        MRjButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                RefreshjButtonMouseEntered(evt);
+                MRjButton2MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                RefreshjButtonMouseExited(evt);
+                MRjButton2MouseExited(evt);
             }
         });
-        RefreshjButton.addActionListener(new java.awt.event.ActionListener() {
+        MRjButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RefreshjButtonActionPerformed(evt);
+                MRjButton2ActionPerformed(evt);
+            }
+        });
+
+        MRjButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        MRjButton1.setForeground(new java.awt.Color(255, 255, 255));
+        MRjButton1.setText("Report");
+        MRjButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        MRjButton1.setBorderPainted(false);
+        MRjButton1.setContentAreaFilled(false);
+        MRjButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MRjButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MRjButton1MouseExited(evt);
+            }
+        });
+        MRjButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MRjButton1ActionPerformed(evt);
             }
         });
 
@@ -106,60 +127,39 @@ public class HelpSeekerJPanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(110, 110, 110)
                 .addComponent(jLabel2)
-                .addContainerGap(115, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(RefreshjButton)
-                .addGap(18, 18, 18))
+                .addContainerGap(117, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(MRjButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(MRjButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(RefreshjButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MRjButton1)
+                    .addComponent(MRjButton2))
                 .addContainerGap())
         );
 
         jSplitPane1.setTopComponent(jPanel2);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Sr no.", "Date", "Receiver ", "Status"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 405, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+            .addGap(0, 200, Short.MAX_VALUE)
         );
 
         jSplitPane1.setRightComponent(jPanel3);
@@ -178,46 +178,42 @@ public class HelpSeekerJPanel extends javax.swing.JPanel {
         add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void RefreshjButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RefreshjButtonMouseEntered
-        RefreshjButton.setForeground(Color.black);        // TODO add your handling code here:
-    }//GEN-LAST:event_RefreshjButtonMouseEntered
-
-    private void RefreshjButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RefreshjButtonMouseExited
-        RefreshjButton.setForeground(Color.white);        // TODO add your handling code here:
-    }//GEN-LAST:event_RefreshjButtonMouseExited
-
-    private void RefreshjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshjButtonActionPerformed
+    private void MRjButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MRjButton2MouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_RefreshjButtonActionPerformed
-private void populateTable() {
-        
-        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
-        Object[] row=new Object[4];
-        model.setRowCount(0);
-        
-      
-        for(HelpSeekerWorkRequest request : HSOrganization.getWorkQueue().getHelpSeekerworkRequestList()){
-                //.getWorkQueue().getHelpSeekerworkRequestList())
-          
-            row[0] = request.getRequestid();
-            row[1] = request.getDoi();
-            row[2] = request.getReceiver().getEmployee().getName();
-            row[3] = request.getStatus();
-            
-            model.addRow(row);
-        }
-             
-    }
+    }//GEN-LAST:event_MRjButton2MouseEntered
+
+    private void MRjButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MRjButton2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MRjButton2MouseExited
+
+    private void MRjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MRjButton2ActionPerformed
+        // TODO add your handling code here:
+        HelpSeekerViewStatusJPanel reportJPanel1=new HelpSeekerViewStatusJPanel(userProcessContainer,userAccount,HSOrganization,HSenterprise,business);
+        jSplitPane1.setBottomComponent(reportJPanel1);
+    }//GEN-LAST:event_MRjButton2ActionPerformed
+
+    private void MRjButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MRjButton1MouseEntered
+        MRjButton1.setForeground(Color.black);        // TODO add your handling code here:
+    }//GEN-LAST:event_MRjButton1MouseEntered
+
+    private void MRjButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MRjButton1MouseExited
+        MRjButton1.setForeground(Color.white);        // TODO add your handling code here:
+    }//GEN-LAST:event_MRjButton1MouseExited
+
+    private void MRjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MRjButton1ActionPerformed
+        ReportJPanel reportJPanel=new ReportJPanel(userProcessContainer,business,userAccount,HSOrganization,network);
+        jSplitPane1.setBottomComponent(reportJPanel);
+        //ReportJFrame r = new ReportJFrame(system,network,ua,org);
+    }//GEN-LAST:event_MRjButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton RefreshjButton;
+    private javax.swing.JButton MRjButton1;
+    private javax.swing.JButton MRjButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
