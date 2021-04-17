@@ -288,90 +288,81 @@ public class ReportJFrame extends javax.swing.JFrame {
              
         HelpSeekerWorkRequest request = new HelpSeekerWorkRequest();
         request.setStatus("Waiting");
-         request.setSender(userAccount);
+        request.setSender(userAccount);
          
-         request.setNameofvictim(jTextField1.getText());
-         //for choosing relations
-         if(friendRadioButton.isSelected())
-         {
-             request.setRelation("Friend");
-         }
-         else if(parentRadioButton.isSelected())
-         {
-             request.setRelation("Parent");
-         }
-         else if(Colleagueradiobutton.isSelected())
-         {
-             request.setRelation("Self");
-             
-         }
-         else if(otherRadioButton.isSelected())
-         {
-             request.setRelation("Other");
-         }
-         else
-         {
-             JOptionPane.showMessageDialog(null, "Please select a relation");
+        request.setNameofvictim(jTextField1.getText());
+        //for choosing relations
+        if(friendRadioButton.isSelected()){
+            request.setRelation("Friend");
+        }
+        else if(parentRadioButton.isSelected()){
+            request.setRelation("Parent");
+        }
+        else if(Colleagueradiobutton.isSelected()){
+            request.setRelation("Self"); 
+        }
+        else if(otherRadioButton.isSelected()){
+            request.setRelation("Other");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Please select a relation");
 
-         }
-         //for choosing type 
-         if(jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Select one"))
-         {
-               JOptionPane.showMessageDialog(null, "Please select a type");
-         }
-         else{
-         request.setTypeofsa(jComboBox1.getSelectedItem().toString());
-         }
-         //location
-         request.setLocation(jTextField4.getText());
-         //date
-         if(jDateChooser1.getDate()==null)
-         {
-             JOptionPane.showMessageDialog(null, "Please select a date");
-         }else{
-         request.setDoi(jDateChooser1.getDate());
-         }
-            //more detaisl
-         request.setMoredetails(jTextField3.getText());
-         //suspect
-         if(knownRadioButton.isSelected())
-         {
-             request.setSuspecttype("Known");
-         }
-         else if(unknownRadioButton.isSelected())
-         {
-             request.setSuspecttype("Unknown");
-         }else{JOptionPane.showMessageDialog(null, "Please select a suspect type");}
+        }
+        //for choosing type 
+        if(jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Select one"))
+        {
+            JOptionPane.showMessageDialog(null, "Please select a type");
+        }
+        else{
+        request.setTypeofsa(jComboBox1.getSelectedItem().toString());
+        }
+        //location
+        request.setLocation(jTextField4.getText());
+        //date
+        if(jDateChooser1.getDate()==null)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a date");
+        }else{
+        request.setDoi(jDateChooser1.getDate());
+        }
+        //more detaisl
+        request.setMoredetails(jTextField3.getText());
+        //suspect
+        if(knownRadioButton.isSelected()){
+            request.setSuspecttype("Known");
+        }
+        else if(unknownRadioButton.isSelected()){
+            request.setSuspecttype("Unknown");
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a suspect type");
+        }
          
-         //name of suspect
-         request.setNameofsuspect(jTextField2.getText());
+        //name of suspect
+        request.setNameofsuspect(jTextField2.getText());
          
-         if(request.getDoi()!=null && request.getLocation()!=null && request.getRelation()!=null && request.getSuspecttype()!=null
-             && request.getNameofvictim()!=null && request.getTypeofsa()!=null)
-         {
-           Enterprise e=network.getEnterpriseDirectory().searchEnterprisebyType(Enterprise.EnterpriseType.NGO);
-           Organization org = null; 
-           for (Organization organization : e.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof HelpSeekerOrganization){
-                org = organization;
-                break;
+        if(request.getDoi()!=null && request.getLocation()!=null && request.getRelation()!=null && request.getSuspecttype()!=null
+             && request.getNameofvictim()!=null && request.getTypeofsa()!=null){
+           
+            Enterprise e=network.getEnterpriseDirectory().searchEnterprisebyType(Enterprise.EnterpriseType.NGO);
+            Organization org = null; 
+            for (Organization organization : e.getOrganizationDirectory().getOrganizationList()){
+                if (organization instanceof HelpSeekerOrganization){
+                    org = organization;
+                    break;
+                }
             }
-        }
-        if (org!=null){
-            org.getWorkQueue().getHelpSeekerworkRequestList().add(request);
-            userAccount.getWorkQueue().getHelpSeekerworkRequestList().add(request);
-        }
+            if (org!=null){
+                
+                org.getWorkQueue().getHelpSeekerworkRequestList().add(request);
+                userAccount.getWorkQueue().getHelpSeekerworkRequestList().add(request);
+                
+            }
 
-        
-        
         this.dispose();
         SigninJFrame eng = new SigninJFrame();
         eng.setVisible(true);
        
-         }
-        
-         
-       
+       }    
     }//GEN-LAST:event_ReportjButtonActionPerformed
 
     /**

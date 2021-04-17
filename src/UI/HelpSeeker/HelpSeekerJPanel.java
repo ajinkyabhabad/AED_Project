@@ -40,7 +40,7 @@ public class HelpSeekerJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
-        this.HSOrganization = (HelpSeekerOrganization)organization;
+        this.HSOrganization = (HelpSeekerOrganization) organization;
         this.HSenterprise = (HelpSeekerEnterprise) enterprise;
       
         populateTable();
@@ -195,18 +195,18 @@ private void populateTable() {
         Object[] row=new Object[4];
         model.setRowCount(0);
         
-         for(HelpSeekerWorkRequest request : HSOrganization.getWorkQueue().getHelpSeekerworkRequestList())
-         {
-            
-            row[0]=request.getRequestid();
+      
+        for(HelpSeekerWorkRequest request : HSOrganization.getWorkQueue().getHelpSeekerworkRequestList()){
+                //.getWorkQueue().getHelpSeekerworkRequestList())
+          
+            row[0] = request.getRequestid();
             row[1] = request.getDoi();
             row[2] = request.getReceiver().getEmployee().getName();
             row[3] = request.getStatus();
-           
             
             model.addRow(row);
         }
-         
+             
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
