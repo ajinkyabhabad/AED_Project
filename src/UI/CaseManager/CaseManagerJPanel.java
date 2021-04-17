@@ -175,7 +175,7 @@ public class CaseManagerJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_VCReqjButtonMouseEntered
 
     private void VCReqjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VCReqjButtonActionPerformed
-        CaseRequestJPanel caserequestJPanel=new CaseRequestJPanel(userProcessContainer,business);
+        CaseRequestJPanel caserequestJPanel=new CaseRequestJPanel(userProcessContainer,business,CMOrganization,userAccount);
         jSplitPane1.setBottomComponent(caserequestJPanel);
     }//GEN-LAST:event_VCReqjButtonActionPerformed
 

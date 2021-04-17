@@ -12,13 +12,13 @@ import java.util.ArrayList;
  */
 public class WorkQueue {
     
-    private ArrayList<WorkRequest> workRequestList;
+    private ArrayList<HelpSeekerWorkRequest> HelpSeekerworkRequestList;
 
     public WorkQueue() {
-        workRequestList = new ArrayList();
+        HelpSeekerworkRequestList = new ArrayList<HelpSeekerWorkRequest>();
     }
 
-    public ArrayList<WorkRequest> getWorkRequestList() {
-        return workRequestList;
+    public ArrayList<HelpSeekerWorkRequest> getHelpSeekerworkRequestList() {
+        return HelpSeekerworkRequestList;
     }
 }

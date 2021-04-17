@@ -5,6 +5,7 @@
  */
 package UI.HelpSeeker;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 
@@ -12,8 +13,10 @@ import Business.Enterprise.HelpSeekerEnterprise;
 import Business.Organization.HelpSeekerOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.HelpSeekerWorkRequest;
 import java.awt.Color;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -30,6 +33,8 @@ public class HelpSeekerJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private HelpSeekerOrganization HSOrganization; 
     private HelpSeekerEnterprise HSenterprise;
+    private EcoSystem system;
+    
     public HelpSeekerJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise,EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -37,6 +42,8 @@ public class HelpSeekerJPanel extends javax.swing.JPanel {
         this.business = business;
         this.HSOrganization = (HelpSeekerOrganization)organization;
         this.HSenterprise = (HelpSeekerEnterprise) enterprise;
+      
+        populateTable();
     }
 
     /**
@@ -125,9 +132,17 @@ public class HelpSeekerJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Sr no.", "Date", "Receiver ", "Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -174,7 +189,25 @@ public class HelpSeekerJPanel extends javax.swing.JPanel {
     private void RefreshjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshjButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RefreshjButtonActionPerformed
-
+private void populateTable() {
+        
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        Object[] row=new Object[4];
+        model.setRowCount(0);
+        
+         for(HelpSeekerWorkRequest request : HSOrganization.getWorkQueue().getHelpSeekerworkRequestList())
+         {
+            
+            row[0]=request.getRequestid();
+            row[1] = request.getDoi();
+            row[2] = request.getReceiver().getEmployee().getName();
+            row[3] = request.getStatus();
+           
+            
+            model.addRow(row);
+        }
+         
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RefreshjButton;
