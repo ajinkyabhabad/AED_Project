@@ -5,9 +5,17 @@
  */
 package UI.CaseManager;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.HelpSeekerWorkRequest;
+import Business.WorkQueue.WorkRequest;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,10 +28,20 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     EcoSystem system;
-    public CaseRequestJPanel(JPanel userProcessContainer, EcoSystem system) {
+    //Enterprise enterprise;
+    Organization organization; 
+    UserAccount userAccount;
+     
+    
+    public CaseRequestJPanel(JPanel userProcessContainer, EcoSystem system, Organization organization,UserAccount userAccount) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+       // this.enterprise=enterprise;
+        this.organization=organization;
+        this.userAccount=userAccount;
+        
+        populateTable();
     }
 
     /**
@@ -40,6 +58,7 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -48,17 +67,17 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Case No.", "Name ", "Location", "Network", "Status"
+                "Request No.", "Name ", "Location", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -68,7 +87,7 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setText("Accept");
+        jButton1.setText("Assign to me");
         jButton1.setBorderPainted(false);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -76,6 +95,11 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButton1MouseExited(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -92,6 +116,8 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton3.setText("View my cases");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,12 +133,14 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(jButton1))
+                        .addGap(110, 110, 110)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +152,9 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
                 .addGap(42, 42, 42)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton3))
                 .addGap(45, 45, 45))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -145,12 +175,57 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
           jButton2.setForeground(Color.black);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseExited
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+               
+            DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+            int index=jTable1.getSelectedRow();
+            
+            if (index >= 0) {
+                    WorkRequest request = (WorkRequest) jTable1.getValueAt(index, 0);
+                    request.setReceiver(userAccount);
+            }
+               
+      /*      int selectedRow = jTable1.getSelectedRow();
+        int id = (int) jTable1.getValueAt(selectedRow, 0);
+        if(selectedRow<0){
+            JOptionPane.showMessageDialog(this, "Please select an Item first.");
+            return;
+        }*/
+
+            
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-}
+
+    private void populateTable() {
+        
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        Object[] row=new Object[4];
+        model.setRowCount(0);
+        
+         for(HelpSeekerWorkRequest request : organization.getWorkQueue().getHelpSeekerworkRequestList())
+         {
+         
+            row[0]=request.getRequestid();
+            row[1] = request.getSender().getEmployee().getName();
+            row[2] = request.getLocation();
+            row[3] = request.getStatus();
+           
+            
+            model.addRow(row);
+        }
+    }
+
+        
+        
+    }
+

@@ -270,9 +270,10 @@ public class SignupJFrame extends javax.swing.JFrame {
                 UserAccount userAccount=org.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
             }   
         }
+        UserAccount ua=system.getUserAccountDirectory().searchUserAccount(username, password);
         
         this.setVisible(false);
-        ReportJFrame r = new ReportJFrame();
+        ReportJFrame r = new ReportJFrame(system,network,ua);
         r.setVisible(true);
         dB4OUtil.storeSystem(system);
         
