@@ -270,13 +270,16 @@ public class SignupJFrame extends javax.swing.JFrame {
                 UserAccount userAccount=org.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
             }   
         }
-        UserAccount ua=system.getUserAccountDirectory().searchUserAccount(username, password);
-        
+        //UserAccount ua=system.getUserAccountDirectory().searchUserAccount(username, password);
+        //Enterprise enterprise = network.getEnterpriseDirectory().searchEnterprisebyType(Enterprise.EnterpriseType.HelpSeeker);
         this.setVisible(false);
-        ReportJFrame r = new ReportJFrame(system,network,ua);
-        r.setVisible(true);
+        Enterprise enterprise = network.getEnterpriseDirectory().searchEnterprisebyType(Enterprise.EnterpriseType.HelpSeeker);
+        Organization org = enterprise.getOrganizationDirectory().searchOrganizationbyname("HelpSeekerOrganization");
+        UserAccount ua= org.getUserAccountDirectory().authenticateUser(username, password);
+        //ReportJFrame r = new ReportJFrame(system,network,ua,org);
         dB4OUtil.storeSystem(system);
-        
+        SigninJFrame s = new SigninJFrame();
+        s.setVisible(true);
         
         
     }//GEN-LAST:event_signupjButtonActionPerformed

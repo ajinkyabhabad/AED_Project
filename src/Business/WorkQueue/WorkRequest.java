@@ -23,8 +23,8 @@ public abstract class WorkRequest {
     private int count=1;
     public WorkRequest(){
         requestDate = new Date();
-        this.requestid=count;
-        count++;
+        //this.requestid=count;
+        //count++;
     }
 
     public String getMessage() {
@@ -81,5 +81,9 @@ public abstract class WorkRequest {
 
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
+    }
+    @Override
+    public String toString() {
+        return this.getStatus();
     }
 }

@@ -11,7 +11,9 @@ import Business.Enterprise.NGOEnterprise;
 import Business.Organization.CaseManagerOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -28,6 +30,7 @@ public class CaseManagerJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private CaseManagerOrganization CMOrganization; 
     private NGOEnterprise NGOenterprise;
+
     public CaseManagerJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise,EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -180,8 +183,23 @@ public class CaseManagerJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_VCReqjButtonActionPerformed
 
     private void VCRepjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VCRepjButtonActionPerformed
-        CaseReportJPanel casereportJPanel=new CaseReportJPanel(userProcessContainer,business);
-        jSplitPane1.setBottomComponent(casereportJPanel);
+        /*CaseReportJPanel casereportJPanel=new CaseReportJPanel(userProcessContainer,business,request);
+        jSplitPane1.setBottomComponent(casereportJPanel);*/
+        /*
+        int selectedRow = jTable1.getSelectedRow();
+        
+        if (selectedRow < 0){
+            return;
+        }
+        
+        WorkRequest request = (WorkRequest)jTable1.getValueAt(selectedRow, 3);
+        
+        if (request.getReceiver()!=userAccount){
+            JOptionPane.showMessageDialog(this, "You cannot view the report of this case. Access Denied.");
+        }else{
+            CaseReportJPanel casereportJPanel=new CaseReportJPanel(userProcessContainer,system,request);
+            casereportJPanel.setVisible(true);
+        }*/
     }//GEN-LAST:event_VCRepjButtonActionPerformed
 
 

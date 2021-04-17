@@ -8,10 +8,12 @@ package UI.CaseManager;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Organization.CaseManagerOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.HelpSeekerWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -38,7 +40,7 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.system = system;
        // this.enterprise=enterprise;
-        this.organization=organization;
+        this.organization=(CaseManagerOrganization)organization;
         this.userAccount=userAccount;
         
         populateTable();
@@ -67,17 +69,17 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Request No.", "Name ", "Location", "Status"
+                "Request No.", "Name ", "Location", "Status", "Assigned To"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -117,7 +119,7 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
         });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setText("View my cases");
+        jButton3.setText("View Case Report");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -146,7 +148,7 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,13 +185,16 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
                
-            DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
-            int index=jTable1.getSelectedRow();
-            
-            if (index >= 0) {
-                    WorkRequest request = (WorkRequest) jTable1.getValueAt(index, 0);
-                    request.setReceiver(userAccount);
-            }
+        int selectedRow = jTable1.getSelectedRow();
+        
+        if (selectedRow < 0){
+            return;
+        }
+        
+        WorkRequest request = (HelpSeekerWorkRequest)jTable1.getValueAt(selectedRow, 3);
+        request.setReceiver(userAccount);
+        request.setStatus("Accepted");
+        populateTable();
                
       /*      int selectedRow = jTable1.getSelectedRow();
         int id = (int) jTable1.getValueAt(selectedRow, 0);
@@ -204,6 +209,25 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        int selectedRow = jTable1.getSelectedRow();
+        
+        if (selectedRow < 0){
+            return;
+        }
+        
+        HelpSeekerWorkRequest request = (HelpSeekerWorkRequest)jTable1.getValueAt(selectedRow, 3);
+        
+        if (request.getReceiver()!=userAccount){
+            JOptionPane.showMessageDialog(this, "You cannot view the report of this case. Access Denied.");
+        }else{
+            
+            CaseReportJPanel caseReportJPanel = new CaseReportJPanel(userProcessContainer,system,request);
+            userProcessContainer.add("caseReportJPanel", caseReportJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+            /*CaseReportJPanel casereportJPanel=new CaseReportJPanel(userProcessContainer,system,request);
+            casereportJPanel.setVisible(true);*/
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
@@ -219,7 +243,7 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
     private void populateTable() {
         
         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
-        Object[] row=new Object[4];
+        Object[] row=new Object[5];
         model.setRowCount(0);
         
          for(HelpSeekerWorkRequest request : organization.getWorkQueue().getHelpSeekerworkRequestList())
@@ -228,8 +252,12 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
             row[0]=request.getRequestid();
             row[1] = request.getSender().getEmployee().getName();
             row[2] = request.getLocation();
-            row[3] = request.getStatus();
-           
+            row[3] = request;
+            if (request.getReceiver()==null){
+                row[4] = "Not Assigned";
+            }else{
+                row[4] = request.getReceiver();
+            }
             
             model.addRow(row);
         }
