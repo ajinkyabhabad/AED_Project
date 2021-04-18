@@ -8,6 +8,7 @@ package UI.CaseManager;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.NGOEnterprise;
+import Business.Network.Network;
 import Business.Organization.CaseManagerOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -30,14 +31,15 @@ public class CaseManagerJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private CaseManagerOrganization CMOrganization; 
     private NGOEnterprise NGOenterprise;
-
-    public CaseManagerJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise,EcoSystem business) {
+    private Network network;
+    public CaseManagerJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise,EcoSystem business,Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
         this.CMOrganization = (CaseManagerOrganization)organization;
         this.NGOenterprise = (NGOEnterprise) enterprise;
+        this.network = network;
     }
     
     
@@ -178,7 +180,7 @@ public class CaseManagerJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_VCReqjButtonMouseEntered
 
     private void VCReqjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VCReqjButtonActionPerformed
-        CaseRequestJPanel caserequestJPanel=new CaseRequestJPanel(userProcessContainer,business,CMOrganization,userAccount);
+        CaseRequestJPanel caserequestJPanel=new CaseRequestJPanel(userProcessContainer,business,CMOrganization,userAccount,network);
         jSplitPane1.setBottomComponent(caserequestJPanel);
     }//GEN-LAST:event_VCReqjButtonActionPerformed
 

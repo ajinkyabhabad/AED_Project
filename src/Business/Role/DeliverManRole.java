@@ -21,7 +21,7 @@ public class DeliverManRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
-        return new CaseManagerJPanel(userProcessContainer, account, organization,enterprise,business);
+        return new CaseManagerJPanel(userProcessContainer, account, organization,enterprise,business,network);
     }
     
     

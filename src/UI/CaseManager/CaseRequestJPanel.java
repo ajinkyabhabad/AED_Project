@@ -8,6 +8,7 @@ package UI.CaseManager;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.CaseManagerOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -33,16 +34,16 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
     //Enterprise enterprise;
     Organization organization; 
     UserAccount userAccount;
-     
+    Network network; 
     
-    public CaseRequestJPanel(JPanel userProcessContainer, EcoSystem system, Organization organization,UserAccount userAccount) {
+    public CaseRequestJPanel(JPanel userProcessContainer, EcoSystem system, Organization organization,UserAccount userAccount,Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
        // this.enterprise=enterprise;
         this.organization=(CaseManagerOrganization)organization;
         this.userAccount=userAccount;
-        
+        this.network = network;
         populateTable();
     }
 
@@ -221,7 +222,7 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "You cannot view the report of this case. Access Denied.");
         }else{
             
-            CaseReportJPanel caseReportJPanel = new CaseReportJPanel(userProcessContainer,system,request);
+            CaseReportJPanel caseReportJPanel = new CaseReportJPanel(userProcessContainer,system,request,userAccount,network);
             userProcessContainer.add("caseReportJPanel", caseReportJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);

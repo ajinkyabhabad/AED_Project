@@ -7,6 +7,7 @@ package UI.Lawyer;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.LegalOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -28,13 +29,15 @@ public class LawyerJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private final LegalOrganization organization;
     private Enterprise enterprise;
-    public LawyerJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,EcoSystem business) {
+    private Network network;
+    public LawyerJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,EcoSystem business,Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.organization = (LegalOrganization) organization;
         this.business = business;
         this.enterprise = enterprise;
+        this.network=network;
         
     }
 
@@ -180,7 +183,7 @@ public class LawyerJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_EjButtonMouseExited
 
     private void VRjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VRjButtonActionPerformed
-        LawyerRequestJPanel lrJPanel=new LawyerRequestJPanel(userProcessContainer,business);
+        LawyerRequestJPanel lrJPanel=new LawyerRequestJPanel(userProcessContainer,business,userAccount,organization,network);
         jSplitPane1.setBottomComponent(lrJPanel);
     }//GEN-LAST:event_VRjButtonActionPerformed
 

@@ -8,6 +8,7 @@ package UI.HelpProvider;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.NGOEnterprise;
+import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Organization.HelpProviderOrganization;
 import Business.UserAccount.UserAccount;
@@ -28,13 +29,15 @@ public class HelpProviderJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private HelpProviderOrganization HPOrganization; 
     private NGOEnterprise NGOenterprise;
-    public HelpProviderJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise,EcoSystem business) {
+    private Network network;
+    public HelpProviderJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise,EcoSystem business,Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
         this.HPOrganization = (HelpProviderOrganization)organization;
         this.NGOenterprise = (NGOEnterprise) enterprise;
+        this.network=network;
     }
 
     /**
@@ -143,7 +146,7 @@ public class HelpProviderJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_VRjButtonMouseExited
 
     private void VRjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VRjButtonActionPerformed
-        HelpProviderRequestJPanel hprJPanel=new HelpProviderRequestJPanel(userProcessContainer,business);
+        HelpProviderRequestJPanel hprJPanel=new HelpProviderRequestJPanel(userProcessContainer,business,userAccount,HPOrganization,network);
         jSplitPane1.setBottomComponent(hprJPanel);
     }//GEN-LAST:event_VRjButtonActionPerformed
 

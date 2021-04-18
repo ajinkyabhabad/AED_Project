@@ -21,7 +21,7 @@ public class HelpProviderRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
-        return new HelpProviderJPanel(userProcessContainer, account, organization,enterprise,business);
+        return new HelpProviderJPanel(userProcessContainer, account, organization,enterprise,business,network);
     }
     
     
