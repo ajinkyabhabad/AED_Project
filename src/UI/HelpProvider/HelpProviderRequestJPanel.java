@@ -170,7 +170,7 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
             return;
         }
         
-        WorkRequest request = (LawyerWorkRequest)jTable1.getValueAt(selectedRow, 1);
+        WorkRequest request = (HelpProviderWorkRequest)jTable1.getValueAt(selectedRow, 1);
         request.setReceiver(userAccount);
         request.setStatus("Accepted");
         populateTable();
