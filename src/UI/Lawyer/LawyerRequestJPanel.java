@@ -6,8 +6,16 @@
 package UI.Lawyer;
 
 import Business.EcoSystem;
+import Business.Network.Network;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.LawyerWorkRequest;
+import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,10 +28,16 @@ public class LawyerRequestJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     EcoSystem system;
-    public LawyerRequestJPanel(JPanel userProcessContainer, EcoSystem system) {
+    UserAccount userAccount;
+    Organization organization;
+    LawyerWorkRequest request;
+    Network network;
+    public LawyerRequestJPanel(JPanel userProcessContainer, EcoSystem system, UserAccount userAccount,Organization organization,Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        this.organization=organization;
+        populateTable();
     }
 
     /**
@@ -49,17 +63,17 @@ public class LawyerRequestJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Name ", "Status"
+                "Name ", "Time of Assault", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -79,9 +93,14 @@ public class LawyerRequestJPanel extends javax.swing.JPanel {
                 jButton1MouseExited(evt);
             }
         });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setText("Decline");
+        jButton2.setText("View Case Report");
         jButton2.setBorderPainted(false);
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -89,6 +108,11 @@ public class LawyerRequestJPanel extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButton2MouseExited(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -168,6 +192,47 @@ jButton2.setForeground(Color.black);         // TODO add your handling code here
          jButton3.setForeground(Color.black);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3MouseExited
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+              
+         int selectedRow = jTable1.getSelectedRow();
+        
+        if (selectedRow < 0){
+            return;
+        }
+        
+        WorkRequest request = (LawyerWorkRequest)jTable1.getValueAt(selectedRow, 2);
+        request.setReceiver(userAccount);
+        request.setStatus("Accepted");
+        populateTable();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+           
+        int selectedRow = jTable1.getSelectedRow();
+
+        if (selectedRow < 0){
+            return;
+        }
+
+        LawyerWorkRequest request = (LawyerWorkRequest)jTable1.getValueAt(selectedRow, 2);
+
+        if (request.getReceiver()!=userAccount){
+            JOptionPane.showMessageDialog(this, "You cannot view the report of this case. Access Denied.");
+        }else{
+
+            CaseReportLJPanel caseReportJPanel = new CaseReportLJPanel(userProcessContainer,system,request.getHelpSeekerWorkRequest(),userAccount,network);
+            userProcessContainer.add("caseReportJPanel", caseReportJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+            /*CaseReportJPanel casereportJPanel=new CaseReportJPanel(userProcessContainer,system,request);
+            casereportJPanel.setVisible(true);*/
+        }
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -177,4 +242,21 @@ jButton2.setForeground(Color.black);         // TODO add your handling code here
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        Object[] row=new Object[3];
+        model.setRowCount(0);
+        
+         for(LawyerWorkRequest request : organization.getWorkQueue().getLawyerworkRequestList())
+         {
+         
+            row[0]=request.getHelpSeekerWorkRequest().getSender().getEmployee().getName();
+            row[1] = request.getHelpSeekerWorkRequest().getDoi();
+            row[2] = request;
+            
+            model.addRow(row);
+        }
+        
+    }
 }

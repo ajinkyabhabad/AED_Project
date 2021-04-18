@@ -6,8 +6,15 @@
 package UI.HelpProvider;
 
 import Business.EcoSystem;
+import Business.Network.Network;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.HelpProviderWorkRequest;
+import Business.WorkQueue.LawyerWorkRequest;
+import Business.WorkQueue.WorkRequest;
 import java.awt.Color;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,10 +27,16 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     EcoSystem system;
-    public HelpProviderRequestJPanel(JPanel userProcessContainer, EcoSystem system) {
+    UserAccount userAccount;
+    Organization organization;
+    LawyerWorkRequest request;
+    Network network;
+    public HelpProviderRequestJPanel(JPanel userProcessContainer, EcoSystem system, UserAccount userAccount,Organization organization,Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        this.organization=organization;
+        populateTable();
     }
 
     /**
@@ -92,6 +105,11 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
                 jButton2MouseExited(evt);
             }
         });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -144,6 +162,22 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
            jButton2.setForeground(Color.black);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseExited
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+          
+        int selectedRow = jTable1.getSelectedRow();
+        
+        if (selectedRow < 0){
+            return;
+        }
+        
+        WorkRequest request = (LawyerWorkRequest)jTable1.getValueAt(selectedRow, 1);
+        request.setReceiver(userAccount);
+        request.setStatus("Accepted");
+        populateTable();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -152,4 +186,20 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        Object[] row=new Object[2];
+        model.setRowCount(0);
+        
+         for(HelpProviderWorkRequest request : organization.getWorkQueue().getHPworkRequestList())
+         {
+         
+            row[0]=request.getHelpSeekerWorkRequest().getSender().getEmployee().getName();
+            //row[1] = request.getHelpSeekerWorkRequest().getDoi();
+            row[1] = request;
+            
+            model.addRow(row);
+        }
+    }
 }

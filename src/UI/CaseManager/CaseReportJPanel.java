@@ -6,9 +6,16 @@
 package UI.CaseManager;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.LegalOrganization;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
 import Business.WorkQueue.HelpSeekerWorkRequest;
+import Business.WorkQueue.LawyerWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -23,11 +30,15 @@ public class CaseReportJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem system;
     HelpSeekerWorkRequest request;
-    public CaseReportJPanel(JPanel userProcessContainer, EcoSystem system, HelpSeekerWorkRequest request) {
+    UserAccount userAccount;
+    Network network;
+    public CaseReportJPanel(JPanel userProcessContainer, EcoSystem system, HelpSeekerWorkRequest request,UserAccount userAccount, Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.request = request;
+        this.userAccount = userAccount;
+        this.network = network;
         PopulateReport();
     }
 
@@ -98,6 +109,11 @@ public class CaseReportJPanel extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButton3MouseExited(evt);
+            }
+        });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -235,7 +251,7 @@ public class CaseReportJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(detailsjLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(suspecttypejLabel)
                     .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -270,7 +286,7 @@ public class CaseReportJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -338,6 +354,31 @@ public class CaseReportJPanel extends javax.swing.JPanel {
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+            
+       LawyerWorkRequest lawyerrequest = new LawyerWorkRequest();
+        lawyerrequest.setStatus("Waiting");
+        lawyerrequest.setSender(userAccount);
+        lawyerrequest.setHelpSeekerWorkRequest(request);
+        
+        Enterprise e= network.getEnterpriseDirectory().searchEnterprisebyType(Enterprise.EnterpriseType.Legal);
+            Organization org = null;
+            for (Organization organization : e.getOrganizationDirectory().getOrganizationList()){
+                if (organization instanceof LegalOrganization){
+                    org = organization;
+                    break;
+                }
+            }
+            if (org!=null){
+                org.getWorkQueue().getLawyerworkRequestList().add(lawyerrequest);
+                //userAccount.getWorkQueue().getHelpSeekerworkRequestList().add(request);
+                userAccount.getWorkQueue().getLawyerworkRequestList().add(lawyerrequest);
+            }
+        
+        JOptionPane.showMessageDialog(null, "Request submitted to Lawyer.");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
