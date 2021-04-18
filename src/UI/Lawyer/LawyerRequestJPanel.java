@@ -194,7 +194,7 @@ jButton2.setForeground(Color.black);         // TODO add your handling code here
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
               
-         int selectedRow = jTable1.getSelectedRow();
+        int selectedRow = jTable1.getSelectedRow();
         
         if (selectedRow < 0){
             return;
@@ -216,7 +216,7 @@ jButton2.setForeground(Color.black);         // TODO add your handling code here
         }
 
         LawyerWorkRequest request = (LawyerWorkRequest)jTable1.getValueAt(selectedRow, 2);
-
+         
         if (request.getReceiver()!=userAccount){
             JOptionPane.showMessageDialog(this, "You cannot view the report of this case. Access Denied.");
         }else{

@@ -8,6 +8,7 @@ package UI.Counsellar;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.HealthEnterprise;
+import Business.Network.Network;
 import Business.Organization.CounsellingDeptOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -28,13 +29,15 @@ public class CounsellarJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private CounsellingDeptOrganization COrganization; 
     private HealthEnterprise Henterprise;
-    public CounsellarJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,EcoSystem business) {
+    private Network network;
+    public CounsellarJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,EcoSystem business, Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
         this.COrganization = (CounsellingDeptOrganization)organization;
         this.Henterprise = (HealthEnterprise) enterprise;
+        this.network = network;
     }
 
     /**
@@ -211,7 +214,7 @@ VRjButton.setForeground(Color.white);        // TODO add your handling code here
     }//GEN-LAST:event_PMjButtonActionPerformed
 
     private void VRjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VRjButtonActionPerformed
-        CounsellarRequestJPanel crJPanel=new CounsellarRequestJPanel(userProcessContainer,business);
+        CounsellarRequestJPanel crJPanel=new CounsellarRequestJPanel(userProcessContainer,business,userAccount,COrganization,network);
         jSplitPane1.setBottomComponent(crJPanel);
     }//GEN-LAST:event_VRjButtonActionPerformed
 
