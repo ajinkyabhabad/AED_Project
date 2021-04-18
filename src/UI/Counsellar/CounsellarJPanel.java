@@ -12,6 +12,7 @@ import Business.Network.Network;
 import Business.Organization.CounsellingDeptOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.HelpSeekerWorkRequest;
 import java.awt.Color;
 import javax.swing.JPanel;
 
@@ -30,13 +31,15 @@ public class CounsellarJPanel extends javax.swing.JPanel {
     private CounsellingDeptOrganization COrganization; 
     private HealthEnterprise Henterprise;
     private Network network;
-    public CounsellarJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,EcoSystem business, Network network) {
+    
+    public CounsellarJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise,EcoSystem business, Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
         this.COrganization = (CounsellingDeptOrganization)organization;
         this.Henterprise = (HealthEnterprise) enterprise;
+        
         this.network = network;
     }
 
@@ -219,8 +222,8 @@ VRjButton.setForeground(Color.white);        // TODO add your handling code here
     }//GEN-LAST:event_VRjButtonActionPerformed
 
     private void EjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EjButtonActionPerformed
-        CounsellarEncounterJPanel ceJPanel=new CounsellarEncounterJPanel(userProcessContainer,business);
-        jSplitPane1.setBottomComponent(ceJPanel);
+      //  CounsellarEncounterJPanel ceJPanel=new CounsellarEncounterJPanel(userProcessContainer,business,userAccount,network,COrganization);
+        //jSplitPane1.setBottomComponent(ceJPanel);
     }//GEN-LAST:event_EjButtonActionPerformed
 
 
