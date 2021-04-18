@@ -10,6 +10,7 @@ import Business.Network.Network;
 import Business.Organization.CounsellingDeptOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.HelpSeekerWorkRequest;
 import UI.Counsellar.CounsellarJPanel;
 import javax.swing.JPanel;
 
@@ -20,7 +21,7 @@ import javax.swing.JPanel;
 public class CounsellorRole extends Role{
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise, EcoSystem business,Network network) {
         return new CounsellarJPanel(userProcessContainer, account, organization,enterprise,business,network);
     }
     
