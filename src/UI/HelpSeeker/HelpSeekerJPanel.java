@@ -46,7 +46,7 @@ public class HelpSeekerJPanel extends javax.swing.JPanel {
         this.HSenterprise = (HelpSeekerEnterprise) enterprise;
         this.network = network;
       
-        
+        jSplitPane1.setDividerSize(0);
     }
 
     /**

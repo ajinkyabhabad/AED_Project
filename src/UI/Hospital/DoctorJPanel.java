@@ -37,6 +37,7 @@ public class DoctorJPanel extends javax.swing.JPanel {
         this.business = business;
         this.DOrganization = (HospitalOrganization)organization;
         this.Henterprise = (HealthEnterprise) enterprise;
+        jSplitPane1.setDividerSize(0);
     }
 
     /**

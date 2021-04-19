@@ -24,6 +24,7 @@ public class DeliveryJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.business = system;
+        jSplitPane1.setDividerSize(0);
     }
 
     /**

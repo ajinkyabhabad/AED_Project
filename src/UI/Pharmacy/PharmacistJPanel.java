@@ -35,6 +35,7 @@ public class PharmacistJPanel extends javax.swing.JPanel {
         this.business = business;
         this.POrganization = (PharmacyOrganization)organization;
         this.Penterprise = (PharmacyEnterprise) enterprise;
+        jSplitPane1.setDividerSize(0);
     }
 
     /**

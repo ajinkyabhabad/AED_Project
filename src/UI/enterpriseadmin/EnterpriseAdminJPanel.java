@@ -27,7 +27,7 @@ public class EnterpriseAdminJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.system = system;
-        
+        jSplitPane1.setDividerSize(0);
         jTextField1.setText(enterprise.getEnterpriseType().getValue());
     }
 

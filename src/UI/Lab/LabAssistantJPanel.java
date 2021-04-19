@@ -35,6 +35,7 @@ public class LabAssistantJPanel extends javax.swing.JPanel {
         this.business = business;
         this.LOrganization = (ForensicOrganization)organization;
         this.Henterprise = (HealthEnterprise) enterprise;
+        jSplitPane1.setDividerSize(0);
     }
 
     /**

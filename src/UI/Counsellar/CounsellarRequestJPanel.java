@@ -254,6 +254,9 @@ jButton2.setForeground(Color.black);        // TODO add your handling code here:
         WorkRequest request = (CounsellarWorkRequest)jTable1.getValueAt(selectedRow, 2);
         request.setReceiver(userAccount);
         request.setStatus("Accepted");
+        /*long millis=System.currentTimeMillis();  
+        java.sql.Date date=new java.sql.Date(millis);
+        request.setRequestDate(date);*/
         populateTable();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -295,6 +298,8 @@ jButton2.setForeground(Color.black);        // TODO add your handling code here:
             userProcessContainer.add("caseReportJPanel", cencounterJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
+            
+            
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -352,7 +357,9 @@ jButton2.setForeground(Color.black);        // TODO add your handling code here:
          for(CounsellarWorkRequest request : organization.getWorkQueue().getCounsellarworkRequestList())
          {
          
-            row[0]=request.getHelpSeekerWorkRequest().getSender().getEmployee().getName();
+             request.getHelpSeekerWorkRequest().getSender().getEmployee().getEmail();
+            
+             row[0]=request.getHelpSeekerWorkRequest().getSender().getEmployee().getName();
             row[1] = request.getHelpSeekerWorkRequest().getDoi();
             row[2] = request;
             

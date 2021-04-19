@@ -221,7 +221,7 @@ jButton1.setForeground(Color.black);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3MouseExited
      //int i=0;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+      
         if(jTextField1.getText()==null || jTextArea1==null)
         {
             JOptionPane.showMessageDialog(null, "Please fill out the necessary fields");

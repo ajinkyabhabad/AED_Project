@@ -38,7 +38,7 @@ public class LawyerJPanel extends javax.swing.JPanel {
         this.business = business;
         this.enterprise = enterprise;
         this.network=network;
-        
+        jSplitPane1.setDividerSize(0);
     }
 
     /**
