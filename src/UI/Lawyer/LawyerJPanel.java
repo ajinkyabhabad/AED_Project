@@ -162,8 +162,7 @@ public class LawyerJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void EjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EjButtonActionPerformed
-        LawyerEncounterJPanel leJPanel=new LawyerEncounterJPanel(userProcessContainer,business);
-        jSplitPane1.setBottomComponent(leJPanel);
+        
     }//GEN-LAST:event_EjButtonActionPerformed
 
     private void VRjButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VRjButtonMouseEntered

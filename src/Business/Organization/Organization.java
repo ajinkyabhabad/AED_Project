@@ -7,6 +7,7 @@ package Business.Organization;
 import Business.Employee.EmployeeDirectory;
 import Business.Encounter.CounsellarEncounterDirectory;
 import Business.Encounter.CounsellorEncounter;
+import Business.Encounter.LawyerEncounterDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.WorkQueue;
@@ -25,6 +26,7 @@ public abstract class Organization {
     private int organizationID;
     private static int counter=0;
     private CounsellarEncounterDirectory counsellorencounterdir;
+    private LawyerEncounterDirectory lawyerencounterdir;
     
     public enum Type{
         HelpSeeker("HelpSeekerOrganization"),Hospital("HospitalOrganization"),Forensic("ForensicOrganization"),
@@ -44,6 +46,7 @@ public abstract class Organization {
         this.name = name;
         workQueue = new WorkQueue();
         counsellorencounterdir=new CounsellarEncounterDirectory();
+        lawyerencounterdir = new LawyerEncounterDirectory();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
         organizationID = counter;
@@ -60,8 +63,10 @@ public abstract class Organization {
         return counsellorencounterdir;
     }
 
+    public LawyerEncounterDirectory getLawyerencounterdir() {
+        return lawyerencounterdir;
+    }
     
-
     public int getOrganizationID() {
         return organizationID;
     }
