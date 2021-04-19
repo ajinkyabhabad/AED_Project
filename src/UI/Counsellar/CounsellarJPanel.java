@@ -41,6 +41,7 @@ public class CounsellarJPanel extends javax.swing.JPanel {
         this.Henterprise = (HealthEnterprise) enterprise;
         
         this.network = network;
+        jSplitPane1.setDividerSize(0);
     }
 
     /**

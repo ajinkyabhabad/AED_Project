@@ -16,7 +16,20 @@ import Business.Organization.Organization;
 import Business.Role.HelpSeekerRole;
 import Business.UserAccount.UserAccount;
 import java.awt.Color;
-
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.Properties;
+import javax.imageio.ImageIO;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.swing.ImageIcon;
+import javax.mail.PasswordAuthentication;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.Transport;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Ankita Dharurkar
@@ -34,6 +47,7 @@ public class SignupJFrame extends javax.swing.JFrame {
         system = dB4OUtil.retrieveSystem();
         this.setSize(1080, 720);
         populateNetworkComboBox();
+       // emailValidator();
     }
 
     /**
@@ -61,6 +75,7 @@ public class SignupJFrame extends javax.swing.JFrame {
         passwordJPasswordField = new javax.swing.JPasswordField();
         networkJComboBox = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +101,21 @@ public class SignupJFrame extends javax.swing.JFrame {
         usernamejLabel.setText("Username");
 
         passwordjLabel.setText("Password");
+
+        emailjTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                emailjTextFieldMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                emailjTextFieldMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                emailjTextFieldMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                emailjTextFieldMouseReleased(evt);
+            }
+        });
 
         signupjButton.setBackground(new java.awt.Color(0, 128, 128));
         signupjButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -145,11 +175,13 @@ public class SignupJFrame extends javax.swing.JFrame {
                                     .addComponent(contactTextField)
                                     .addComponent(emailjTextField)
                                     .addComponent(usernameJTextField)
-                                    .addComponent(passwordJPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)))))
+                                    .addComponent(passwordJPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(detailsjPanelLayout.createSequentialGroup()
                         .addGap(211, 211, 211)
                         .addComponent(signupjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         detailsjPanelLayout.setVerticalGroup(
             detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,9 +197,11 @@ public class SignupJFrame extends javax.swing.JFrame {
                     .addComponent(contactjLabel)
                     .addComponent(contactTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
-                .addGroup(detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailjLabel)
-                    .addComponent(emailjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(emailjLabel)
+                        .addComponent(emailjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(detailsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,11 +256,45 @@ public class SignupJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_signupjButtonMouseExited
 
     private void signupjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupjButtonActionPerformed
+       
+        if(nameJTextField.getText().isEmpty() || contactTextField.getText().isEmpty() ||
+           emailjTextField.getText().isEmpty() || usernameJTextField.getText().isEmpty() ||
+                passwordJPasswordField.getText().isEmpty())
+        {
+             JOptionPane.showMessageDialog(null, "Please fill all details", "Info", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+        
         Network network = (Network) networkJComboBox.getSelectedItem();
         
         String username = usernameJTextField.getText();
         String password = String.valueOf(passwordJPasswordField.getPassword());
         String name = nameJTextField.getText();
+        String contactno=contactTextField.getText();
+        //long contact=Long.parseLong(contactno);
+        
+        
+        if(isNumber(contactno)){
+           // JOptionPane.showMessageDialog(null, "Info added!", "Info", JOptionPane.INFORMATION_MESSAGE);
+            long contact = Long.parseLong(contactno);
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Contact should be a number!", "Warning", JOptionPane.INFORMATION_MESSAGE);
+        }
+          
+        int length= contactno.length();
+        if(length<10||length>10)
+        {
+            contactTextField.setEditable(true);
+             JOptionPane.showMessageDialog(null, "Contact should be 10 digits!", "Warning", JOptionPane.INFORMATION_MESSAGE);
+             return;
+        }
+        else
+        {
+            contactTextField.setEditable(false);
+            
+        }
+         
         //System.out.println("start1");
         boolean x = true;
         
@@ -261,6 +329,7 @@ public class SignupJFrame extends javax.swing.JFrame {
                 Organization org= enterprise.getOrganizationDirectory().createOrganization(type);
                 Employee employee= org.getEmployeeDirectory().createEmployee(name);
                 UserAccount userAccount=org.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
+                  
                     
             }
             else{
@@ -270,6 +339,39 @@ public class SignupJFrame extends javax.swing.JFrame {
                 UserAccount userAccount=org.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
             }   
         }
+        
+        String email=emailjTextField.getText();
+        String FromEmail="sexualawareness.help@gmail.com";
+        String FromEmailPass="Fin@lProject21";
+        String Subject = "Sign up successful";
+        
+        Properties properties=new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        
+        Session session=Session.getDefaultInstance(properties, new javax.mail.Authenticator(){
+           @Override
+            protected PasswordAuthentication getPasswordAuthentication(){
+         return new PasswordAuthentication(FromEmail,FromEmailPass);
+        }
+        });
+        
+        try
+        {
+            Message msg=new MimeMessage(session);
+            msg.setFrom(new InternetAddress(FromEmail));
+            msg.addRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+            msg.setSubject("Sign up Successful, " +username );
+            msg.setText("Dear "+ name+"\n"+"You have signed up successfully. Thank you for signing up."+"\n"+"Best");
+            Transport.send(msg);
+        }catch(Exception e)
+        {
+            System.out.println(""+e);
+        }
+        
+        
         //UserAccount ua=system.getUserAccountDirectory().searchUserAccount(username, password);
         //Enterprise enterprise = network.getEnterpriseDirectory().searchEnterprisebyType(Enterprise.EnterpriseType.HelpSeeker);
         this.setVisible(false);
@@ -280,7 +382,7 @@ public class SignupJFrame extends javax.swing.JFrame {
         dB4OUtil.storeSystem(system);
         SigninJFrame s = new SigninJFrame();
         s.setVisible(true);
-        
+        }
         
     }//GEN-LAST:event_signupjButtonActionPerformed
 
@@ -295,6 +397,63 @@ public class SignupJFrame extends javax.swing.JFrame {
             populateEnterpriseComboBox(network);
         }*/
     }//GEN-LAST:event_networkJComboBoxActionPerformed
+
+    private void emailjTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailjTextFieldMousePressed
+       // TODO add your handling code here:
+    }//GEN-LAST:event_emailjTextFieldMousePressed
+
+    private void emailjTextFieldMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailjTextFieldMouseReleased
+                 
+              // TODO add your handling code here:
+    }//GEN-LAST:event_emailjTextFieldMouseReleased
+
+    private void emailjTextFieldMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailjTextFieldMouseEntered
+                String email= emailjTextField.getText();
+        String validate="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        if(email.matches(validate))
+        {
+            BufferedImage img = null;
+              try {
+             img = ImageIO.read(new File("C:\\Users\\patel\\OneDrive\\Pictures\\AEDcorrectlogo.png"));
+               } catch (IOException e) {
+            e.printStackTrace();
+               }
+              
+              Image dimg = img.getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(),Image.SCALE_SMOOTH);
+            ImageIcon icon=new ImageIcon(dimg);
+            jLabel3.setIcon(icon);
+        }   else
+        {
+            BufferedImage img = null;
+              try {
+             img = ImageIO.read(new File("C:\\Users\\patel\\OneDrive\\Pictures\\AEDwronglogo.jpg"));
+               } catch (IOException e) {
+            e.printStackTrace();
+               }
+              
+              Image dimg = img.getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(),Image.SCALE_SMOOTH);
+            ImageIcon icon=new ImageIcon(dimg);
+            jLabel3.setIcon(icon);
+        }           // TODO add your handling code here:
+    }//GEN-LAST:event_emailjTextFieldMouseEntered
+
+    private void emailjTextFieldMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailjTextFieldMouseExited
+                 String email= emailjTextField.getText();
+        String validate="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        if(email.matches(validate))
+        {
+            BufferedImage img = null;
+              try {
+             img = ImageIO.read(new File("C:\\Users\\patel\\OneDrive\\Pictures\\AEDcorrectlogo.png"));
+               } catch (IOException e) {
+            e.printStackTrace();
+               }
+              
+              Image dimge = img.getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(),Image.SCALE_SMOOTH);
+            ImageIcon icon=new ImageIcon(dimge);
+            jLabel3.setIcon(icon);
+        }       // TODO add your handling code here:
+    }//GEN-LAST:event_emailjTextFieldMouseExited
 
     /**
      * @param args the command line arguments
@@ -342,6 +501,7 @@ public class SignupJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel fnamejLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JComboBox networkJComboBox;
     private javax.swing.JPasswordField passwordJPasswordField;
@@ -351,8 +511,50 @@ public class SignupJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel usernamejLabel;
     // End of variables declaration//GEN-END:variables
 
+    private void emailValidator() {
+    
+        String email= emailjTextField.getText();
+        String validate="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        if(!email.matches(validate))
+        {
+            BufferedImage img = null;
+              try {
+             img = ImageIO.read(new File("C:\\Users\\patel\\OneDrive\\Pictures\\AEDwronglogo.jpg"));
+               } catch (IOException e) {
+            e.printStackTrace();
+               }
+              
+              Image dimg = img.getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(),Image.SCALE_SMOOTH);
+            ImageIcon icon=new ImageIcon(dimg);
+            jLabel3.setIcon(icon);
+        }else
+        {
+            BufferedImage img = null;
+              try {
+             img = ImageIO.read(new File("C:\\Users\\patel\\OneDrive\\Pictures\\AEDcorrectlogo.png"));
+               } catch (IOException e) {
+            e.printStackTrace();
+               }
+              
+              Image dimg = img.getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(),Image.SCALE_SMOOTH);
+            ImageIcon icon=new ImageIcon(dimg);
+            jLabel3.setIcon(icon);
+        }
+        
+    }
 
 
+
+public static boolean isNumber(String price){
+        try{
+            Long.parseLong(price);
+            return true;    
+        }
+        catch(Exception e)
+        {
+             return false;
+        }  
+    }
 
 
 }

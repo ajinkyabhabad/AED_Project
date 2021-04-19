@@ -38,6 +38,7 @@ public class HelpProviderJPanel extends javax.swing.JPanel {
         this.HPOrganization = (HelpProviderOrganization)organization;
         this.NGOenterprise = (NGOEnterprise) enterprise;
         this.network=network;
+        jSplitPane1.setDividerSize(0);
     }
 
     /**
