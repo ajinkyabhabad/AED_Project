@@ -20,6 +20,7 @@ public abstract class WorkRequest {
     private Date requestDate;
     private Date resolveDate;
     private int requestid;
+   
   
     private int count=1;
     public WorkRequest(){
@@ -31,6 +32,8 @@ public abstract class WorkRequest {
     public String getMessage() {
         return message;
     }
+
+  
 
     public void setMessage(String message) {
         this.message = message;

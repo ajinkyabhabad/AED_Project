@@ -295,6 +295,12 @@ public class SignupJFrame extends javax.swing.JFrame {
             
         }
          
+         String validate="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        if(!email.matches(validate))
+        {
+           JOptionPane.showMessageDialog(null, "Please enter valid email");
+           return;
+        }
         //System.out.println("start1");
         boolean x = true;
         
@@ -408,13 +414,13 @@ public class SignupJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_emailjTextFieldMouseReleased
 
     private void emailjTextFieldMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailjTextFieldMouseEntered
-                String email= emailjTextField.getText();
+        /*        String email= emailjTextField.getText();
         String validate="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         if(email.matches(validate))
         {
             BufferedImage img = null;
               try {
-             img = ImageIO.read(new File("C:\\Users\\patel\\OneDrive\\Pictures\\AEDcorrectlogo.png"));
+             img = ImageIO.read(new File("AEDcorrectlogo.png"));
                } catch (IOException e) {
             e.printStackTrace();
                }
@@ -426,7 +432,7 @@ public class SignupJFrame extends javax.swing.JFrame {
         {
             BufferedImage img = null;
               try {
-             img = ImageIO.read(new File("C:\\Users\\patel\\OneDrive\\Pictures\\AEDwronglogo.jpg"));
+             img = ImageIO.read(new File("AEDwronglogo.jpg"));
                } catch (IOException e) {
             e.printStackTrace();
                }
@@ -434,11 +440,11 @@ public class SignupJFrame extends javax.swing.JFrame {
               Image dimg = img.getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(),Image.SCALE_SMOOTH);
             ImageIcon icon=new ImageIcon(dimg);
             jLabel3.setIcon(icon);
-        }           // TODO add your handling code here:
+        } */          // TODO add your handling code here:
     }//GEN-LAST:event_emailjTextFieldMouseEntered
 
     private void emailjTextFieldMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailjTextFieldMouseExited
-                 String email= emailjTextField.getText();
+           /*      String email= emailjTextField.getText();
         String validate="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         if(email.matches(validate))
         {
@@ -452,7 +458,7 @@ public class SignupJFrame extends javax.swing.JFrame {
               Image dimge = img.getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(),Image.SCALE_SMOOTH);
             ImageIcon icon=new ImageIcon(dimge);
             jLabel3.setIcon(icon);
-        }       // TODO add your handling code here:
+        }  */     // TODO add your handling code here:
     }//GEN-LAST:event_emailjTextFieldMouseExited
 
     /**
