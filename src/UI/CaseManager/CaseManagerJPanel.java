@@ -40,7 +40,7 @@ public class CaseManagerJPanel extends javax.swing.JPanel {
         this.CMOrganization = (CaseManagerOrganization)organization;
         this.NGOenterprise = (NGOEnterprise) enterprise;
         this.network = network;
-        populateBotton();
+        populateBottom();
         jSplitPane1.setDividerSize(0);
     }
     
@@ -122,7 +122,7 @@ public class CaseManagerJPanel extends javax.swing.JPanel {
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
 
-    private void populateBotton() {
+    private void populateBottom() {
         CaseRequestJPanel caserequestJPanel=new CaseRequestJPanel(userProcessContainer,business,CMOrganization,userAccount,network);
         jSplitPane1.setBottomComponent(caserequestJPanel);
     }
