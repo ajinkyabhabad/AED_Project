@@ -19,7 +19,7 @@ public class HelpProviderEncounterDirectory {
     
     public HelpProviderEncounterDirectory()
     {
-        HPEncounterDirectory=new HashMap<String,ArrayList<HelpProviderEncounter>>();
+       HPEncounterDirectory=new HashMap<String,ArrayList<HelpProviderEncounter>>();
        HPEncounters=new ArrayList<HelpProviderEncounter>();
     }
 

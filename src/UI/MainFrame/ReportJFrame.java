@@ -35,7 +35,7 @@ public class ReportJFrame extends javax.swing.JFrame {
         this.network=network;
         this.userAccount=userAccount;
        
-        this.setSize(1080, 720);
+        this.setSize(1080, 680);
     }
 
     /**

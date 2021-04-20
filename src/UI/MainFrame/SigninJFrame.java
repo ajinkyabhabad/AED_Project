@@ -32,7 +32,7 @@ public class SigninJFrame extends javax.swing.JFrame {
     public SigninJFrame() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
-        this.setSize(1080, 720);
+        this.setSize(1080, 680);
     }
 
     /**
