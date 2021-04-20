@@ -7,12 +7,21 @@ package UI.HelpProvider;
 
 import Business.EcoSystem;
 import Business.Network.Network;
+import Business.Organization.HelpSeekerOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.HelpProviderWorkRequest;
+import Business.WorkQueue.HelpSeekerWorkRequest;
 import Business.WorkQueue.LawyerWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.Color;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,7 +44,7 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-        this.organization=organization;
+        this.organization= organization;
         populateTable();
     }
 
@@ -174,7 +183,12 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
         request.setReceiver(userAccount);
         request.setStatus("Accepted");
         populateTable();
-
+        
+        
+            
+        
+        
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
