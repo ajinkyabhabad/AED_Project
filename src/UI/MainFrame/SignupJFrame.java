@@ -271,7 +271,7 @@ public class SignupJFrame extends javax.swing.JFrame {
         String name = nameJTextField.getText();
         String contactno=contactTextField.getText();
         //long contact=Long.parseLong(contactno);
-        
+        String email=emailjTextField.getText();
         
         if(isNumber(contactno)){
            // JOptionPane.showMessageDialog(null, "Info added!", "Info", JOptionPane.INFORMATION_MESSAGE);
@@ -340,7 +340,7 @@ public class SignupJFrame extends javax.swing.JFrame {
             }   
         }
         
-        String email=emailjTextField.getText();
+        
         String FromEmail="sexualawareness.help@gmail.com";
         String FromEmailPass="Fin@lProject21";
         String Subject = "Sign up successful";

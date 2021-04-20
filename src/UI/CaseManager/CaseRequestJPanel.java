@@ -195,6 +195,7 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
         WorkRequest request = (HelpSeekerWorkRequest)jTable1.getValueAt(selectedRow, 3);
         request.setReceiver(userAccount);
         request.setStatus("Accepted");
+       
         populateTable();
                
       /*      int selectedRow = jTable1.getSelectedRow();
