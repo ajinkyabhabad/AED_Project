@@ -16,6 +16,13 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -234,6 +241,37 @@ jButton1.setForeground(Color.black);        // TODO add your handling code here:
             organization.getLawyerencounterdir().getEncounterDirectory().put(request.getHelpSeekerWorkRequest().getNameofvictim(), organization.getLawyerencounterdir().getEncounters());
         
             populateName();
+            
+            String FromEmail="sexualawareness.help@gmail.com";
+        String FromEmailPass="Fin@lProject21";
+        String Subject = "Sign up successful";
+        
+        Properties properties=new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        
+        Session session=Session.getDefaultInstance(properties, new javax.mail.Authenticator(){
+           @Override
+            protected PasswordAuthentication getPasswordAuthentication(){
+         return new PasswordAuthentication(FromEmail,FromEmailPass);
+        }
+        });
+        
+        try
+        {
+            Message msg=new MimeMessage(session);
+            msg.setFrom(new InternetAddress(FromEmail));
+            msg.addRecipients(Message.RecipientType.TO, InternetAddress.parse(request.getHelpSeekerWorkRequest().getEmail()));
+            msg.setSubject("Invitation for a session with Lawyer, " + request.getHelpSeekerWorkRequest().getNameofvictim() );
+            msg.setText("Dear "+ request.getHelpSeekerWorkRequest().getNameofvictim()+"\n"+"I am Andy Rubella, here to help you. Join me through the following link for the next encounter."+"\n"+"zoom1.link"+"\n"+"Best,"+"\n"+"Andy Rubella");
+            Transport.send(msg);
+        }catch(Exception e)
+        {
+            System.out.println(""+e);
+        } 
+            
         }
        
 // TODO add your handling code here:

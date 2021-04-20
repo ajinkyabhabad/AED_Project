@@ -10,6 +10,7 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CounsellarWorkRequest;
+import Business.WorkQueue.HelpSeekerWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -254,6 +255,7 @@ jButton2.setForeground(Color.black);        // TODO add your handling code here:
         WorkRequest request = (CounsellarWorkRequest)jTable1.getValueAt(selectedRow, 2);
         request.setReceiver(userAccount);
         request.setStatus("Accepted");
+        
         /*long millis=System.currentTimeMillis();  
         java.sql.Date date=new java.sql.Date(millis);
         request.setRequestDate(date);*/
@@ -268,7 +270,7 @@ jButton2.setForeground(Color.black);        // TODO add your handling code here:
         }
 
         CounsellarWorkRequest request = (CounsellarWorkRequest)jTable1.getValueAt(selectedRow, 2);
-         
+        
         if (request.getReceiver()!=userAccount){
             JOptionPane.showMessageDialog(this, "You cannot view the report of this case. Access Denied.");
         }else{

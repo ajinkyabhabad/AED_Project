@@ -9,10 +9,18 @@ import Business.EcoSystem;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.HelpSeekerWorkRequest;
 import Business.WorkQueue.LawyerWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -31,12 +39,14 @@ public class LawyerRequestJPanel extends javax.swing.JPanel {
     UserAccount userAccount;
     Organization organization;
     LawyerWorkRequest request;
+    
     Network network;
     public LawyerRequestJPanel(JPanel userProcessContainer, EcoSystem system, UserAccount userAccount,Organization organization,Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.organization=organization;
+      
         populateTable();
     }
 
@@ -249,6 +259,9 @@ jButton2.setForeground(Color.black);         // TODO add your handling code here
         request.setReceiver(userAccount);
         request.setStatus("Accepted");
         populateTable();
+        
+        
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 

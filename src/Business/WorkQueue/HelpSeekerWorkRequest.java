@@ -21,14 +21,25 @@ public class HelpSeekerWorkRequest extends WorkRequest{
     private String moredetails;
     private String suspecttype;
     private String nameofsuspect;
+    private String email;
     
     public String getRelation() {
         return relation;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getNameofvictim() {
         return nameofvictim;
     }
+
+   
 
     public void setNameofvictim(String nameofvictim) {
         this.nameofvictim = nameofvictim;

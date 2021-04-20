@@ -45,7 +45,7 @@ public class HelpSeekerViewStatusJPanel extends javax.swing.JPanel {
         this.organization=organization;
        // populateTable();
        populateCM();
-       populateCounsellor();
+       //populateCounsellor();
     }
 
     /**
@@ -223,8 +223,8 @@ public class HelpSeekerViewStatusJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
 
@@ -328,6 +328,8 @@ private void populateTable() {
                 jLabel6.setText(request.getReceiver().getEmployee().getName());
             }
             jLabel7.setText(request.toString());
+            
+            
          }
            /* for (int i=0;i< userAccount.getWorkQueue().getLawyerworkRequestList().size();i++)
           {  

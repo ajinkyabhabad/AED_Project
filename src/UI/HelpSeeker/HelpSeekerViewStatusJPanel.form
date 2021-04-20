@@ -159,8 +159,8 @@
                               <Component id="jLabel11" alignment="1" max="32767" attributes="0"/>
                               <Component id="jLabel7" alignment="1" max="32767" attributes="0"/>
                               <Component id="jLabel4" alignment="1" max="32767" attributes="0"/>
-                              <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel20" max="32767" attributes="0"/>
+                              <Component id="jLabel17" alignment="1" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
