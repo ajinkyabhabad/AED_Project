@@ -23,6 +23,9 @@ public class HelpSeekerWorkRequest extends WorkRequest{
     private String nameofsuspect;
     private String email;
     private DoctorWorkRequest doctorWorkRequest;
+    private CounsellarWorkRequest counsellarWorkRequest;
+    private LawyerWorkRequest lawyerWorkRequest;
+    private HelpProviderWorkRequest hpWorkRequest;
     
     public String getRelation() {
         return relation;
@@ -104,6 +107,30 @@ public class HelpSeekerWorkRequest extends WorkRequest{
 
     public void setDoctorWorkRequest(DoctorWorkRequest doctorWorkRequest) {
         this.doctorWorkRequest = doctorWorkRequest;
+    }
+
+    public CounsellarWorkRequest getCounsellarWorkRequest() {
+        return counsellarWorkRequest;
+    }
+
+    public void setCounsellarWorkRequest(CounsellarWorkRequest counsellarWorkRequest) {
+        this.counsellarWorkRequest = counsellarWorkRequest;
+    }
+
+    public LawyerWorkRequest getLawyerWorkRequest() {
+        return lawyerWorkRequest;
+    }
+
+    public void setLawyerWorkRequest(LawyerWorkRequest lawyerWorkRequest) {
+        this.lawyerWorkRequest = lawyerWorkRequest;
+    }
+
+    public HelpProviderWorkRequest getHpWorkRequest() {
+        return hpWorkRequest;
+    }
+
+    public void setHpWorkRequest(HelpProviderWorkRequest hpWorkRequest) {
+        this.hpWorkRequest = hpWorkRequest;
     }
   
 

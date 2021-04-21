@@ -6,6 +6,7 @@
 package UI.Hospital;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -33,6 +34,7 @@ public class RequestDoctorJPanel extends javax.swing.JPanel {
     UserAccount userAccount;
     Organization organization;
     DoctorWorkRequest request;
+    Enterprise enterpirse;
     Network network;
     public RequestDoctorJPanel(JPanel userProcessContainer, EcoSystem system, UserAccount userAccount,Organization organization,Network network) {
         initComponents();
@@ -40,9 +42,11 @@ public class RequestDoctorJPanel extends javax.swing.JPanel {
         this.system = system;
         this.organization = organization;
         this.network = network;
+        enterpirse = network.getEnterpriseDirectory().searchEnterprisebyType(Enterprise.EnterpriseType.Health);
         this.userAccount = userAccount;
         populatetable();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -183,7 +187,7 @@ public class RequestDoctorJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "You cannot view the report of this case. Access Denied.");
         }else{
 
-            CaseReportDJPanel caseReportJPanel = new CaseReportDJPanel(userProcessContainer,system,request.getHelpSeekerWorkRequest(),userAccount,network);
+            CaseReportDJPanel caseReportJPanel = new CaseReportDJPanel(userProcessContainer,system,request.getHelpSeekerWorkRequest(),userAccount,network,enterpirse,organization);
             userProcessContainer.add("caseReportJPanel", caseReportJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
