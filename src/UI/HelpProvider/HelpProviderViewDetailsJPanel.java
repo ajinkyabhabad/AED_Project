@@ -161,7 +161,7 @@ public class HelpProviderViewDetailsJPanel extends javax.swing.JPanel {
             msg.setFrom(new InternetAddress(FromEmail));
             msg.addRecipients(Message.RecipientType.TO, InternetAddress.parse(request.getEmail()));
             msg.setSubject("A Help Provider has been assigned, " + request.getNameofvictim() );
-            msg.setText("Dear "+ request.getNameofvictim()+"\n"+"I am here to help you. Join me through the following link."+"\n"+"zoom1.link"+"\n"+"Best");
+            msg.setText("Dear "+ request.getNameofvictim()+"\n"+"I am here to help you. Please schedule an appointment through the following link."+"\n"+"calendly.link"+"\n"+"Best");
             Transport.send(msg);
         }catch(Exception e)
         {
