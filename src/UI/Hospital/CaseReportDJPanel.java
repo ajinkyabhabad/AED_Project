@@ -47,13 +47,17 @@ public class CaseReportDJPanel extends javax.swing.JPanel {
     HelpSeekerWorkRequest request;
     UserAccount userAccount;
     Network network;
-    public CaseReportDJPanel(JPanel userProcessContainer, EcoSystem system, HelpSeekerWorkRequest request,UserAccount userAccount, Network network) {
+    Enterprise enterprise;
+    Organization organization;
+    public CaseReportDJPanel(JPanel userProcessContainer, EcoSystem system, HelpSeekerWorkRequest request,UserAccount userAccount, Network network,Enterprise enterprise, Organization organization) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.request = request;
         this.userAccount = userAccount;
         this.network = network;
+        this.enterprise = enterprise;
+        this.organization = organization;
         PopulateReport();
     }
 
@@ -195,7 +199,7 @@ public class CaseReportDJPanel extends javax.swing.JPanel {
         });
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton4.setText("Schedule Request");
+        jButton4.setText("Schedule Invite");
         jButton4.setBorderPainted(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,7 +309,7 @@ public class CaseReportDJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(262, Short.MAX_VALUE))
+                .addContainerGap(276, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,7 +348,7 @@ public class CaseReportDJPanel extends javax.swing.JPanel {
             userProcessContainer.add("caseReportJPanel", lencounterJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
-        */
+        
         
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
@@ -353,6 +357,13 @@ public class CaseReportDJPanel extends javax.swing.JPanel {
         //sysAdminwjp.populateTree();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
+        */
+        
+        DoctorJPanel caseReportJPanel = new DoctorJPanel(userProcessContainer,userAccount,organization,enterprise,system,network);
+        userProcessContainer.add("caseReportJPanel", caseReportJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
