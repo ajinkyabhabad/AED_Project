@@ -64,7 +64,7 @@ public class EnterpriseAdminJPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 136, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(11, 198, 0, 0);
         jPanel1.add(jLabel1, gridBagConstraints);
 
         MOjButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -89,7 +89,7 @@ public class EnterpriseAdminJPanel extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 22, 11, 0);
+        gridBagConstraints.insets = new java.awt.Insets(6, 84, 0, 0);
         jPanel1.add(MOjButton, gridBagConstraints);
 
         MEjButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -115,7 +115,7 @@ public class EnterpriseAdminJPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 6, 11, 0);
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 0, 0);
         jPanel1.add(MEjButton, gridBagConstraints);
 
         MUjButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -141,7 +141,7 @@ public class EnterpriseAdminJPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 6, 11, 10);
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 0, 110);
         jPanel1.add(MUjButton, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -152,7 +152,7 @@ public class EnterpriseAdminJPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(14, 156, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(14, 218, 0, 0);
         jPanel1.add(jLabel2, gridBagConstraints);
 
         jTextField1.setEditable(false);
@@ -178,11 +178,11 @@ public class EnterpriseAdminJPanel extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 449, Short.MAX_VALUE)
+            .addGap(0, 611, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 197, Short.MAX_VALUE)
+            .addGap(0, 282, Short.MAX_VALUE)
         );
 
         jSplitPane1.setRightComponent(jPanel2);
