@@ -8,6 +8,7 @@ package UI.Lab;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.HealthEnterprise;
+import Business.Network.Network;
 import Business.Organization.ForensicOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -28,14 +29,15 @@ public class LabAssistantJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private ForensicOrganization LOrganization; 
     private HealthEnterprise Henterprise;
-    public LabAssistantJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise,EcoSystem business) {
+    private Network network;
+    public LabAssistantJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise,EcoSystem business,Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
         this.LOrganization = (ForensicOrganization)organization;
         this.Henterprise = (HealthEnterprise) enterprise;
-        jSplitPane1.setDividerSize(0);
+        this.network = network;
     }
 
     /**
@@ -173,13 +175,13 @@ public class LabAssistantJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_TRjButtonMouseExited
 
     private void VRjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VRjButtonActionPerformed
-        LabRequestJPanel lrJPanel=new LabRequestJPanel(userProcessContainer,business);
+        LabRequestJPanel lrJPanel=new LabRequestJPanel(userProcessContainer,business,network,Henterprise,userAccount,LOrganization);
         jSplitPane1.setBottomComponent(lrJPanel);
     }//GEN-LAST:event_VRjButtonActionPerformed
 
     private void TRjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TRjButtonActionPerformed
-        TestResultsJPanel trJPanel=new TestResultsJPanel(userProcessContainer,business);
-        jSplitPane1.setBottomComponent(trJPanel);
+        /*TestResultsJPanel trJPanel=new TestResultsJPanel(userProcessContainer,business);
+        jSplitPane1.setBottomComponent(trJPanel);*/
     }//GEN-LAST:event_TRjButtonActionPerformed
 
 

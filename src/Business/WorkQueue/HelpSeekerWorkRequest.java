@@ -22,6 +22,7 @@ public class HelpSeekerWorkRequest extends WorkRequest{
     private String suspecttype;
     private String nameofsuspect;
     private String email;
+    private DoctorWorkRequest doctorWorkRequest;
     
     public String getRelation() {
         return relation;
@@ -95,6 +96,14 @@ public class HelpSeekerWorkRequest extends WorkRequest{
 
     public void setNameofsuspect(String nameofsuspect) {
         this.nameofsuspect = nameofsuspect;
+    }
+
+    public DoctorWorkRequest getDoctorWorkRequest() {
+        return doctorWorkRequest;
+    }
+
+    public void setDoctorWorkRequest(DoctorWorkRequest doctorWorkRequest) {
+        this.doctorWorkRequest = doctorWorkRequest;
     }
   
 

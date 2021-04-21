@@ -35,7 +35,6 @@ public class PharmacistJPanel extends javax.swing.JPanel {
         this.business = business;
         this.POrganization = (PharmacyOrganization)organization;
         this.Penterprise = (PharmacyEnterprise) enterprise;
-        jSplitPane1.setDividerSize(0);
     }
 
     /**
@@ -46,7 +45,6 @@ public class PharmacistJPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
@@ -58,18 +56,10 @@ public class PharmacistJPanel extends javax.swing.JPanel {
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         jPanel1.setBackground(new java.awt.Color(0, 128, 128));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Welcome Pharmacist");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(19, 110, 0, 0);
-        jPanel1.add(jLabel1, gridBagConstraints);
 
         VRjButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         VRjButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -90,12 +80,6 @@ public class PharmacistJPanel extends javax.swing.JPanel {
                 VRjButtonActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 69, 24, 0);
-        jPanel1.add(VRjButton, gridBagConstraints);
 
         VDjButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         VDjButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -116,18 +100,49 @@ public class PharmacistJPanel extends javax.swing.JPanel {
                 VDjButtonActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 87, 24, 82);
-        jPanel1.add(VDjButton, gridBagConstraints);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(VRjButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addComponent(VDjButton)
+                .addGap(82, 82, 82))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(VRjButton)
+                    .addComponent(VDjButton))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
 
         jSplitPane1.setTopComponent(jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new java.awt.GridBagLayout());
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 398, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 193, Short.MAX_VALUE)
+        );
+
         jSplitPane1.setRightComponent(jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -138,7 +153,7 @@ public class PharmacistJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -159,13 +174,13 @@ public class PharmacistJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_VDjButtonMouseExited
 
     private void VRjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VRjButtonActionPerformed
-        PharmaViewRequestJPanel pvrJPanel=new PharmaViewRequestJPanel(userProcessContainer,business);
+        PharmaViewRequestJPanel pvrJPanel=new PharmaViewRequestJPanel(userProcessContainer,business,POrganization,userAccount);
         jSplitPane1.setBottomComponent(pvrJPanel);
     }//GEN-LAST:event_VRjButtonActionPerformed
 
     private void VDjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VDjButtonActionPerformed
-        ViewPrescriptionJPanel vdpJPanel=new ViewPrescriptionJPanel(userProcessContainer,business);
-        jSplitPane1.setBottomComponent(vdpJPanel);
+        /*ViewPrescriptionJPanel vdpJPanel=new ViewPrescriptionJPanel(userProcessContainer,business);
+        jSplitPane1.setBottomComponent(vdpJPanel);*/
     }//GEN-LAST:event_VDjButtonActionPerformed
 
 

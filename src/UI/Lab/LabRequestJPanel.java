@@ -6,8 +6,19 @@
 package UI.Lab;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.HealthEnterprise;
+import Business.Network.Network;
+import Business.Organization.ForensicOrganization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.LabAssistanceWorkRequest;
+import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,10 +31,21 @@ public class LabRequestJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     EcoSystem system;
-    public LabRequestJPanel(JPanel userProcessContainer, EcoSystem system) {
+    //userProcessContainer,business,network,Henterprise,userAccount
+    Network network;
+    HealthEnterprise enterprise;
+    UserAccount userAccount;
+    ForensicOrganization Organization;
+    public LabRequestJPanel(JPanel userProcessContainer, EcoSystem system, Network network, HealthEnterprise enterprise, UserAccount userAccount,ForensicOrganization Organization ) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        this.enterprise = enterprise;
+        this.network = network;
+        this.userAccount = userAccount;
+        this.Organization = Organization;
+        populateTable();
+        
     }
 
     /**
@@ -55,7 +77,7 @@ public class LabRequestJPanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Doctor's Name", "Patient's Name", "Requested Tests"
+                "Doctor's Name", "Patient's Name", "LabStatus"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -69,7 +91,7 @@ public class LabRequestJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setText("Accept");
+        jButton1.setText("Assign Request");
         jButton1.setBorderPainted(false);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -79,9 +101,14 @@ public class LabRequestJPanel extends javax.swing.JPanel {
                 jButton1MouseExited(evt);
             }
         });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setText("Decline");
+        jButton2.setText("View Request");
         jButton2.setBorderPainted(false);
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -92,6 +119,11 @@ public class LabRequestJPanel extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButton2MouseExited(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -105,6 +137,11 @@ public class LabRequestJPanel extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButton3MouseExited(evt);
+            }
+        });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -122,11 +159,11 @@ public class LabRequestJPanel extends javax.swing.JPanel {
                                 .addGap(119, 119, 119)
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(89, 89, 89)
+                                .addGap(64, 64, 64)
                                 .addComponent(jButton1)
-                                .addGap(53, 53, 53)
+                                .addGap(39, 39, 39)
                                 .addComponent(jButton2)))
-                        .addGap(0, 96, Short.MAX_VALUE)))
+                        .addGap(0, 51, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
@@ -150,6 +187,23 @@ public class LabRequestJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void populateTable() {
+        
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        Object[] row=new Object[3];
+        model.setRowCount(0);
+        
+        
+         for(LabAssistanceWorkRequest request : Organization.getWorkQueue().getLabAssistanceWorkRequest())
+         {
+         
+            row[0]=request.getDoctorWorkRequest().getReceiver();
+            row[1] = request.getDoctorWorkRequest().getHelpSeekerWorkRequest().getNameofvictim();
+            row[2] = request;
+            
+            model.addRow(row);
+        }
+    }
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
           jButton1.setForeground(new Color(0,128,128));        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseEntered
@@ -177,6 +231,51 @@ public class LabRequestJPanel extends javax.swing.JPanel {
     private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
        jButton3.setForeground(Color.black);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3MouseExited
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTable1.getSelectedRow();
+        
+        if (selectedRow < 0){
+            return;
+        }
+        
+        WorkRequest request = (LabAssistanceWorkRequest)jTable1.getValueAt(selectedRow, 2);
+        request.setReceiver(userAccount);
+        request.setStatus("Accepted");
+        populateTable();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTable1.getSelectedRow();
+
+        if (selectedRow < 0){
+            return;
+        }
+
+        LabAssistanceWorkRequest request = (LabAssistanceWorkRequest)jTable1.getValueAt(selectedRow, 2);
+
+        if (request.getReceiver()!=userAccount){
+            JOptionPane.showMessageDialog(this, "You cannot view the report of this case. Access Denied.");
+        }else{
+
+            TestResultsJPanel caseReportJPanel = new TestResultsJPanel(userProcessContainer,system,request);
+            userProcessContainer.add("caseReportJPanel", caseReportJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+            
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        //CaseRequestJPanel sysAdminwjp = (CaseRequestJPanel) component;
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
