@@ -137,10 +137,7 @@
                           <Component id="namesurvivorjLabel" alignment="0" max="32767" attributes="0"/>
                           <Component id="relationjLabel" alignment="0" pref="120" max="32767" attributes="0"/>
                           <Component id="namesuspectjLabel" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="suspecttypejLabel" min="-2" pref="119" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="suspecttypejLabel" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
                       </Group>
                       <Component id="locationjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="timejLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -210,13 +207,10 @@
                               <Component id="namesuspectjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="35" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jTextField3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="jTextField3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

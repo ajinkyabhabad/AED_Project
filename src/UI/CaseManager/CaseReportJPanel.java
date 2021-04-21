@@ -10,10 +10,12 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.CounsellingDeptOrganization;
 import Business.Organization.HelpProviderOrganization;
+import Business.Organization.HospitalOrganization;
 import Business.Organization.LegalOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CounsellarWorkRequest;
+import Business.WorkQueue.DoctorWorkRequest;
 import Business.WorkQueue.HelpProviderWorkRequest;
 import Business.WorkQueue.HelpSeekerWorkRequest;
 import Business.WorkQueue.LawyerWorkRequest;
@@ -453,7 +455,26 @@ public class CaseReportJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        DoctorWorkRequest docrequest = new DoctorWorkRequest();
+        docrequest.setStatus("Waiting");
+        docrequest.setSender(userAccount);
+        docrequest.setHelpSeekerWorkRequest(request);
+        
+        Enterprise e= network.getEnterpriseDirectory().searchEnterprisebyType(Enterprise.EnterpriseType.Health);
+            Organization org = null;
+            for (Organization organization : e.getOrganizationDirectory().getOrganizationList()){
+                if (organization instanceof HospitalOrganization){
+                    org = organization;
+                    break;
+                }
+            }
+            if (org!=null){
+                org.getWorkQueue().getDoctorworkRequestList().add(docrequest);
+                //userAccount.getWorkQueue().getHelpSeekerworkRequestList().add(request);
+                userAccount.getWorkQueue().getDoctorworkRequestList().add(docrequest);
+            }
+        
+        JOptionPane.showMessageDialog(null, "Request submitted to Hosptital.");
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
