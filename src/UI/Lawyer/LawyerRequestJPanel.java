@@ -218,8 +218,10 @@ jButton1.setForeground(Color.black);         // TODO add your handling code here
     private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
 jButton2.setForeground(Color.black);         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseExited
-
+   int i=1;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        if(i<2){
         int selectedRow = jTable1.getSelectedRow();
         
         if (selectedRow < 0){
@@ -234,7 +236,12 @@ jButton2.setForeground(Color.black);         // TODO add your handling code here
         java.sql.Date date=new java.sql.Date(millis);
         request.setRequestDate(date);*/
         populateTable();     
-        
+        i++;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Only one case can be accepted at a time");
+        }
         /*int selectedRow = jTable1.getSelectedRow();
         
         if (selectedRow < 0){
@@ -254,7 +261,13 @@ jButton2.setForeground(Color.black);         // TODO add your handling code here
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
            
         int selectedRow = jTable1.getSelectedRow();
-
+        String sta=jTable1.getValueAt(selectedRow, 2).toString();
+        String status="Waiting";
+        if(sta.equalsIgnoreCase(status))
+        {
+            JOptionPane.showMessageDialog(null, "Access Denied");
+        }
+        else{
         if (selectedRow < 0){
             return;
         }
@@ -273,7 +286,7 @@ jButton2.setForeground(Color.black);         // TODO add your handling code here
             casereportJPanel.setVisible(true);*/
         }
 
-
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -286,9 +299,17 @@ jButton2.setForeground(Color.black);         // TODO add your handling code here
     }//GEN-LAST:event_jButton4MouseExited
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
+ 
+        
         int selectedRow = jTable1.getSelectedRow();
 
+        String sta=jTable1.getValueAt(selectedRow, 2).toString();
+        String status="Waiting";
+        if(sta.equalsIgnoreCase(status))
+        {
+            JOptionPane.showMessageDialog(null, "Access Denied");
+        }
+        else{
         if (selectedRow < 0){
             return;
         }
@@ -301,6 +322,7 @@ jButton2.setForeground(Color.black);         // TODO add your handling code here
             userProcessContainer.add("caseReportJPanel", lencounterJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
+        }
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -316,6 +338,13 @@ jButton2.setForeground(Color.black);         // TODO add your handling code here
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         int selectedRow = jTable1.getSelectedRow();
 
+        String sts="Waiting";
+        String sta=jTable1.getValueAt(selectedRow, 2).toString();
+        if(sts.equalsIgnoreCase(sta))
+        {
+            JOptionPane.showMessageDialog(null, "Access Denied");
+        }
+        else{
         if (selectedRow < 0){
             return;
         }
@@ -323,6 +352,7 @@ jButton2.setForeground(Color.black);         // TODO add your handling code here
         WorkRequest request = (LawyerWorkRequest)jTable1.getValueAt(selectedRow, 2);
         request.setReceiver(userAccount);
         request.setStatus("Case Completed");
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 

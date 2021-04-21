@@ -166,9 +166,11 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
              jButton1.setForeground(Color.black);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseExited
-
+int i=1;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-               
+          
+        if(i<5)
+        {
         int selectedRow = jTable1.getSelectedRow();
         
         if (selectedRow < 0){
@@ -180,6 +182,12 @@ public class CaseRequestJPanel extends javax.swing.JPanel {
         request.setStatus("Accepted");
        
         populateTable();
+        i++;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Only 4 cases can be handled");
+        }
                
       /*      int selectedRow = jTable1.getSelectedRow();
         int id = (int) jTable1.getValueAt(selectedRow, 0);

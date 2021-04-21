@@ -157,10 +157,13 @@ public class RequestDoctorJPanel extends javax.swing.JPanel {
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
           jButton1.setForeground(Color.black);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseExited
-
+   int i=1;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = jTable1.getSelectedRow();
+
+
+        if(i<2)
+        {
+            int selectedRow = jTable1.getSelectedRow();
         
         if (selectedRow < 0){
             return;
@@ -170,12 +173,27 @@ public class RequestDoctorJPanel extends javax.swing.JPanel {
         request.setReceiver(userAccount);
         request.setStatus("Accepted");
         populatetable();
+        i++;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Only one case can be accepted at a time");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = jTable1.getSelectedRow();
 
+        
+        
+        int selectedRow = jTable1.getSelectedRow();
+        String st=jTable1.getValueAt(selectedRow, 2).toString();
+        String stat="Waiting";
+        if(st.equalsIgnoreCase(stat))
+        {
+            JOptionPane.showMessageDialog(null, "Access Denied");
+        }
+        else
+        {
         if (selectedRow < 0){
             return;
         }
@@ -192,6 +210,7 @@ public class RequestDoctorJPanel extends javax.swing.JPanel {
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
             
+        }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 

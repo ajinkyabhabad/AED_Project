@@ -171,10 +171,13 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
     private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
            jButton2.setForeground(Color.black);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseExited
-
+     int i=1;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-          
-        int selectedRow = jTable1.getSelectedRow();
+       
+        
+        if(i<2)
+        {
+           int selectedRow = jTable1.getSelectedRow();
         
         if (selectedRow < 0){
             return;
@@ -184,7 +187,14 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
         request.setReceiver(userAccount);
         
         request.setStatus("Accepted");
-        populateTable();
+        populateTable(); 
+        i++;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Only one case can be accepted at a time");
+        }
+        
         
         
             
@@ -195,8 +205,19 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-     int selectedRow = jTable1.getSelectedRow();
 
+        
+        
+        int selectedRow = jTable1.getSelectedRow();
+
+        DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
+        String s= jTable1.getValueAt(selectedRow, 2).toString();
+        String status="Waiting";
+        if(status.equalsIgnoreCase(s))
+        {
+            JOptionPane.showMessageDialog(null, "Access Denied");
+        }
+        else{
         if (selectedRow < 0){
             return;
         }
@@ -212,13 +233,25 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
             
             
         }
-
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-          int selectedRow = jTable1.getSelectedRow();
 
+        
+        
+        int selectedRow = jTable1.getSelectedRow();
+
+        DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
+        String st=jTable1.getValueAt(selectedRow, 2).toString();
+        String sta="Waiting";
+        if(sta.equalsIgnoreCase(st))
+        {
+            JOptionPane.showMessageDialog(null, "Access Denied");
+        }
+        else
+        {
         if (selectedRow < 0){
             return;
         }
@@ -235,7 +268,8 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
             layout.next(userProcessContainer);
             /*CaseReportJPanel casereportJPanel=new CaseReportJPanel(userProcessContainer,system,request);
             casereportJPanel.setVisible(true);*/
-        }        // TODO add your handling code here:
+        }   
+        }// TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
 
