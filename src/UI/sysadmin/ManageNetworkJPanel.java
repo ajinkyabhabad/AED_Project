@@ -6,14 +6,26 @@
 package UI.sysadmin;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Organization.CaseManagerOrganization;
+import Business.Organization.Organization;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -26,10 +38,14 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private EcoSystem system;
+    private HashMap<String, Integer> chart;
+    int bostoncases,seattlecases;
+
     public ManageNetworkJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        chart= new HashMap<String,Integer>();
         
         populateNetworkTable();
     }
@@ -61,6 +77,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         txtNetworkName = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         DeleteBtn = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -99,8 +116,6 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("Submit");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.setBorderPainted(false);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton1MouseEntered(evt);
@@ -117,8 +132,6 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
         DeleteBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         DeleteBtn.setText("Delete");
-        DeleteBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        DeleteBtn.setBorderPainted(false);
         DeleteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 DeleteBtnMouseEntered(evt);
@@ -130,6 +143,14 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         DeleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteBtnActionPerformed(evt);
+            }
+        });
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton2.setText("View Cases");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -150,11 +171,14 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(40, 40, 40)
                                 .addComponent(txtNetworkName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(75, 75, 75)
-                                .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DeleteBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)))
                 .addContainerGap(200, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -171,11 +195,12 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                         .addGap(3, 3, 3)
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(DeleteBtn)
-                            .addComponent(jButton1))))
-                .addGap(142, 142, 142))
+                            .addComponent(jButton1)
+                            .addComponent(jButton2))))
+                .addGap(140, 140, 140))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -238,10 +263,76 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_DeleteBtnActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+          
+        for (Network n: system.getNetworkList())
+        {  
+      
+            Enterprise e= n.getEnterpriseDirectory().searchEnterprisebyType(Enterprise.EnterpriseType.NGO);
+            
+            for (Organization o: e.getOrganizationDirectory().getOrganizationList())
+            {   Organization org=null;
+               
+                if(o instanceof CaseManagerOrganization)
+                { 
+                    org=o;
+                   updateData(n.toString(), org.getWorkQueue().getHelpSeekerworkRequestList().size());
+                }
+            }
+           
+            
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    
+  private void updateData(String networkdata, int casesdata)
+    {
+        if(networkdata.equalsIgnoreCase("Boston"))
+        {
+            bostoncases+=casesdata;
+        }
+        if(networkdata.equalsIgnoreCase("Seattle"))
+        {
+            seattlecases+=casesdata;
+        }
+        chart.clear();
+        chart.put("Boston", bostoncases);
+        chart.put("Seattle", seattlecases);
+        this.updateChart();
+    }
+  
+  private void updateChart() {
+  
+        DefaultCategoryDataset d=new DefaultCategoryDataset();
+        Set keys=chart.keySet();
+        Iterator it=keys.iterator();
+        
+        while(it.hasNext())
+        {
+            Object cityname=it.next().toString();
+            int casesdata= (int) chart.get(cityname);
+            d.setValue(casesdata, "No of cases", (Comparable) cityname);
+            
+        }
+        
+        JFreeChart barc=ChartFactory.createBarChart("Summary of cases", "City/Network", "No of cases", d, PlotOrientation.VERTICAL, false, true, false);
+        CategoryPlot plt=barc.getCategoryPlot();
+        plt.setRangeGridlinePaint(Color.black);
+        
+        ChartFrame cp=new ChartFrame("No of cases by network",barc);
+        cp.setVisible(true);
+        cp.setSize(600,600);
+       
+    }
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton DeleteBtn;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
