@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author patel
+ * @author patel and Ajinkya
  */
 public class TestResultsJPanel extends javax.swing.JPanel {
 

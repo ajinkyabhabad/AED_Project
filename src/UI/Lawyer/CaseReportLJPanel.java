@@ -378,9 +378,13 @@ public class CaseReportLJPanel extends javax.swing.JPanel {
             msg.setSubject("A Lawyer has been assigned, " + nv );
             msg.setText("Dear "+nv +"\n"+"I am here to help you. Please schedule an appointment through the following link."+"\n"+"calendly.link"+"\n"+"Best,"+"\n"+"Andy Rubella");
             Transport.send(msg);
+            JOptionPane.showMessageDialog(this, "Invitation has been sent successfully.");
+
         }catch(Exception e)
         {
             System.out.println(""+e);
+            JOptionPane.showMessageDialog(this, "Incorrect E-mail id.Invitation cannot be been sent.");
+            
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 

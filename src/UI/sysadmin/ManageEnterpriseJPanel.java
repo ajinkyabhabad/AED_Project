@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author patel
+ * @author patel and Ajinkya
  */
 public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
@@ -67,9 +67,9 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         }
 
         for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
-          //  if (!type.getValue().equals(Enterprise.EnterpriseType.HelpSeeker.getValue())){
+            if (!type.getValue().equals(Enterprise.EnterpriseType.HelpSeeker.getValue())){
                 enterpriseTypeJComboBox.addItem(type);
-            //}
+            }
         }
 
     }
@@ -145,6 +145,11 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         networkJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         enterpriseTypeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        enterpriseTypeJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterpriseTypeJComboBoxActionPerformed(evt);
+            }
+        });
 
         DeleteJButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         DeleteJButton.setText("Delete");
@@ -292,6 +297,10 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             populateTable();
         }
     }//GEN-LAST:event_DeleteJButtonActionPerformed
+
+    private void enterpriseTypeJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterpriseTypeJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enterpriseTypeJComboBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

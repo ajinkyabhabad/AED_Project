@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author patel
+ * @author patel and Ajinkya
  */
 public class RequestDoctorJPanel extends javax.swing.JPanel {
 
@@ -71,17 +71,17 @@ public class RequestDoctorJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Name of Patient", "Time of Assault", "Status"
+                "Name of Patient", "Time of Assault", "Status", "Assigned to"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -133,15 +133,17 @@ public class RequestDoctorJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(102, 102, 102)
                         .addComponent(jLabel1))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jButton1)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)))
                 .addGap(168, 168, 168))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,15 +250,21 @@ public class RequestDoctorJPanel extends javax.swing.JPanel {
 
     private void populatetable() {
         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
-        Object[] row=new Object[3];
+        Object[] row=new Object[4];
         model.setRowCount(0);
         
         for(DoctorWorkRequest request : organization.getWorkQueue().getDoctorworkRequestList())
         {
         
-          row[0]=request.getHelpSeekerWorkRequest().getSender().getEmployee().getName();
+          row[0]=request.getHelpSeekerWorkRequest().getNameofvictim();
           row[1] = request.getHelpSeekerWorkRequest().getDoi();
-          row[2] = request;            
+          row[2] = request;  
+          if (request.getReceiver()==null){
+              row[3] = "Not Assigned";
+          }else{
+              row[3] = request.getReceiver();
+          }
+          
           
           model.addRow(row);
         }

@@ -254,7 +254,7 @@ jButton1.setForeground(Color.black);        // TODO add your handling code here:
         jTextArea1.setText("");
         
         
-        String FromEmail="sexualawareness.help@gmail.com";
+        /*String FromEmail="sexualawareness.help@gmail.com";
         String FromEmailPass="Fin@lProject21";
         String Subject = "Sign up successful";
         
@@ -282,7 +282,7 @@ jButton1.setForeground(Color.black);        // TODO add your handling code here:
         }catch(Exception e)
         {
             System.out.println(""+e);
-        } 
+        } */
             
         }
         
