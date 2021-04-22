@@ -223,7 +223,7 @@ public class LawyerEncounterJPanel extends javax.swing.JPanel {
      //int i=0;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        if(jTextField1.getText()==null || jTextArea1==null)
+        if(jTextField1.getText().equalsIgnoreCase("") && jTextArea1.getText().equalsIgnoreCase(""))
         {
             JOptionPane.showMessageDialog(null, "Please fill out the necessary fields");
         }    
@@ -231,10 +231,10 @@ public class LawyerEncounterJPanel extends javax.swing.JPanel {
             LawyerEncounter le =new LawyerEncounter();
             le.setEncounter(jTextField1.getText());
             le.setMinutes(jTextArea1.getText());
-            organization.getLawyerencounterdir().getEncounters().add(le);
+            //organization.getLawyerencounterdir().getEncounters().add(le);
             //organization.getLawyerencounterdir().getLEncounters().add(le);
-            organization.getLawyerencounterdir().getEncounterDirectory().put(request.getHelpSeekerWorkRequest().getNameofvictim(), organization.getLawyerencounterdir().getEncounters());
-        
+            //organization.getLawyerencounterdir().getEncounterDirectory().put(request.getHelpSeekerWorkRequest().getNameofvictim(), organization.getLawyerencounterdir().getEncounters());
+            request.getLEncounter().add(le);
             populateName();
             jTextField1.setText("");
             jTextArea1.setText("");
@@ -311,7 +311,13 @@ public class LawyerEncounterJPanel extends javax.swing.JPanel {
         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
         Object[] row=new Object[2];
         model.setRowCount(0);
-        Object d=jTextField2.getText();
+        
+        for (LawyerEncounter l: request.getLEncounter()){
+            row[0] = l.getEncounter();
+            row[1] = l.getMinutes();
+            model.addRow(row);
+        }
+        /*Object d=jTextField2.getText();
        
             for (Map.Entry m: organization.getLawyerencounterdir().getEncounterDirectory().entrySet())
             {
@@ -328,7 +334,7 @@ public class LawyerEncounterJPanel extends javax.swing.JPanel {
                     }
                     
                 }
-            }
+            }*/
         
     }
 

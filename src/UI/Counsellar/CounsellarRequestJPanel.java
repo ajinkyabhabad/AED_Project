@@ -234,28 +234,16 @@ jButton2.setForeground(Color.black);        // TODO add your handling code here:
     int i=1; 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        if(i<2)
-        {
-        int selectedRow = jTable1.getSelectedRow();
-        
-        if (selectedRow < 0){
-            return;
-        }
-        
-        WorkRequest request = (CounsellarWorkRequest)jTable1.getValueAt(selectedRow, 2);
-        request.setReceiver(userAccount);
-        request.setStatus("Accepted");
-        
-        /*long millis=System.currentTimeMillis();  
-        java.sql.Date date=new java.sql.Date(millis);
-        request.setRequestDate(date);*/
-        populateTable();
-        i++;
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Only one case can be accepted at a time");
-        }
+        int selectedRow = jTable1.getSelectedRow();         
+        CounsellarWorkRequest request = (CounsellarWorkRequest)jTable1.getValueAt(selectedRow, 2);
+        if (CheckOpenCases(userAccount) == 0){
+                request.setReceiver(userAccount);
+                request.setStatus("Accepted");
+                populateTable();  
+            }else
+            {
+                JOptionPane.showMessageDialog(null, "Only one case can be accepted at a time");
+            }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -434,5 +422,19 @@ jButton2.setForeground(Color.black);        // TODO add your handling code here:
             }
             model.addRow(row);
         }
+    }
+    
+    private int CheckOpenCases(UserAccount userAccount) {
+        int a = 0;
+        for(CounsellarWorkRequest request : organization.getWorkQueue().getCounsellarworkRequestList())
+        {
+        
+          if (request.getReceiver()==userAccount){
+              if (request.getStatus().equalsIgnoreCase("Accepted")){
+                  a = a + 1;
+              }
+          } 
+        }
+        return a; 
     }
 }

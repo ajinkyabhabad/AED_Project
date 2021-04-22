@@ -261,7 +261,8 @@ public class HelpProviderEncounterJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2MouseExited
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-           if(jTextField1.getText()==null || jTextArea1==null)
+           if(jTextField1.getText().equalsIgnoreCase("") && jTextArea1.getText().equalsIgnoreCase("")
+                   && jTextField2.getText().equalsIgnoreCase(""))
         {
             JOptionPane.showMessageDialog(null, "Please fill out the necessary fields");
         }    
@@ -270,8 +271,9 @@ public class HelpProviderEncounterJPanel extends javax.swing.JPanel {
             hpe.setEncounter(jTextField1.getText());
             hpe.setGuidance(jTextArea1.getText());
             hpe.setProgress(jTextField2.getText());
-            organization.getHPencounterdir().getHPEncounters().add(hpe);
-            organization.getHPencounterdir().getHPEncounterDirectory().put(request.getHelpSeekerWorkRequest().getNameofvictim(), organization.getHPencounterdir().getHPEncounters());
+            request.getHPEncounter().add(hpe);
+            //organization.getHPencounterdir().getHPEncounters().add(hpe);
+            //organization.getHPencounterdir().getHPEncounterDirectory().put(request.getHelpSeekerWorkRequest().getNameofvictim(), organization.getHPencounterdir().getHPEncounters());
             populate();
             jTextField1.setText("");
             jTextField2.setText("");
@@ -335,10 +337,16 @@ public class HelpProviderEncounterJPanel extends javax.swing.JPanel {
         jTextField3.setText(   request.getHelpSeekerWorkRequest().getNameofvictim());
         jTextArea2.setText(request.getHelpSeekerWorkRequest().getMoredetails());
         
-         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
         Object[] row=new Object[3];
         model.setRowCount(0);
-        Object d= request.getHelpSeekerWorkRequest().getNameofvictim();
+        for (HelpProviderEncounter HPE: request.getHPEncounter()){
+            row[0] = HPE.getEncounter();
+            row[1]=HPE.getGuidance();
+            row[2]=HPE.getProgress();
+            model.addRow(row);
+        }
+        /*Object d= request.getHelpSeekerWorkRequest().getNameofvictim();
               
             for (Map.Entry m: organization.getHPencounterdir().getHPEncounterDirectory().entrySet())
             {
@@ -356,6 +364,6 @@ public class HelpProviderEncounterJPanel extends javax.swing.JPanel {
                     }
                     
                 }
-            }
+            }*/
     }
 }

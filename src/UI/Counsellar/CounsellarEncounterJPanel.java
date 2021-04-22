@@ -229,7 +229,7 @@ jButton1.setForeground(Color.black);        // TODO add your handling code here:
      //int i=0;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       
-        if(jTextField1.getText()==null || jTextArea1==null)
+        if(jTextField1.getText().equalsIgnoreCase("") && jTextArea1.getText().equalsIgnoreCase(""))
         {
             JOptionPane.showMessageDialog(null, "Please fill out the necessary fields");
         }    
@@ -237,9 +237,10 @@ jButton1.setForeground(Color.black);        // TODO add your handling code here:
         CounsellorEncounter en=new CounsellorEncounter();
         en.setEncounter(jTextField1.getText());
         en.setMinutes(jTextArea1.getText());
-        organization.getCounsellorencounterdir().getEncounters().add(en);
+        request.getConslrEncounter().add(en);
+        //organization.getCounsellorencounterdir().getEncounters().add(en);
        // for(CounsellarWorkRequest request : organization.getWorkQueue().getCounsellarworkRequestList()){
-        organization.getCounsellorencounterdir().getEncounterDirectory().put(request.getHelpSeekerWorkRequest().getNameofvictim(), organization.getCounsellorencounterdir().getEncounters());
+        //organization.getCounsellorencounterdir().getEncounterDirectory().put(request.getHelpSeekerWorkRequest().getNameofvictim(), organization.getCounsellorencounterdir().getEncounters());
         //}
        /* Object r=jTextField1.getText();
         Object s=jTextArea1.getText();
@@ -326,10 +327,15 @@ jButton1.setForeground(Color.black);        // TODO add your handling code here:
         jTextField2.setText(   request.getHelpSeekerWorkRequest().getNameofvictim());
        
         
-         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
         Object[] row=new Object[2];
         model.setRowCount(0);
-        Object d=jTextField2.getText();
+        for (CounsellorEncounter CE: request.getConslrEncounter()){
+            row[0] = CE.getEncounter();
+            row[1] = CE.getMinutes();
+            model.addRow(row);
+        }
+        /*Object d=jTextField2.getText();
        
             for (Map.Entry m: organization.getCounsellorencounterdir().getEncounterDirectory().entrySet())
             {
@@ -345,7 +351,7 @@ jButton1.setForeground(Color.black);        // TODO add your handling code here:
                     }
                     
                 }
-            }
+            }*/
         
     }
 
