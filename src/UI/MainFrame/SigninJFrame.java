@@ -276,7 +276,7 @@ public class SigninJFrame extends javax.swing.JFrame {
         passwordField.setText("");
 
         container.removeAll();
-        JPanel blankJP = new JPanel();
+        SigninPageImgJpanel blankJP = new SigninPageImgJpanel();
         container.add("blank", blankJP);
         CardLayout crdLyt = (CardLayout) container.getLayout();
         crdLyt.next(container);

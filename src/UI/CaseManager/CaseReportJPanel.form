@@ -135,7 +135,7 @@
                       <Component id="typejLabel" min="-2" pref="122" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="namesurvivorjLabel" alignment="0" max="32767" attributes="0"/>
-                          <Component id="relationjLabel" alignment="0" pref="120" max="32767" attributes="0"/>
+                          <Component id="relationjLabel" alignment="0" pref="0" max="32767" attributes="0"/>
                           <Component id="namesuspectjLabel" alignment="0" max="32767" attributes="0"/>
                           <Component id="suspecttypejLabel" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
                       </Group>
@@ -143,7 +143,7 @@
                       <Component id="timejLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="detailsjLabel" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="0" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="jTextField2" max="32767" attributes="0"/>
                       <Component id="jTextField6" alignment="0" max="32767" attributes="0"/>

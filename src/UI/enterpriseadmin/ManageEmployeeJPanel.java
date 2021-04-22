@@ -63,9 +63,9 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
-            Object[] row = new Object[2];
-            row[0] = employee.getId();
-            row[1] = employee;
+            Object[] row = new Object[1];
+            //row[0] = employee.getId();
+            row[0] = employee;
             model.addRow(row);
         }
     }
@@ -96,17 +96,17 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
         organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "ID", "Name"
+                "Name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
