@@ -46,6 +46,7 @@ public class SignupJFrame extends javax.swing.JFrame {
         initComponents();
         system = dB4OUtil.retrieveSystem();
         this.setSize(1080, 680);
+        this.setExtendedState(MainJFrame.MAXIMIZED_BOTH);
         populateNetworkComboBox();
        // emailValidator();
     }

@@ -172,13 +172,13 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
             return;
         }
         
-        WorkRequest request = (HelpProviderWorkRequest)jTable1.getValueAt(selectedRow, 2);
+        HelpProviderWorkRequest request = (HelpProviderWorkRequest)jTable1.getValueAt(selectedRow, 2);
         request.setReceiver(userAccount);
         
         request.setStatus("Accepted");
         populateTable(); 
         i++;
-        sendInvite();
+        sendInvite(request);
         }
         else
         {
@@ -259,7 +259,7 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
         }
     }
 
-    private void sendInvite() {
+    private void sendInvite(HelpProviderWorkRequest request) {
         String FromEmail="sexualawareness.help@gmail.com";
         String FromEmailPass="Fin@lProject21";
         String Subject = "Sign up successful";

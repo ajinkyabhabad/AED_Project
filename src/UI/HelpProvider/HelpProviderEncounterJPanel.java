@@ -13,6 +13,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.HelpProviderWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Properties;
 import javax.mail.Message;
@@ -337,19 +338,20 @@ public class HelpProviderEncounterJPanel extends javax.swing.JPanel {
          DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
         Object[] row=new Object[3];
         model.setRowCount(0);
-        Object d=jTextField3.getText();
-       
+        Object d= request.getHelpSeekerWorkRequest().getNameofvictim();
+              
             for (Map.Entry m: organization.getHPencounterdir().getHPEncounterDirectory().entrySet())
             {
                 String key=m.getKey().toString();
                 
-                if(key.equals(d))
+                if(key.equalsIgnoreCase(d.toString()))
                 {
-                    for(int i=0;i<organization.getHPencounterdir().getHPEncounters().size();i++)
+                    ArrayList<HelpProviderEncounter> HPA=(ArrayList<HelpProviderEncounter>) m.getValue();
+                    for(HelpProviderEncounter HPE :HPA)
                     {
-                        row[0]=organization.getHPencounterdir().getHPEncounters().get(i).getEncounter();
-                        row[1]=organization.getHPencounterdir().getHPEncounters().get(i).getGuidance();
-                        row[2]=organization.getHPencounterdir().getHPEncounters().get(i).getProgress();
+                        row[0]=HPE.getEncounter();
+                        row[1]=HPE.getGuidance();
+                        row[2]=HPE.getProgress();
                     model.addRow(row);
                     }
                     
