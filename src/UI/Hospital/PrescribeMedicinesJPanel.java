@@ -72,9 +72,13 @@ public class PrescribeMedicinesJPanel extends javax.swing.JPanel {
         jLabel2.setText("Doctor's Name:");
         jLabel2.setAutoscrolls(true);
 
+        jTextField1.setEnabled(false);
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Date:");
         jLabel3.setAutoscrolls(true);
+
+        jTextField2.setEnabled(false);
 
         jScrollPane1.setAutoscrolls(true);
 
@@ -130,9 +134,17 @@ public class PrescribeMedicinesJPanel extends javax.swing.JPanel {
         jLabel5.setText("Patient Name:");
         jLabel5.setAutoscrolls(true);
 
+        jTextField4.setEnabled(false);
+
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Particulars:");
         jLabel6.setAutoscrolls(true);
+
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Quantity:");
@@ -266,6 +278,8 @@ public class PrescribeMedicinesJPanel extends javax.swing.JPanel {
         Meds M = new Meds(jTextField5.getText(),Integer.parseInt(jTextField3.getText()));
         pRequest.getMedicines().add(M);
         populatetable();
+        jTextField3.setText("");
+        jTextField5.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -286,6 +300,10 @@ public class PrescribeMedicinesJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

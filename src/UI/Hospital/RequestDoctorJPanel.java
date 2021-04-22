@@ -62,6 +62,7 @@ public class RequestDoctorJPanel extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -114,26 +115,33 @@ public class RequestDoctorJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton2.setText("Case Complete");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(177, Short.MAX_VALUE)
+                .addContainerGap(175, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(jButton1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(102, 102, 102)
-                                .addComponent(jLabel1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(166, 166, 166))
+                        .addGap(102, 102, 102)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jButton1)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(168, 168, 168))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +153,8 @@ public class RequestDoctorJPanel extends javax.swing.JPanel {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton4))
+                    .addComponent(jButton4)
+                    .addComponent(jButton2))
                 .addGap(117, 117, 117))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -165,15 +174,15 @@ public class RequestDoctorJPanel extends javax.swing.JPanel {
         {
             int selectedRow = jTable1.getSelectedRow();
         
-        if (selectedRow < 0){
-            return;
-        }
+            if (selectedRow < 0){
+                return;
+            }
         
-        WorkRequest request = (DoctorWorkRequest)jTable1.getValueAt(selectedRow, 2);
-        request.setReceiver(userAccount);
-        request.setStatus("Accepted");
-        populatetable();
-        i++;
+            WorkRequest request = (DoctorWorkRequest)jTable1.getValueAt(selectedRow, 2);
+            request.setReceiver(userAccount);
+            request.setStatus("Accepted");
+            populatetable();
+            i++;
         }
         else
         {
@@ -214,9 +223,23 @@ public class RequestDoctorJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+        
+        if (selectedRow < 0){
+            return;
+        }
+     
+        WorkRequest request = (DoctorWorkRequest)jTable1.getValueAt(selectedRow, 2);
+        request.setReceiver(userAccount);
+        request.setStatus("Case Completed");
+        populatetable();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -228,14 +251,14 @@ public class RequestDoctorJPanel extends javax.swing.JPanel {
         Object[] row=new Object[3];
         model.setRowCount(0);
         
-         for(DoctorWorkRequest request : organization.getWorkQueue().getDoctorworkRequestList())
-         {
-         
-            row[0]=request.getHelpSeekerWorkRequest().getSender().getEmployee().getName();
-            row[1] = request.getHelpSeekerWorkRequest().getDoi();
-            row[2] = request;
-            
-            model.addRow(row);
+        for(DoctorWorkRequest request : organization.getWorkQueue().getDoctorworkRequestList())
+        {
+        
+          row[0]=request.getHelpSeekerWorkRequest().getSender().getEmployee().getName();
+          row[1] = request.getHelpSeekerWorkRequest().getDoi();
+          row[2] = request;            
+          
+          model.addRow(row);
         }
         
     }

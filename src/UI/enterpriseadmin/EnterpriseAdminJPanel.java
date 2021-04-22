@@ -28,6 +28,7 @@ public class EnterpriseAdminJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.system = system;
         jSplitPane1.setDividerSize(0);
+        jSplitPane1.setDividerLocation(120);
         jTextField1.setText(enterprise.getEnterpriseType().getValue());
     }
 

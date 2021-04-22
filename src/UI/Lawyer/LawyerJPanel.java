@@ -41,6 +41,7 @@ public class LawyerJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.network=network;
         jSplitPane1.setDividerSize(0);
+        jSplitPane1.setDividerLocation(100);
         populateBottom();
     }
 

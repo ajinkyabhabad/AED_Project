@@ -34,6 +34,8 @@ public class SigninJFrame extends javax.swing.JFrame {
         initComponents();
         system = dB4OUtil.retrieveSystem();
         this.setSize(1080, 680);
+        jSplitPane1.setDividerSize(0);
+        jSplitPane1.setDividerLocation(230);
     }
 
     /**
@@ -145,6 +147,8 @@ public class SigninJFrame extends javax.swing.JFrame {
 
         jSplitPane1.setRightComponent(container);
 
+        getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
+
         jPanel2.setBackground(new java.awt.Color(0, 128, 128));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
@@ -175,20 +179,7 @@ public class SigninJFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(40, 73, 39, 95);
         jPanel2.add(jButton1, gridBagConstraints);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
-        );
+        getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_START);
 
         setBounds(0, 0, 419, 422);
     }// </editor-fold>//GEN-END:initComponents

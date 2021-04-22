@@ -76,10 +76,13 @@ public class HelpProviderViewDetailsJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Name:");
 
+        jTextField1.setEnabled(false);
+
         jLabel2.setText("More Details:");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.setEnabled(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N

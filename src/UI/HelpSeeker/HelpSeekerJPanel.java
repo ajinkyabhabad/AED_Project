@@ -47,6 +47,7 @@ public class HelpSeekerJPanel extends javax.swing.JPanel {
         this.network = network;
       
         jSplitPane1.setDividerSize(0);
+        jSplitPane1.setDividerLocation(100);
     }
 
     /**

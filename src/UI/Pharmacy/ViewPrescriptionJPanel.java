@@ -80,6 +80,8 @@ public class ViewPrescriptionJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Date:");
 
+        jTextField2.setEnabled(false);
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -104,6 +106,8 @@ public class ViewPrescriptionJPanel extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Doctor's Name:");
 
+        jTextField3.setEnabled(false);
+
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton2.setText("Process ");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -119,6 +123,8 @@ public class ViewPrescriptionJPanel extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jTextField4.setEnabled(false);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Patient Name:");

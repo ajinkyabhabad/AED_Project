@@ -142,6 +142,8 @@ public class LawyerEncounterJPanel extends javax.swing.JPanel {
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
+        jTextField2.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -204,19 +206,19 @@ public class LawyerEncounterJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-    jButton1.setForeground(new Color(0,128,128));        // TODO add your handling code here:
+        jButton1.setForeground(new Color(0,128,128));        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseEntered
 
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
-jButton1.setForeground(Color.black);        // TODO add your handling code here:
+        jButton1.setForeground(Color.black);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseExited
 
     private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
-            jButton3.setForeground(new Color(0,128,128));        // TODO add your handling code here:
+        jButton3.setForeground(new Color(0,128,128));        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3MouseEntered
 
     private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
-          jButton3.setForeground(Color.black);        // TODO add your handling code here:
+        jButton3.setForeground(Color.black);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3MouseExited
      //int i=0;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -234,21 +236,25 @@ jButton1.setForeground(Color.black);        // TODO add your handling code here:
             organization.getLawyerencounterdir().getEncounterDirectory().put(request.getHelpSeekerWorkRequest().getNameofvictim(), organization.getLawyerencounterdir().getEncounters());
         
             populateName();
+            jTextField1.setText("");
+            jTextArea1.setText("");
+            
             
             String FromEmail="sexualawareness.help@gmail.com";
-        String FromEmailPass="Fin@lProject21";
-        String Subject = "Sign up successful";
+            String FromEmailPass="Fin@lProject21";
+            String Subject = "Sign up successful";
         
-        Properties properties=new Properties();
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.port", "587");
+            Properties properties=new Properties();
+            properties.put("mail.smtp.auth", "true");
+            properties.put("mail.smtp.starttls.enable", "true");
+            properties.put("mail.smtp.host", "smtp.gmail.com");
+            properties.put("mail.smtp.port", "587");
         
-        Session session=Session.getDefaultInstance(properties, new javax.mail.Authenticator(){
-           @Override
+            Session session=Session.getDefaultInstance(properties, new javax.mail.Authenticator(){
+            
+            @Override
             protected PasswordAuthentication getPasswordAuthentication(){
-         return new PasswordAuthentication(FromEmail,FromEmailPass);
+            return new PasswordAuthentication(FromEmail,FromEmailPass);
         }
         });
         
@@ -299,10 +305,10 @@ jButton1.setForeground(Color.black);        // TODO add your handling code here:
 
     private void populateName() {
         
-         jTextField2.setText(   request.getHelpSeekerWorkRequest().getNameofvictim());
+        jTextField2.setText(   request.getHelpSeekerWorkRequest().getNameofvictim());
        
         
-         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
         Object[] row=new Object[2];
         model.setRowCount(0);
         Object d=jTextField2.getText();
@@ -317,7 +323,8 @@ jButton1.setForeground(Color.black);        // TODO add your handling code here:
                     {
                         row[0]=organization.getLawyerencounterdir().getEncounters().get(i).getEncounter();
                         row[1]=organization.getLawyerencounterdir().getEncounters().get(i).getMinutes();
-                    model.addRow(row);
+                    
+                        model.addRow(row);
                     }
                     
                 }

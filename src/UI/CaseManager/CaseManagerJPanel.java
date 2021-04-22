@@ -42,6 +42,7 @@ public class CaseManagerJPanel extends javax.swing.JPanel {
         this.network = network;
         populateBottom();
         jSplitPane1.setDividerSize(0);
+        jSplitPane1.setDividerLocation(100);
     }
     
     
@@ -60,6 +61,8 @@ public class CaseManagerJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+
+        setLayout(new java.awt.BorderLayout());
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
@@ -82,16 +85,7 @@ public class CaseManagerJPanel extends javax.swing.JPanel {
         jPanel2.setLayout(new java.awt.GridBagLayout());
         jSplitPane1.setRightComponent(jPanel2);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
-        );
+        add(jSplitPane1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
 

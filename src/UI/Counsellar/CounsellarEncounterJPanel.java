@@ -137,11 +137,19 @@ public class CounsellarEncounterJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Encounter no.");
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         jLabel4.setText("Minutes");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
+
+        jTextField2.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -242,6 +250,8 @@ jButton1.setForeground(Color.black);        // TODO add your handling code here:
         i++;
         */
         populateName();
+        jTextField1.setText("");
+        jTextArea1.setText("");
         
         
         String FromEmail="sexualawareness.help@gmail.com";
@@ -290,6 +300,10 @@ jButton1.setForeground(Color.black);        // TODO add your handling code here:
         layout.previous(userProcessContainer);                    
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

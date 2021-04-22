@@ -78,6 +78,10 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Date:");
 
+        jTextField1.setEnabled(false);
+
+        jTextField2.setEnabled(false);
+
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("Request Lab Test");
         jButton1.setBorderPainted(false);
@@ -110,6 +114,8 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         jLabel4.setText("Doctor's Name:");
+
+        jTextField3.setEnabled(false);
 
         jLabel5.setText("Test Name:");
 
@@ -238,6 +244,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         Lt.setResult("Waiting");
         labrequest.getLabTestList().add(Lt);
         populatetable();
+        jTextField4.setText("");
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
