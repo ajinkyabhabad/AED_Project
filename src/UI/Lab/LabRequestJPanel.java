@@ -193,7 +193,7 @@ public class LabRequestJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2MouseEntered
 
     private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
-          jButton1.setForeground(Color.BLACK);         // TODO add your handling code here:
+          jButton1.setForeground(Color.black);         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseExited
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

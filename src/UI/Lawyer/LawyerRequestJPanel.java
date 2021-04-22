@@ -352,6 +352,7 @@ jButton2.setForeground(Color.black);         // TODO add your handling code here
         WorkRequest request = (LawyerWorkRequest)jTable1.getValueAt(selectedRow, 2);
         request.setReceiver(userAccount);
         request.setStatus("Case Completed");
+        populateTable();
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed

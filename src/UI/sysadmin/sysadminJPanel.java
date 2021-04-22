@@ -26,6 +26,7 @@ public class sysadminJPanel extends javax.swing.JPanel {
         this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
         jSplitPane1.setDividerSize(0);
+        jSplitPane1.setDividerLocation(120);
     }
 
     /**

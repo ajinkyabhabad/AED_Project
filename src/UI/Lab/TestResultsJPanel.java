@@ -69,8 +69,11 @@ public class TestResultsJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Doctor Name:");
 
+        jTextField1.setEnabled(false);
+
         jLabel3.setText("Patient Name:");
 
+        jTextField2.setEnabled(false);
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -115,6 +118,8 @@ public class TestResultsJPanel extends javax.swing.JPanel {
         });
 
         jLabel4.setText("Lab Official Name:");
+
+        jTextField3.setEnabled(false);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton2.setText("Back");
@@ -260,7 +265,7 @@ public class TestResultsJPanel extends javax.swing.JPanel {
         
         request.setResult(jTextField4.getText());
         PopulateTable();
-        
+        jTextField4.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -337,9 +342,9 @@ public class TestResultsJPanel extends javax.swing.JPanel {
            int selectedRow = jTable1.getSelectedRow();
              if (selectedRow >= 0) {
                   LabTest  L  = (LabTest) jTable1.getValueAt(selectedRow, 0);
-                 if(L!=null){
+                 /*if(L!=null){
                      jTextField4.setText(L.getResult());
-                 }
+                 }*/
              }
         }
     });

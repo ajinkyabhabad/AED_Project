@@ -40,6 +40,8 @@ public class DoctorJPanel extends javax.swing.JPanel {
         this.DOrganization = (HospitalOrganization)organization;
         this.Henterprise = (HealthEnterprise) enterprise;
         this.network = network;
+        jSplitPane1.setDividerSize(0);
+        jSplitPane1.setDividerLocation(100);
         populateBottom();
        
     }
@@ -88,7 +90,7 @@ public class DoctorJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
