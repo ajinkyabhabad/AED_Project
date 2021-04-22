@@ -240,7 +240,7 @@ public class LawyerEncounterJPanel extends javax.swing.JPanel {
             jTextArea1.setText("");
             
             
-            String FromEmail="sexualawareness.help@gmail.com";
+            /*String FromEmail="sexualawareness.help@gmail.com";
             String FromEmailPass="Fin@lProject21";
             String Subject = "Sign up successful";
         
@@ -269,7 +269,7 @@ public class LawyerEncounterJPanel extends javax.swing.JPanel {
         }catch(Exception e)
         {
             System.out.println(""+e);
-        } 
+        } */
             
         }
        

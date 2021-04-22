@@ -38,6 +38,7 @@ public class CounsellarRequestJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.organization=organization;
+        this.userAccount = userAccount;
         populateTable();
     }
 
@@ -69,17 +70,17 @@ public class CounsellarRequestJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Name", "Time of Assault", "Status"
+                "Name", "Time of Assault", "Status", "Assigned to"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -174,14 +175,13 @@ public class CounsellarRequestJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(137, 137, 137)
+                .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
+                        .addGap(180, 180, 180)
                         .addComponent(jLabel1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
+                        .addGap(84, 84, 84)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton7)
@@ -192,17 +192,18 @@ public class CounsellarRequestJPanel extends javax.swing.JPanel {
                                 .addGap(48, 48, 48)
                                 .addComponent(jButton2)
                                 .addGap(38, 38, 38)
-                                .addComponent(jButton4)))))
-                .addContainerGap(157, Short.MAX_VALUE))
+                                .addComponent(jButton4))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(119, 119, 119)
+                .addGap(129, 129, 129)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -211,7 +212,7 @@ public class CounsellarRequestJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton7))
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -415,18 +416,22 @@ jButton2.setForeground(Color.black);        // TODO add your handling code here:
 
     private void populateTable() {
         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
-        Object[] row=new Object[3];
+        Object[] row=new Object[4];
         model.setRowCount(0);
         
          for(CounsellarWorkRequest request : organization.getWorkQueue().getCounsellarworkRequestList())
          {
          
-             request.getHelpSeekerWorkRequest().getSender().getEmployee().getEmail();
+             //request.getHelpSeekerWorkRequest().getSender().getEmployee().getEmail();
             
-             row[0]=request.getHelpSeekerWorkRequest().getSender().getEmployee().getName();
+             row[0]=request.getHelpSeekerWorkRequest().getNameofvictim();
             row[1] = request.getHelpSeekerWorkRequest().getDoi();
             row[2] = request;
-            
+            if (request.getReceiver()==null){
+              row[3] = "Not Assigned";
+            }else{
+              row[3] = request.getReceiver();
+            }
             model.addRow(row);
         }
     }

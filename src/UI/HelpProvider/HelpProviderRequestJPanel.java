@@ -47,6 +47,7 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.organization= organization;
+        this.userAccount = userAccount;
         populateTable();
     }
 
@@ -64,7 +65,6 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -73,17 +73,17 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Name", "Type", "Status"
+                "Name", "Type", "Status", "Assigned to"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -118,34 +118,25 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton4.setText("View Details");
-        jButton4.setBorderPainted(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(161, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
+                        .addContainerGap(352, Short.MAX_VALUE)
                         .addComponent(jLabel1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
+                        .addContainerGap(183, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4)
-                        .addGap(18, 18, 18)
+                        .addGap(137, 137, 137)
                         .addComponent(jButton3)))
-                .addGap(152, 152, 152))
+                .addGap(167, 167, 167))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,10 +146,8 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
                     .addComponent(jButton3))
                 .addContainerGap(170, Short.MAX_VALUE))
         );
@@ -189,11 +178,15 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
         request.setStatus("Accepted");
         populateTable(); 
         i++;
+        sendInvite();
         }
         else
         {
             JOptionPane.showMessageDialog(null, "Only one case can be accepted at a time");
         }
+        
+        
+        
         
         
         
@@ -237,46 +230,10 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
-        
-        
-        int selectedRow = jTable1.getSelectedRow();
-
-        DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
-        String st=jTable1.getValueAt(selectedRow, 2).toString();
-        String sta="Waiting";
-        if(sta.equalsIgnoreCase(st))
-        {
-            JOptionPane.showMessageDialog(null, "Access Denied");
-        }
-        else
-        {
-        if (selectedRow < 0){
-            return;
-        }
-
-        HelpProviderWorkRequest request = (HelpProviderWorkRequest)jTable1.getValueAt(selectedRow, 2);
-        
-        if (request.getReceiver()!=userAccount){
-            JOptionPane.showMessageDialog(this, "You cannot view the report of this case. Access Denied.");
-        }else{
-
-            HelpProviderViewDetailsJPanel caseReportJPanel = new HelpProviderViewDetailsJPanel(userProcessContainer,system,request.getHelpSeekerWorkRequest(),userAccount,network);
-            userProcessContainer.add("caseReportJPanel", caseReportJPanel);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-            /*CaseReportJPanel casereportJPanel=new CaseReportJPanel(userProcessContainer,system,request);
-            casereportJPanel.setVisible(true);*/
-        }   
-        }// TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
@@ -284,17 +241,57 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
 
     private void populateTable() {
         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
-        Object[] row=new Object[3];
+        Object[] row=new Object[4];
         model.setRowCount(0);
         
          for(HelpProviderWorkRequest request : organization.getWorkQueue().getHPworkRequestList())
          {
          
-            row[0]=request.getHelpSeekerWorkRequest().getSender().getEmployee().getName();
+            row[0]=request.getHelpSeekerWorkRequest().getNameofvictim();
             row[1] = request.getHelpSeekerWorkRequest().getTypeofsa();
             row[2] = request;
-            
+            if (request.getReceiver()==null){
+              row[3] = "Not Assigned";
+            }else{
+              row[3] = request.getReceiver();
+            }
             model.addRow(row);
+        }
+    }
+
+    private void sendInvite() {
+        String FromEmail="sexualawareness.help@gmail.com";
+        String FromEmailPass="Fin@lProject21";
+        String Subject = "Sign up successful";
+        
+        Properties properties=new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        
+        Session session=Session.getDefaultInstance(properties, new javax.mail.Authenticator(){
+           @Override
+            protected PasswordAuthentication getPasswordAuthentication(){
+         return new PasswordAuthentication(FromEmail,FromEmailPass);
+        }
+        });
+        
+        try
+        {
+            Message msg=new MimeMessage(session);
+            msg.setFrom(new InternetAddress(FromEmail));
+            msg.addRecipients(Message.RecipientType.TO, InternetAddress.parse(request.getHelpSeekerWorkRequest().getEmail()));
+            msg.setSubject("Invitation for a session with Help Provider, " + request.getHelpSeekerWorkRequest().getNameofvictim() );
+            msg.setText("Dear "+ request.getHelpSeekerWorkRequest().getNameofvictim()+"\n"+"I am here to help you. Join me through the following link for the next encounter."+"\n"+"zoom1.link"+"\n"+"Best");
+            Transport.send(msg);
+            JOptionPane.showMessageDialog(this, "Invitation has been sent successfully.");
+
+        }catch(Exception e)
+        {
+            System.out.println(""+e);
+            JOptionPane.showMessageDialog(this, "Incorrect E-mail id.Invitation cannot be been sent.");
+
         }
     }
 }

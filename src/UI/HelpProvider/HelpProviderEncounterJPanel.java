@@ -35,7 +35,7 @@ public class HelpProviderEncounterJPanel extends javax.swing.JPanel {
     /**
      * Creates new form HelpProviderEncounterJPanel
      */
-        JPanel userProcessContainer;
+    JPanel userProcessContainer;
     EcoSystem system;
     HelpProviderWorkRequest request;
     UserAccount userAccount;
@@ -276,7 +276,7 @@ public class HelpProviderEncounterJPanel extends javax.swing.JPanel {
             jTextField2.setText("");
             jTextArea1.setText("");
             
-             String FromEmail="sexualawareness.help@gmail.com";
+             /*String FromEmail="sexualawareness.help@gmail.com";
         String FromEmailPass="Fin@lProject21";
         String Subject = "Sign up successful";
         
@@ -304,7 +304,7 @@ public class HelpProviderEncounterJPanel extends javax.swing.JPanel {
         }catch(Exception e)
         {
             System.out.println(""+e);
-        } 
+        } */ 
            }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed

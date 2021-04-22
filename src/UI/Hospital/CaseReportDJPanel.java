@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package UI.Hospital;
-
+/**
+ *
+ * @author Ajinkya
+ */
 import UI.CaseManager.*;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
@@ -502,9 +505,11 @@ public class CaseReportDJPanel extends javax.swing.JPanel {
             msg.setSubject("A Doctor has been assigned, " + request.getNameofvictim() );
             msg.setText("Dear "+ request.getNameofvictim()+"\n"+"I am here to help you. Please schedule an appointment through the following link."+"\n"+"calendly.link"+"\n"+"Best");
             Transport.send(msg);
+           JOptionPane.showMessageDialog(this, "Invitation has been sent successfully.");
         }catch(Exception e)
         {
             System.out.println(""+e);
+            JOptionPane.showMessageDialog(this, "Incorrect E-mail id.Invitation cannot be been sent.");
         }                    
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed

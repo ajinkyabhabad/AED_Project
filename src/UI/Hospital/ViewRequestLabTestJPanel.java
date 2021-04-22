@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author patel
+ * @author patel and Ajinkya
  */
 public class ViewRequestLabTestJPanel extends javax.swing.JPanel {
 

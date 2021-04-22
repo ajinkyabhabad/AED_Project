@@ -46,6 +46,7 @@ public class LawyerRequestJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.organization=organization;
+        this.userAccount = userAccount;
       
         populateTable();
     }
@@ -74,17 +75,17 @@ public class LawyerRequestJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Name ", "Time of Assault", "Status"
+                "Name ", "Time of Assault", "Status", "Assigned to"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -370,15 +371,20 @@ jButton2.setForeground(Color.black);         // TODO add your handling code here
 
     private void populateTable() {
         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
-        Object[] row=new Object[3];
+        Object[] row=new Object[4];
         model.setRowCount(0);
         
          for(LawyerWorkRequest request : organization.getWorkQueue().getLawyerworkRequestList())
          {
          
-            row[0]=request.getHelpSeekerWorkRequest().getSender().getEmployee().getName();
+            row[0]=request.getHelpSeekerWorkRequest().getNameofvictim();
             row[1] = request.getHelpSeekerWorkRequest().getDoi();
             row[2] = request;
+            if (request.getReceiver()==null){
+              row[3] = "Not Assigned";
+            }else{
+              row[3] = request.getReceiver();
+            }
             
             model.addRow(row);
         }
