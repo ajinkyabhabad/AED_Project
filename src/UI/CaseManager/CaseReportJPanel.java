@@ -386,7 +386,7 @@ public class CaseReportJPanel extends javax.swing.JPanel {
         lawyerrequest.setStatus("Waiting");
         lawyerrequest.setSender(userAccount);
         lawyerrequest.setHelpSeekerWorkRequest(request);
-        
+        lawyerrequest.getHelpSeekerWorkRequest().setLawyerWorkRequest(lawyerrequest);
         Enterprise e= network.getEnterpriseDirectory().searchEnterprisebyType(Enterprise.EnterpriseType.Legal);
             Organization org = null;
             for (Organization organization : e.getOrganizationDirectory().getOrganizationList()){
@@ -410,6 +410,7 @@ public class CaseReportJPanel extends javax.swing.JPanel {
         counsellarrequest.setStatus("Waiting");
         counsellarrequest.setSender(userAccount);
         counsellarrequest.setHelpSeekerWorkRequest(request);
+        counsellarrequest.getHelpSeekerWorkRequest().setCounsellarWorkRequest(counsellarrequest);
         
         Enterprise e= network.getEnterpriseDirectory().searchEnterprisebyType(Enterprise.EnterpriseType.Health);
             Organization org = null;
@@ -435,6 +436,7 @@ public class CaseReportJPanel extends javax.swing.JPanel {
         hprequest.setStatus("Waiting");
         hprequest.setSender(userAccount);
         hprequest.setHelpSeekerWorkRequest(request);
+        hprequest.getHelpSeekerWorkRequest().setHpWorkRequest(hprequest);
         
         Enterprise e= network.getEnterpriseDirectory().searchEnterprisebyType(Enterprise.EnterpriseType.NGO);
             Organization org = null;
@@ -459,6 +461,7 @@ public class CaseReportJPanel extends javax.swing.JPanel {
         docrequest.setStatus("Waiting");
         docrequest.setSender(userAccount);
         docrequest.setHelpSeekerWorkRequest(request);
+        docrequest.getHelpSeekerWorkRequest().setDoctorWorkRequest(docrequest);
         
         Enterprise e= network.getEnterpriseDirectory().searchEnterprisebyType(Enterprise.EnterpriseType.Health);
             Organization org = null;

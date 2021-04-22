@@ -13,7 +13,10 @@ import Business.Organization.HelpSeekerOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CounsellarWorkRequest;
+import Business.WorkQueue.DoctorWorkRequest;
+import Business.WorkQueue.HelpProviderWorkRequest;
 import Business.WorkQueue.HelpSeekerWorkRequest;
+import Business.WorkQueue.LawyerWorkRequest;
 import UI.Hospital.DoctorJPanel;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -43,9 +46,11 @@ public class HelpSeekerViewStatusJPanel extends javax.swing.JPanel {
         this.HSOrganization = (HelpSeekerOrganization)organization;
         this.HSenterprise = (HelpSeekerEnterprise) enterprise;
         this.organization=organization;
-       // populateTable();
-       populateCM();
+       populateTable();
+       //populateCM();
        //populateCounsellor();
+       populateStatusTable();
+
     }
 
     /**
@@ -84,6 +89,7 @@ public class HelpSeekerViewStatusJPanel extends javax.swing.JPanel {
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new java.awt.GridBagLayout());
@@ -127,6 +133,23 @@ public class HelpSeekerViewStatusJPanel extends javax.swing.JPanel {
 
         jLabel14.setText("Help Provider");
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setText("Check Status");
+        jButton1.setBorderPainted(false);
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -146,7 +169,7 @@ public class HelpSeekerViewStatusJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 24, Short.MAX_VALUE)
+                        .addGap(0, 30, Short.MAX_VALUE)
                         .addComponent(jLabel13)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel8)
@@ -177,16 +200,24 @@ public class HelpSeekerViewStatusJPanel extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(27, 27, 27))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)
+                        .addGap(37, 37, 37)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel8)
@@ -238,6 +269,19 @@ public class HelpSeekerViewStatusJPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
         add(jPanel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        jButton1.setForeground(new Color(0,128,128));        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        jButton1.setForeground(Color.black);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseExited
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        populateStatusTable();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 private void populateTable() {
         
         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
@@ -260,7 +304,10 @@ private void populateTable() {
             
             model.addRow(row);
             count++;
-            for (CounsellarWorkRequest req: userAccount.getWorkQueue().getCounsellarworkRequestList())
+            jLabel5.setText("");
+            jLabel6.setText("");
+            jLabel7.setText("");
+            /*for (CounsellarWorkRequest req: userAccount.getWorkQueue().getCounsellarworkRequestList())
           {
             Object[] r=new Object[4];
             req.setRequestid(count);
@@ -273,7 +320,7 @@ private void populateTable() {
             }
             r[3]=req;
             model.addRow(r);
-          }
+          }*/
             
             
         }
@@ -282,6 +329,7 @@ private void populateTable() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -310,7 +358,7 @@ private void populateTable() {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-    private void populateCM() {
+    /*private void populateCM() {
     
         for(HelpSeekerWorkRequest request : userAccount.getWorkQueue().getHelpSeekerworkRequestList())
          {
@@ -338,7 +386,7 @@ private void populateTable() {
             }
               jLabel11.setText(userAccount.getWorkQueue().getLawyerworkRequestList().get(i).toString());
           }
-         */
+         
         
         
     }
@@ -371,6 +419,92 @@ private void populateTable() {
             }
         }
         return null;
-    }
+    
 
+
+
+
+}*/
+
+    private void populateStatusTable() {
+        int selectedRow = jTable1.getSelectedRow();
+        
+        if (selectedRow < 0){
+            return;
+        }
+        if (selectedRow >= 0) {
+            HelpSeekerWorkRequest  HP  = (HelpSeekerWorkRequest) jTable1.getValueAt(selectedRow, 3);
+                 if(HP!=null){
+                     jLabel5.setText(HP.getRequestDate().toString());
+                     if(HP.getReceiver()==null){
+                         jLabel6.setText("Not Assigned");
+                     }else{
+                         jLabel6.setText(HP.getReceiver().toString());
+                     }
+                     jLabel7.setText(HP.getStatus());
+                     
+                        if(HP.getDoctorWorkRequest()!=null){
+                            DoctorWorkRequest D = HP.getDoctorWorkRequest(); 
+                            jLabel9.setText(D.getRequestDate().toString());
+                        if(D.getReceiver()==null){
+                            jLabel10.setText("Not Assigned");
+                        }else{
+                            jLabel10.setText(D.getReceiver().toString());
+                        }
+                        jLabel11.setText(D.getStatus());
+                        }else{
+                            jLabel9.setText("-");
+                            jLabel10.setText("-");
+                            jLabel11.setText("-");
+                        }
+                        
+                        if(HP.getCounsellarWorkRequest()!=null){
+                            CounsellarWorkRequest C = HP.getCounsellarWorkRequest(); 
+                            jLabel15.setText(C.getRequestDate().toString());
+                        if(C.getReceiver()==null){
+                            jLabel16.setText("Not Assigned");
+                        }else{
+                            jLabel16.setText(C.getReceiver().toString());
+                        }
+                        jLabel17.setText(C.getStatus());
+                        }else{
+                            jLabel15.setText("-");
+                            jLabel16.setText("-");
+                            jLabel17.setText("-");
+                        }
+                        
+                        if(HP.getHpWorkRequest()!=null){
+                            HelpProviderWorkRequest P = HP.getHpWorkRequest(); 
+                            jLabel21.setText(P.getRequestDate().toString());
+                        if(P.getReceiver()==null){
+                            jLabel22.setText("Not Assigned");
+                        }else{
+                            jLabel22.setText(P.getReceiver().toString());
+                        }
+                        jLabel23.setText(P.getStatus());
+                        }else{
+                            jLabel21.setText("-");
+                            jLabel22.setText("-");
+                            jLabel23.setText("-");
+                        }
+                        
+                        if(HP.getLawyerWorkRequest()!=null){
+                            LawyerWorkRequest L = HP.getLawyerWorkRequest(); 
+                            jLabel18.setText(L.getRequestDate().toString());
+                        if(L.getReceiver()==null){
+                            jLabel19.setText("Not Assigned");
+                        }else{
+                            jLabel19.setText(L.getReceiver().toString());
+                        }
+                        jLabel20.setText(L.getStatus());
+                        }else{
+                            jLabel18.setText("-");
+                            jLabel19.setText("-");
+                            jLabel20.setText("-");
+                        }
+                 }
+                     
+                 
+             }
+    }
 }
