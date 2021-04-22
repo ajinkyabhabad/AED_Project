@@ -5,12 +5,16 @@
  */
 package Business.WorkQueue;
 
+import Business.Encounter.HelpProviderEncounter;
+import java.util.ArrayList;
+
 /**
  *
  * @author patel
  */
 public class HelpProviderWorkRequest extends WorkRequest {
     HelpSeekerWorkRequest HelpSeekerWorkRequest;
+    ArrayList<HelpProviderEncounter> HPEncounter = new ArrayList<HelpProviderEncounter>();
 
     public HelpSeekerWorkRequest getHelpSeekerWorkRequest() {
         return HelpSeekerWorkRequest;
@@ -19,4 +23,13 @@ public class HelpProviderWorkRequest extends WorkRequest {
     public void setHelpSeekerWorkRequest(HelpSeekerWorkRequest HelpSeekerWorkRequest) {
         this.HelpSeekerWorkRequest = HelpSeekerWorkRequest;
     }
+
+    public ArrayList<HelpProviderEncounter> getHPEncounter() {
+        return HPEncounter;
+    }
+
+    public void setHPEncounter(ArrayList<HelpProviderEncounter> HPEncounter) {
+        this.HPEncounter = HPEncounter;
+    }
+    
 }

@@ -172,24 +172,16 @@ public class RequestDoctorJPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
 
-        if(i<2)
-        {
             int selectedRow = jTable1.getSelectedRow();
-        
-            if (selectedRow < 0){
-                return;
-            }
-        
             WorkRequest request = (DoctorWorkRequest)jTable1.getValueAt(selectedRow, 2);
-            request.setReceiver(userAccount);
-            request.setStatus("Accepted");
-            populatetable();
-            i++;
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Only one case can be accepted at a time");
-        }
+            if (CheckOpenCases(userAccount) == 0){
+                request.setReceiver(userAccount);
+                request.setStatus("Accepted");
+                populatetable();
+            }else
+            {
+                JOptionPane.showMessageDialog(null, "Only one case can be accepted at a time");
+            }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -269,5 +261,19 @@ public class RequestDoctorJPanel extends javax.swing.JPanel {
           model.addRow(row);
         }
         
+    }
+    
+    private int CheckOpenCases(UserAccount userAccount) {
+        int a = 0;
+        for(DoctorWorkRequest request : organization.getWorkQueue().getDoctorworkRequestList())
+        {
+        
+          if (request.getReceiver()==userAccount){
+              if (request.getStatus().equalsIgnoreCase("Accepted")){
+                  a = a + 1;
+              }
+          } 
+        }
+        return a; 
     }
 }
