@@ -301,8 +301,15 @@ public class ManageUserJPanel extends javax.swing.JPanel {
         Organization organization = (Organization) organizationJComboBox.getSelectedItem();
         Employee employee = (Employee) employeeJComboBox.getSelectedItem();
         Role role = (Role) roleJComboBox.getSelectedItem();
-        
-        organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
+        if(organization.getUserAccountDirectory().IsValidInput(password)){
+                        UserAccount userAccount=organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Password should have a minimum length of 8 and contain atleast 1 Uppercase, 1 Lowercase, 1 Special character and 1 Digit ");
+                        passwordJTextField.setText("");
+                        return;
+                    }
+        //organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
         
         popData();
         nameJTextField.setText("");

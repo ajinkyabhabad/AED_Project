@@ -299,13 +299,45 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
         
         if(enterprise.getEnterpriseType().getValue().equalsIgnoreCase("Health")){
-            UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new HealthAdminRole());
+            if(enterprise.getUserAccountDirectory().IsValidInput(password)){
+                        UserAccount userAccount=enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new HealthAdminRole());
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Password should have a minimum length of 8 and contain atleast 1 Uppercase, 1 Lowercase, 1 Special character and 1 Digit ");
+                        passwordJPasswordField.setText("");
+                        return;
+                    }
+            //UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new HealthAdminRole());
         } else if(enterprise.getEnterpriseType().getValue().equalsIgnoreCase("Legal")){
-            UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new LegalAdminRole());
+            if(enterprise.getUserAccountDirectory().IsValidInput(password)){
+                        UserAccount userAccount=enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new LegalAdminRole());
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Password should have a minimum length of 8 and contain atleast 1 Uppercase, 1 Lowercase, 1 Special character and 1 Digit ");
+                        passwordJPasswordField.setText("");
+                        return;
+                    }
+            //UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new LegalAdminRole());
         }else if(enterprise.getEnterpriseType().getValue().equalsIgnoreCase("NGO")){
-            UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new NGOAdminRole());
+            if(enterprise.getUserAccountDirectory().IsValidInput(password)){
+                        UserAccount userAccount=enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new NGOAdminRole());
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Password should have a minimum length of 8 and contain atleast 1 Uppercase, 1 Lowercase, 1 Special character and 1 Digit ");
+                        passwordJPasswordField.setText("");
+                        return;
+                    }
+            //UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new NGOAdminRole());
         }else if(enterprise.getEnterpriseType().getValue().equalsIgnoreCase("Pharmacy")){
-            UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new PharmacyAdminRole());
+            if(enterprise.getUserAccountDirectory().IsValidInput(password)){
+                        UserAccount userAccount=enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new PharmacyAdminRole());
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Password should have a minimum length of 8 and contain atleast 1 Uppercase, 1 Lowercase, 1 Special character and 1 Digit ");
+                        passwordJPasswordField.setText("");
+                        return;
+                    }
+            //UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new PharmacyAdminRole());
         }
         //UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
         populateTable();
