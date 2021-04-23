@@ -99,7 +99,7 @@ public class PharmaViewRequestJPanel extends javax.swing.JPanel {
         });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setText("Assign");
+        jButton3.setText("Assign Request");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton3MouseEntered(evt);
@@ -173,7 +173,7 @@ public class PharmaViewRequestJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "You cannot view the report of this case. Access Denied.");
         }else{
 
-            ViewPrescriptionJPanel caseReportJPanel = new ViewPrescriptionJPanel(userProcessContainer,system,request);
+            ViewPrescriptionJPanel caseReportJPanel = new ViewPrescriptionJPanel(userProcessContainer,system,request,userAccount);
             userProcessContainer.add("caseReportJPanel", caseReportJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);

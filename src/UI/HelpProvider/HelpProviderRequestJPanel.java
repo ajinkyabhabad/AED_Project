@@ -95,7 +95,7 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setText("Accept");
+        jButton2.setText("Assign Request");
         jButton2.setBorderPainted(false);
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -179,6 +179,7 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
                 request.setReceiver(userAccount);
                 request.setStatus("Accepted");
                 populateTable();  
+                sendInvite(request);
             }else
             {
                 JOptionPane.showMessageDialog(null, "Only one case can be accepted at a time");
@@ -295,8 +296,8 @@ public class HelpProviderRequestJPanel extends javax.swing.JPanel {
             Message msg=new MimeMessage(session);
             msg.setFrom(new InternetAddress(FromEmail));
             msg.addRecipients(Message.RecipientType.TO, InternetAddress.parse(request.getHelpSeekerWorkRequest().getEmail()));
-            msg.setSubject("Invitation for a session with Help Provider, " + request.getHelpSeekerWorkRequest().getNameofvictim() );
-            msg.setText("Dear "+ request.getHelpSeekerWorkRequest().getNameofvictim()+"\n"+"I am here to help you. Join me through the following link for the next encounter."+"\n"+"zoom1.link"+"\n"+"Best");
+            msg.setSubject("Invitation for a session with Help Provider.");
+            msg.setText("Dear "+ request.getHelpSeekerWorkRequest().getNameofvictim()+"\n"+"I am here to help you. Join me through the following link for the next encounter."+"\n"+"zoom1.link"+"\n"+"Best,"+"\n"+userAccount.getEmployee().getName());
             Transport.send(msg);
             JOptionPane.showMessageDialog(this, "Invitation has been sent successfully.");
 
