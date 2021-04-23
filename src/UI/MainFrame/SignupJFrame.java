@@ -399,7 +399,14 @@ public class SignupJFrame extends javax.swing.JFrame {
                     Organization.Type type = (Organization.Type) Organization.Type.HelpSeeker;
                     Organization org= enterprise.getOrganizationDirectory().createOrganization(type);
                     Employee employee= org.getEmployeeDirectory().createEmployee(name);
-                    UserAccount userAccount=org.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
+                    if(org.getUserAccountDirectory().IsValidInput(password)){
+                        UserAccount userAccount=org.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Password should have a minimum length of 8 and contain atleast 1 Uppercase, 1 Lowercase, 1 Special character and 1 Digit ");
+                        passwordJPasswordField.setText("");
+                        return;
+                    }
                     
                 }
                 else{
@@ -407,7 +414,14 @@ public class SignupJFrame extends javax.swing.JFrame {
                     
                     Organization org = enterprise.getOrganizationDirectory().searchOrganizationbyname("HelpSeekerOrganization");
                     Employee employee= org.getEmployeeDirectory().createEmployee(name);
-                    UserAccount userAccount=org.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
+                    if(org.getUserAccountDirectory().IsValidInput(password)){
+                        UserAccount userAccount=org.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Password should have a minimum length of 8 and contain atleast 1 Uppercase, 1 Lowercase, 1 Special character and 1 Digit ");
+                        passwordJPasswordField.setText("");
+                        return;
+                    }
                 }     
         }
         else{
@@ -417,7 +431,14 @@ public class SignupJFrame extends javax.swing.JFrame {
                 Organization.Type type = (Organization.Type) Organization.Type.HelpSeeker;
                 Organization org= enterprise.getOrganizationDirectory().createOrganization(type);
                 Employee employee= org.getEmployeeDirectory().createEmployee(name);
-                UserAccount userAccount=org.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
+                if(org.getUserAccountDirectory().IsValidInput(password)){
+                        UserAccount userAccount=org.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Password should have a minimum length of 8 and contain atleast 1 Uppercase, 1 Lowercase, 1 Special character and 1 Digit ");
+                        passwordJPasswordField.setText("");
+                        return;
+                    }
                   
                     
             }
@@ -425,7 +446,14 @@ public class SignupJFrame extends javax.swing.JFrame {
                 //System.out.println("start4");
                 Organization org = enterprise.getOrganizationDirectory().searchOrganizationbyname("HelpSeekerOrganization");
                 Employee employee= org.getEmployeeDirectory().createEmployee(name);
-                UserAccount userAccount=org.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
+                if(org.getUserAccountDirectory().IsValidInput(password)){
+                        UserAccount userAccount=org.getUserAccountDirectory().createUserAccount(username, password, employee, new HelpSeekerRole());
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Password should have a minimum length of 8 and contain atleast 1 Uppercase, 1 Lowercase, 1 Special character and 1 Digit ");
+                        passwordJPasswordField.setText("");
+                        return;
+                    }
             }   
         }
         
