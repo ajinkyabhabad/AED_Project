@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author raunak
+ * @author Ajinkya
  */
 public class NGOAdminRole extends Role{
 

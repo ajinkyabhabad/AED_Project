@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author raunak
+ * @author Ajinkya
  */
 public class ForensicOrganization extends Organization{
 
