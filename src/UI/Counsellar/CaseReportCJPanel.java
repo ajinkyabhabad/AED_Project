@@ -385,8 +385,8 @@ public class CaseReportCJPanel extends javax.swing.JPanel {
             Message msg=new MimeMessage(session);
             msg.setFrom(new InternetAddress(FromEmail));
             msg.addRecipients(Message.RecipientType.TO, InternetAddress.parse(request.getEmail()));
-            msg.setSubject("A Counselor has been assigned, " + request.getNameofvictim() );
-            msg.setText("Dear "+ request.getNameofvictim()+"\n"+"I am here to help you. Please schedule an appointment through the following link."+"\n"+"calendly.link"+"\n"+"Best");
+            msg.setSubject("A Counselor has been assigned.");
+            msg.setText("Dear "+ request.getNameofvictim()+"\n"+"I am here to help you. Please schedule an appointment through the following link."+"\n"+"calendly.link"+"\n"+"Best,"+"\n"+userAccount.getEmployee().getName());
             Transport.send(msg);
             JOptionPane.showMessageDialog(this, "Invitation has been sent successfully.");
         }catch(Exception e)

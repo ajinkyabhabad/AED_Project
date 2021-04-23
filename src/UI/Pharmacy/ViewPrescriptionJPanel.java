@@ -6,11 +6,20 @@
 package UI.Pharmacy;
 
 import Business.EcoSystem;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.HelpSeekerWorkRequest;
 import Business.WorkQueue.Meds;
 import Business.WorkQueue.PharmacistWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -27,11 +36,13 @@ public class ViewPrescriptionJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem system;
     PharmacistWorkRequest request;
-    public ViewPrescriptionJPanel(JPanel userProcessContainer, EcoSystem system,PharmacistWorkRequest request) {
+    UserAccount userAccount;
+    public ViewPrescriptionJPanel(JPanel userProcessContainer, EcoSystem system,PharmacistWorkRequest request, UserAccount userAccount) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.request = request;
+        this.userAccount = userAccount;
         populatereport();
     }
 
@@ -207,8 +218,10 @@ public class ViewPrescriptionJPanel extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
         request.setStatus("Processed");
+        sendInvite(request.getDoctorWorkRequest().getHelpSeekerWorkRequest());
         
-        JOptionPane.showMessageDialog(null,"Medicines are ready for pick-up");
+        
+        //JOptionPane.showMessageDialog(null,"Medicines are ready for pick-up");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -254,6 +267,43 @@ public class ViewPrescriptionJPanel extends javax.swing.JPanel {
             row[1]=M.getQty();
             
             model.addRow(row);
+            
+        }
+    }
+    
+    private void sendInvite(HelpSeekerWorkRequest request){
+        String FromEmail="sexualawareness.help@gmail.com";
+        String FromEmailPass="Fin@lProject21";
+        String Subject = "Sign up successful";
+        String ema=request.getEmail();
+        String nv=request.getNameofvictim();
+        Properties properties=new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        
+        Session session=Session.getDefaultInstance(properties, new javax.mail.Authenticator(){
+           @Override
+            protected PasswordAuthentication getPasswordAuthentication(){
+         return new PasswordAuthentication(FromEmail,FromEmailPass);
+        }
+        });
+        
+        try
+        {
+            Message msg=new MimeMessage(session);
+            msg.setFrom(new InternetAddress(FromEmail));
+            msg.addRecipients(Message.RecipientType.TO, InternetAddress.parse(ema));
+            msg.setSubject("Medicines are Ready");
+            msg.setText("Dear "+nv +"\n"+"Medicines are ready for pick-up. "+"\n"+"\n"+"Best,"+"\n"+userAccount.getEmployee().getName());
+            Transport.send(msg);
+            JOptionPane.showMessageDialog(this, "Medicines are ready for pick-up. Invitation has been sent successfully.");
+
+        }catch(Exception e)
+        {
+            System.out.println(""+e);
+            JOptionPane.showMessageDialog(this, "Incorrect E-mail id.Invitation cannot be been sent.");
             
         }
     }
