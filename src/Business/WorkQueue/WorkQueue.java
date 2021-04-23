@@ -86,6 +86,20 @@ public class WorkQueue {
         this.PharmacistWorkRequest = PharmacistWorkRequest;
     }
     
-    
+    public int getcountbytypesa(String type)
+    {
+        int count=0;
+        
+        for(HelpSeekerWorkRequest hp: HelpSeekerworkRequestList)
+        {
+            
+            if(hp.getTypeofsa().equalsIgnoreCase(type))
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
     
 }
