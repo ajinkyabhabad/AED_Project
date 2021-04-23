@@ -24,8 +24,10 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -40,13 +42,19 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     private EcoSystem system;
     private HashMap<String, Integer> chart;
     int bostoncases,seattlecases;
+   
+   private HashMap<String, Integer> piechartbos;
+   private HashMap<String, Integer> piechartsea;
+
 
     public ManageNetworkJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         chart= new HashMap<String,Integer>();
-        
+        piechartbos=new HashMap<String,Integer>();
+        piechartsea=new HashMap<String,Integer>();
+
         populateNetworkTable();
     }
     
@@ -78,6 +86,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         DeleteBtn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -155,6 +164,14 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton3.setText("Report");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,11 +184,14 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNetworkName))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(DeleteBtn)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(DeleteBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(70, 70, 70)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                 .addGap(333, 333, 333))
@@ -194,7 +214,9 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
                             .addComponent(DeleteBtn)
-                            .addComponent(jButton2)))
+                            .addComponent(jButton2))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(199, Short.MAX_VALUE))
         );
@@ -282,6 +304,33 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        int selectedRow = networkJTable.getSelectedRow();
+         
+            if (selectedRow < 0){
+                JOptionPane.showMessageDialog(null, "Please choose a network");
+            return;
+            }         
+            Network network= (Network) networkJTable.getValueAt(selectedRow, 0);
+            Enterprise e= network.getEnterpriseDirectory().searchEnterprisebyType(Enterprise.EnterpriseType.NGO);
+            
+            for (Organization o: e.getOrganizationDirectory().getOrganizationList())
+            {   Organization org=null;
+               
+                if(o instanceof CaseManagerOrganization)
+                { 
+                    org=o;
+                    this.UpdatePieData(org);
+                     
+                    
+                }
+                updateSeattlePieChart(network);
+            }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     
   private void updateData(String networkdata, int casesdata)
     {
@@ -323,12 +372,45 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
        
     }
 
+    private void UpdatePieData(Organization org) {
+     
+       
+        piechartsea.clear();
+        piechartsea.put("Rape",org.getWorkQueue().getcountbytypesa("Rape"));
+        piechartsea.put("Marital Rape", org.getWorkQueue().getcountbytypesa("Marital Rape"));
+        piechartsea.put("Child Sexual Abuse", org.getWorkQueue().getcountbytypesa("Child Sexual Abuse"));
+        piechartsea.put("Unwanted Sexual Touching", org.getWorkQueue().getcountbytypesa("Unwanted Sexual Touching"));
+        piechartsea.put("Incest", org.getWorkQueue().getcountbytypesa("Incest"));
+        //this.updateSeattlePieChart();
+        
+    }
+
+    private void updateSeattlePieChart(Network network) {
+    
+        DefaultPieDataset ddd=new DefaultPieDataset();
+        Set keys=piechartsea.keySet();
+        Iterator it=keys.iterator();
+        
+        while(it.hasNext())
+        {
+            Object type=it.next().toString();
+            int caspiedata= (int) piechartsea.get(type);
+            ddd.setValue((Comparable) type, caspiedata);
+        }
+            JFreeChart seapie=ChartFactory.createPieChart(network.toString() + " cases summary.", ddd, true, true, true);
+            PiePlot p=(PiePlot) seapie.getPlot();
+            ChartFrame cp=new ChartFrame("No of cases by type in " + network.toString(),seapie);
+            cp.setVisible(true);
+            cp.setSize(600,600);
+        
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton DeleteBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
