@@ -283,24 +283,12 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
           
-        for (Network n: system.getNetworkList())
-        {  
-      
-            Enterprise e= n.getEnterpriseDirectory().searchEnterprisebyType(Enterprise.EnterpriseType.NGO);
-            
-            for (Organization o: e.getOrganizationDirectory().getOrganizationList())
-            {   Organization org=null;
-               
-                if(o instanceof CaseManagerOrganization)
-                { 
-                    org=o;
-                   updateData(n.toString(), org.getWorkQueue().getHelpSeekerworkRequestList().size());
-                }
-            }
-           
-            
-        }
-
+        //chart.clear();
+        
+        updateData();
+        //System.out.println("5");
+        updateChart();
+        //System.out.println("6");
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -332,25 +320,24 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     
-  private void updateData(String networkdata, int casesdata)
-    {
-        if(networkdata.equalsIgnoreCase("Boston"))
-        {
-            bostoncases+=casesdata;
-        }
-        if(networkdata.equalsIgnoreCase("Seattle"))
-        {
-            seattlecases+=casesdata;
-        }
-        chart.clear();
-        chart.put("Boston", bostoncases);
-        chart.put("Seattle", seattlecases);
-        this.updateChart();
-    }
+  private void updateData(){
+    for(Network n : system.getNetworkList()){
+            //System.out.println("1");
+            Enterprise e = n.getEnterpriseDirectory().searchEnterprisebyType(Enterprise.EnterpriseType.NGO);
+            
+            for (Organization o : e.getOrganizationDirectory().getOrganizationList()){
+                //System.out.println("2");
+                int count = o.getWorkQueue().getHelpSeekerworkRequestList().size();
+                //System.out.println("3");
+                chart.put(n.toString(), count);
+                //System.out.println("4");
+            }
+        }    
+  }
   
   private void updateChart() {
   
-        DefaultCategoryDataset d=new DefaultCategoryDataset();
+    DefaultCategoryDataset d=new DefaultCategoryDataset();
         Set keys=chart.keySet();
         Iterator it=keys.iterator();
         
@@ -364,12 +351,12 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         
         JFreeChart barc=ChartFactory.createBarChart("Summary of cases", "City/Network", "No of cases", d, PlotOrientation.VERTICAL, false, true, false);
         CategoryPlot plt=barc.getCategoryPlot();
-        plt.setRangeGridlinePaint(Color.black);
+        //plt.setRangeGridlinePaint(Color.black);
         
         ChartFrame cp=new ChartFrame("No of cases by network",barc);
+        //cp.removeAll();
         cp.setVisible(true);
         cp.setSize(600,600);
-       
     }
 
     private void UpdatePieData(Organization org) {
