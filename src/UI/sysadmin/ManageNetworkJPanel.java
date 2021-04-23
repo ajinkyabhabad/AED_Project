@@ -9,6 +9,7 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.CaseManagerOrganization;
+import Business.Organization.HelpSeekerOrganization;
 import Business.Organization.Organization;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -322,16 +323,18 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     
   private void updateData(){
     for(Network n : system.getNetworkList()){
-            //System.out.println("1");
+          
             Enterprise e = n.getEnterpriseDirectory().searchEnterprisebyType(Enterprise.EnterpriseType.NGO);
             
             for (Organization o : e.getOrganizationDirectory().getOrganizationList()){
-                //System.out.println("2");
+               
+                if (o instanceof CaseManagerOrganization){
+               
                 int count = o.getWorkQueue().getHelpSeekerworkRequestList().size();
-                //System.out.println("3");
+                
                 chart.put(n.toString(), count);
-                //System.out.println("4");
-            }
+                
+            }}
         }    
   }
   
