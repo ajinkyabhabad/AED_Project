@@ -63,17 +63,17 @@ public class PharmaViewRequestJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Patient's Name", "Doctor's Name", "Status"
+                "Patient's Name", "Doctor's Name", "Status", "Pharmacist"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -199,7 +199,7 @@ public class PharmaViewRequestJPanel extends javax.swing.JPanel {
     private void populateTable() {
         
         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
-        Object[] row=new Object[3];
+        Object[] row=new Object[4];
         model.setRowCount(0);
         
         
@@ -209,6 +209,11 @@ public class PharmaViewRequestJPanel extends javax.swing.JPanel {
             row[0]=request.getDoctorWorkRequest().getHelpSeekerWorkRequest().getNameofvictim();
             row[1] = request.getSender();
             row[2] = request;
+            if (request.getReceiver()==null){
+                row[3] = "Not Assigned";
+            }else{
+                row[3] = request.getReceiver();
+            }
             
             model.addRow(row);
         }

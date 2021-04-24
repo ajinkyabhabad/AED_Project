@@ -244,7 +244,7 @@ public class CaseReportDJPanel extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(157, 157, 157)
+                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(namesurvivorjLabel)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -278,7 +278,7 @@ public class CaseReportDJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(namesuspectjLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 85, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton3)
@@ -292,9 +292,9 @@ public class CaseReportDJPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 142;
-        gridBagConstraints.ipady = 6;
+        gridBagConstraints.ipady = 74;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(16, 24, 108, 131);
+        gridBagConstraints.insets = new java.awt.Insets(33, 24, 182, 146);
         add(jPanel1, gridBagConstraints);
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -316,6 +316,7 @@ public class CaseReportDJPanel extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(74, 14, 0, 0);
         add(jButton5, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -429,7 +430,7 @@ public class CaseReportDJPanel extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        System.out.println("Status "+request.getDoctorWorkRequest().getLabAssistanceWorkRequest().getStatus());
+        //System.out.println("Status "+request.getDoctorWorkRequest().getLabAssistanceWorkRequest().getStatus());
         if(request.getDoctorWorkRequest().getLabAssistanceWorkRequest().getStatus().equalsIgnoreCase("Waiting")){
             JOptionPane.showMessageDialog(this, "Requested has not been acccepted yet.");
         }else{

@@ -36,7 +36,7 @@ public class ManageOrganizationsJPanel extends javax.swing.JPanel {
         
         populateTable();
         populateCombo();
-        System.out.println(enterprise.getEnterpriseType().getValue());
+        //System.out.println(enterprise.getEnterpriseType().getValue());
     }
     
     private void populateCombo(){
