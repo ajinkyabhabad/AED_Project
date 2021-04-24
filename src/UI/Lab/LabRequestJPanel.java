@@ -71,17 +71,17 @@ public class LabRequestJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Doctor's Name", "Patient's Name", "LabStatus"
+                "Doctor's Name", "Patient's Name", "LabStatus", "Lab Assistant Name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -160,7 +160,7 @@ public class LabRequestJPanel extends javax.swing.JPanel {
     private void populateTable() {
         
         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
-        Object[] row=new Object[3];
+        Object[] row=new Object[4];
         model.setRowCount(0);
         
         
@@ -170,6 +170,11 @@ public class LabRequestJPanel extends javax.swing.JPanel {
             row[0]=request.getDoctorWorkRequest().getReceiver();
             row[1] = request.getDoctorWorkRequest().getHelpSeekerWorkRequest().getNameofvictim();
             row[2] = request;
+            if (request.getReceiver()==null){
+                row[3] = "Not Assigned";
+            }else{
+                row[3] = request.getReceiver();
+            }
             
             model.addRow(row);
         }

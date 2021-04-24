@@ -53,7 +53,6 @@ public class ReportJPanel extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        ReportjLabel = new javax.swing.JLabel();
         namesurvivorjLabel = new javax.swing.JLabel();
         relationjLabel = new javax.swing.JLabel();
         typejLabel = new javax.swing.JLabel();
@@ -81,95 +80,85 @@ public class ReportJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new java.awt.GridBagLayout());
 
-        ReportjLabel.setBackground(new java.awt.Color(0, 128, 128));
-        ReportjLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        ReportjLabel.setForeground(new java.awt.Color(255, 255, 255));
-        ReportjLabel.setText("       Register Report");
-        ReportjLabel.setOpaque(true);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.ipadx = 26;
-        gridBagConstraints.ipady = 25;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 149, 0, 0);
-        add(ReportjLabel, gridBagConstraints);
-
         namesurvivorjLabel.setText("Name of Survivor : ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 33;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 167, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(12, 47, 0, 0);
         add(namesurvivorjLabel, gridBagConstraints);
 
         relationjLabel.setText("Relation with Survivor : ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.ipadx = -46;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(16, 167, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(16, 47, 0, 0);
         add(relationjLabel, gridBagConstraints);
 
         typejLabel.setText("Type of Sexual Assault : ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 21;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 167, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(21, 47, 0, 0);
         add(typejLabel, gridBagConstraints);
 
         locationjLabel.setText("Location of Incident :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 12;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 24;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 167, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(21, 47, 0, 0);
         add(locationjLabel, gridBagConstraints);
 
         timejLabel.setText("Date of Incident :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 42;
         gridBagConstraints.ipady = -6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 167, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 47, 0, 0);
         add(timejLabel, gridBagConstraints);
 
         detailsjLabel.setText("More Details : ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridy = 11;
         gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 56;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 167, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 47, 0, 0);
         add(detailsjLabel, gridBagConstraints);
 
         suspecttypejLabel.setText("Suspect :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 14;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.ipadx = 54;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 83;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(19, 167, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(19, 47, 0, 0);
         add(suspecttypejLabel, gridBagConstraints);
 
         namesuspectjLabel.setText("Name of Suspect : ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 16;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipadx = 38;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 167, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(20, 47, 0, 0);
         add(namesuspectjLabel, gridBagConstraints);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -178,22 +167,21 @@ public class ReportJPanel extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 11;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 71;
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 23;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 155;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 6, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(9, 14, 0, 0);
         add(jTextField1, gridBagConstraints);
 
         friendRadioButton.setText("Friend");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(14, 180, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(14, 60, 0, 0);
         add(friendRadioButton, gridBagConstraints);
 
         parentRadioButton.setText("Parent");
@@ -203,21 +191,21 @@ public class ReportJPanel extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 25;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.ipadx = 12;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(14, 2, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(14, 32, 0, 0);
         add(parentRadioButton, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 16;
-        gridBagConstraints.gridwidth = 90;
+        gridBagConstraints.gridwidth = 46;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 161;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(1, 6, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(17, 10, 0, 0);
         add(jTextField2, gridBagConstraints);
 
         knownRadioButton.setText("Known");
@@ -227,48 +215,48 @@ public class ReportJPanel extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 30;
-        gridBagConstraints.gridy = 14;
-        gridBagConstraints.gridwidth = 26;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 24, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(15, 15, 0, 0);
         add(knownRadioButton, gridBagConstraints);
 
         unknownRadioButton.setText("Unknown");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 120;
-        gridBagConstraints.gridy = 14;
-        gridBagConstraints.gridwidth = 93;
+        gridBagConstraints.gridx = 17;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 47;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 13, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(14, 29, 0, 0);
         add(unknownRadioButton, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 30;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridwidth = 91;
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridwidth = 34;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 155;
         gridBagConstraints.ipady = 25;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 15, 0, 0);
         add(jTextField3, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 30;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 183;
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 34;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 218;
+        gridBagConstraints.ipadx = 155;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 15, 0, 0);
         add(jTextField4, gridBagConstraints);
 
         Colleagueradiobutton.setText("Self");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 55;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 27;
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 7;
         gridBagConstraints.ipadx = 13;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(14, 18, 0, 0);
@@ -276,19 +264,19 @@ public class ReportJPanel extends javax.swing.JPanel {
 
         otherRadioButton.setText("Other");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 120;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 92;
+        gridBagConstraints.gridx = 17;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 47;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(14, 18, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(14, 47, 0, 0);
         add(otherRadioButton, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 30;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 275;
-        gridBagConstraints.ipadx = 289;
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 60;
+        gridBagConstraints.ipadx = 180;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 24, 0, 154);
+        gridBagConstraints.insets = new java.awt.Insets(6, 15, 0, 0);
         add(jDateChooser1, gridBagConstraints);
 
         ReportjButton.setBackground(new java.awt.Color(255, 0, 51));
@@ -300,13 +288,12 @@ public class ReportJPanel extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 120;
-        gridBagConstraints.gridy = 16;
-        gridBagConstraints.gridwidth = 184;
-        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.gridx = 17;
+        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridwidth = 61;
         gridBagConstraints.ipadx = 38;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 42, 103, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 34, 11, 57);
         add(ReportjButton, gridBagConstraints);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select one", "Rape", "Marital Rape", "Child Sexual Abuse", "Unwanted Sexual Touching", "Incest" }));
@@ -316,29 +303,31 @@ public class ReportJPanel extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 30;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 183;
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 13;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 24, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 15, 0, 0);
         add(jComboBox1, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 11;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 71;
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 23;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 155;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(16, 6, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(16, 14, 0, 0);
         add(jTextField5, gridBagConstraints);
 
         jLabel1.setText("Email:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 97;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(19, 167, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(19, 47, 0, 0);
         add(jLabel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -470,7 +459,6 @@ public class ReportJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton Colleagueradiobutton;
     private javax.swing.JButton ReportjButton;
-    private javax.swing.JLabel ReportjLabel;
     private javax.swing.JLabel detailsjLabel;
     private javax.swing.JRadioButton friendRadioButton;
     private javax.swing.JComboBox<String> jComboBox1;
